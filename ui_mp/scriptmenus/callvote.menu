@@ -1,0 +1,197 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+#define OPTIONS_STYLE         1
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+{
+	 menuDef
+	 {
+			name        callvote
+			fullScreen     0
+			rect        0 0 640 480          // Size and position of the menu
+			focusColor     COLOR_FOCUSED        // Menu focus color for text and items
+			blurWorld      7.0
+			onEsc          {close self; open class; }
+			PREPROC_SHADER_DRAW( -120 0 880 480, 0 0, "white", 0 0 0 0.75, 0, 1, 0 0 0 0 )
+
+			#undef BACK_OPEN
+			#define BACK_OPEN exec "wait";
+			#include "ui_mp/navcontrols.inc"
+			CHOICE_MENU_TITLE( "@MPUI_CALLVOTE" )
+			#include "ui_mp/scriptmenus/callvote_buttons.inc"
+	 }
+
+	 menuDef
+	 {
+			name        changemap
+			fullScreen     0
+			rect        0 0 640 480          // Size and position of the menu
+			focusColor     COLOR_FOCUSED        // Menu focus color for text and items
+			blurWorld      7.0
+			onEsc          {close self; open class; }
+			PREPROC_SHADER_DRAW( -120 0 880 480, 0 0, "white", 0 0 0 0.75, 0, 1, 0 0 0 0 )
+
+			#undef BACK_OPEN
+			#define BACK_OPEN exec "wait";
+			#include "ui_mp/navcontrols.inc"
+			CHOICE_MENU_TITLE( "@MPUI_CALLVOTE" )
+			#include "ui_mp/scriptmenus/callvote_buttons.inc"
+
+			CHOICE_SECTION_TITLE( 21, "@MPUI_CHANGE_MAP" )
+			#undef CHOICE_X_START
+			#define CHOICE_X_START     -260
+			CHOICE_BUTTON( 36, "@MPUI_VOTE", close self; uiScript voteMap; )
+
+			itemDef
+			{
+				 name        maplist
+				 visible        1
+				 rect        CHOICE_X( 21 ) 52 200 270 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+				 forecolor      COLOR_UNFOCUSED
+				 style       WINDOW_STYLE_FILLED
+				 type        ITEM_TYPE_LISTBOX
+				 textscale      CHOICE_TEXTSIZE
+				 textstyle      ITEM_TEXTSTYLE_SHADOWED
+				 textfont    UI_FONT_NORMAL
+				 elementtype    LISTBOX_TEXT
+				 elementwidth   120
+				 elementheight  24
+				 textalignx     6
+				 textaligny     0
+				 forecolor      CHOICE_TEXTCOLOR
+				 backcolor      0 0 0 0
+				 border         1
+				 bordersize     1
+				 bordercolor    1 1 1 0.15
+				 outlinecolor   1 1 1 0.2
+				 feeder         FEEDER_ALLMAPS
+				 columns        1 2 190 25
+				 mouseEnter     { setitemcolor maplist bordercolor 1 1 1 0.55 }
+				 mouseExit      { setitemcolor maplist bordercolor 1 1 1 0.15 }
+			}
+	 }
+
+	 menuDef
+	 {
+			name        changegametype
+			fullScreen     0
+			rect        0 0 640 480          // Size and position of the menu
+			focusColor     COLOR_FOCUSED        // Menu focus color for text and items
+			blurWorld      7.0
+			onEsc          {close self; open class;}
+			PREPROC_SHADER_DRAW( -120 0 880 480, 0 0, "white", 0 0 0 0.75, 0, 1, 0 0 0 0 )
+
+			#undef BACK_OPEN
+			#define BACK_OPEN exec "wait";
+			#include "ui_mp/navcontrols.inc"
+			CHOICE_MENU_TITLE( "@MPUI_CALLVOTE" )
+			#include "ui_mp/scriptmenus/callvote_buttons.inc"
+
+			CHOICE_SECTION_TITLE( 21, "@MPUI_CHANGE_GAME_TYPEMAP" )
+			#undef CHOICE_X_START
+			#define CHOICE_X_START     -260
+			CHOICE_BUTTON( 36, "@MPUI_VOTE", close self; uiScript voteTypeMap; )
+
+			itemDef
+			{
+				 visible        1
+				 rect        CHOICE_X( 21 ) 330 200 20 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+				 forecolor      CHOICE_TEXTCOLOR
+				 style       WINDOW_STYLE_FILLED
+				 textfont    UI_FONT_NORMAL
+				 textscale      CHOICE_TEXTSIZE
+				 textstyle      ITEM_TEXTSTYLE_SHADOWED
+				 textaligny     20
+				 textalignx     10
+				 ownerdraw      UI_NETGAMETYPE
+				 action
+				 {
+						play "mouse_click";
+				 }
+				 onFocus
+				 {
+						play "mouse_over";
+				 }
+			}
+
+			itemDef
+			{
+				 name        maplist2
+				 visible        1
+				 rect        CHOICE_X( 21 ) 52 200 270 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+				 forecolor      COLOR_UNFOCUSED
+				 style       WINDOW_STYLE_FILLED
+				 type        ITEM_TYPE_LISTBOX
+				 textscale      CHOICE_TEXTSIZE
+				 textstyle      ITEM_TEXTSTYLE_SHADOWED
+				 textfont    UI_FONT_NORMAL
+				 elementtype    LISTBOX_TEXT
+				 elementwidth   120
+				 elementheight  24
+				 textalignx     6
+				 textaligny     0
+				 forecolor      CHOICE_TEXTCOLOR
+				 backcolor      0 0 0 0
+				 border         1
+				 bordersize     1
+				 bordercolor    1 1 1 0.15
+				 outlinecolor   1 1 1 0.2
+				 feeder         FEEDER_ALLMAPS
+				 columns        1 2 190 25
+				 mouseEnter     { setitemcolor maplist2 bordercolor 1 1 1 0.55 }
+				 mouseExit      { setitemcolor maplist2 bordercolor 1 1 1 0.15 }
+			}
+	 }
+
+
+	 menuDef
+	 {
+			name        kickplayer
+			fullScreen     0
+			rect        0 0 640 480          // Size and position of the menu
+			focusColor     COLOR_FOCUSED        // Menu focus color for text and items
+			blurWorld      7.0
+			onEsc          {close self; open class;}
+			PREPROC_SHADER_DRAW( -120 0 880 480, 0 0, "white", 0 0 0 0.75, 0, 1, 0 0 0 0 )
+
+			#undef BACK_OPEN
+			#define BACK_OPEN exec "wait";
+			#include "ui_mp/navcontrols.inc"
+			CHOICE_MENU_TITLE( "@MPUI_CALLVOTE" )
+			#include "ui_mp/scriptmenus/callvote_buttons.inc"
+
+			CHOICE_SECTION_TITLE( 21, "@MPUI_KICK_PLAYER" )
+			#undef CHOICE_X_START
+			#define CHOICE_X_START     -260
+			CHOICE_BUTTON( 36, "@MPUI_VOTE", close self; uiScript voteTempBan; )
+
+			itemDef
+			{
+				 name        maplist
+				 visible        1
+				 rect        CHOICE_X( 21 ) 52 200 270 CHOICE_HORIZONTAL_ALIGN CHOICE_VERTICAL_ALIGN
+				 forecolor      COLOR_UNFOCUSED
+				 style       WINDOW_STYLE_FILLED
+				 type        ITEM_TYPE_LISTBOX
+				 textscale      CHOICE_TEXTSIZE
+				 textstyle      ITEM_TEXTSTYLE_SHADOWED
+				 textfont    UI_FONT_NORMAL
+				 elementtype    LISTBOX_TEXT
+				 elementwidth   120
+				 elementheight  24
+				 textalignx     6
+				 textaligny     0
+				 forecolor      CHOICE_TEXTCOLOR
+				 backcolor      0 0 0 0
+				 border         1
+				 bordersize     1
+				 bordercolor    1 1 1 0.15
+				 outlinecolor   1 1 1 0.2
+				 feeder         FEEDER_PLAYER_LIST
+				 columns        1 2 190 25
+				 mouseEnter     { setitemcolor maplist bordercolor 1 1 1 0.55 }
+				 mouseExit      { setitemcolor maplist bordercolor 1 1 1 0.15 }
+			}
+	 }
+}

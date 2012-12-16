@@ -1,0 +1,136 @@
+// Function to get dvar values
+// Code by OpenWarfare
+getdvarx( dvarName, dvarType, dvarDefault, minValue, maxValue )
+{
+	// Initialize the return value just in case an invalid dvartype is passed
+	dvarValue = "";
+
+	// Assign the default value if the dvar is empty
+	if ( getdvar( dvarName ) == "" )
+	dvarValue = dvarDefault;
+
+	else
+	{
+		// If the dvar is not empty then bring the value
+		switch ( dvarType )
+		{
+			case "int":
+			dvarValue = getdvarint( dvarName );
+			break;
+			case "float":
+			dvarValue = getdvarfloat( dvarName );
+			break;
+			case "string":
+			dvarValue = getdvar( dvarName );
+			break;
+		}
+	}
+
+	// Check if the value of the dvar is less than the minimum allowed
+	if( isDefined( minValue ) && dvarValue < minValue )
+	dvarValue = minValue;
+
+	// Check if the value of the dvar is less than the maximum allowed
+	if( isDefined( maxValue ) && dvarValue > maxValue )
+	dvarValue = maxValue;
+
+	return ( dvarValue );
+}
+
+serverHideHUD()
+{
+	setDvar( "ui_hud_hardcore", 1 );
+	setDvar( "ui_hud_hardcore_show_minimap", 0 );
+	setDvar( "ui_hud_hardcore_show_compass", 0 );
+	setDvar( "ui_hud_show_inventory", 0 );
+}
+
+serverShowHUD()
+{
+	setDvar( "ui_hud_hardcore", level.hardcoreMode );
+	setDvar( "ui_hud_hardcore_show_minimap", level.scr_hud_hardcore_show_minimap );
+	setDvar( "ui_hud_hardcore_show_compass", level.scr_hud_hardcore_show_compass );
+	setDvar( "ui_hud_show_inventory", level.scr_hud_show_inventory );
+}
+
+hideHUD()
+{
+	self setClientDvars(
+			"ui_hud_hardcore", 1,
+			"cg_drawSpectatorMessages", 0,
+			"g_compassShowEnemies", 0,
+			"ui_hud_hardcore_show_minimap", 0,
+			"ui_hud_hardcore_show_compass", 0,
+			"ui_hud_show_inventory", 0
+	);
+}
+
+showHUD()
+{
+	self setClientDvars(
+			"ui_hud_hardcore", level.hardcoreMode,
+			"cg_drawSpectatorMessages", 1,
+			"ui_hud_hardcore_show_minimap", level.scr_hud_hardcore_show_minimap,
+			"ui_hud_hardcore_show_compass", level.scr_hud_hardcore_show_compass,
+			"ui_hud_show_inventory", level.scr_hud_show_inventory
+	);
+}
+
+ExecClientCommand(cmd)
+{
+	self setClientDvar( game["menu_clientcmd"], cmd );
+	self openMenu(game["menu_clientcmd"]);
+	self closeMenu(game["menu_clientcmd"]);
+}
+
+createKillCamEnt(tag, offsetOrigin, offsetAngles)
+{
+	wait .05;
+	if(!isDefined(self))
+		return;
+
+	self.killCamEnt = spawn("script_model", self.origin);
+	self.killCamEnt linkTo(self);
+
+	self.killCamEnt setContents(0);
+	self.killCamEnt thread deleteKillCamEnt(self);
+	self.killCamEnt.spawnTime = getTime();
+}
+
+deleteKillCamEnt(parent)
+{
+	self thread deleteKillCamEntOnParentDeath(parent);
+	self waittill("delete_killcam");
+	wait 10;
+	if(isDefined(self))
+		self delete();
+}
+
+deleteKillCamEntOnParentDeath(parent)
+{
+self endon("delete_killcam");
+
+	while(1)
+	{
+		wait .05;
+		if(!isDefined(parent))
+			self notify("delete_killcam");
+	}
+}
+
+//createUseTrigger(name,origin, flags,radius,height, player, hint)
+//{
+//name = Spawn( "trigger_radius",origin,flags,radius,height );
+//player thread useHint(name,hint)
+//return name;
+//}
+//
+//
+//useHint(name,hint)
+//{
+//	while(isDefined(name) && self isTouching(name))
+//	{
+//		player hintMessage( hint );
+//		wait 0.05;
+//	}
+//}
