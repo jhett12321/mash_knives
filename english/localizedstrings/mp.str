@@ -20,7 +20,7 @@ REFERENCE           GUN_NAME
 LANG_ENGLISH        "Gunners"
 
 REFERENCE           KNIFE_RETRIEVE
-LANG_ENGLISH        "Press^3 &&1 ^7to pick up"
+LANG_ENGLISH        "Press ^3[{+activate}]^7 to pick up"
 
 REFERENCE ENEMY_FLAG_DROPPED
 LANG_ENGLISH "Enemy flag was dropped!"

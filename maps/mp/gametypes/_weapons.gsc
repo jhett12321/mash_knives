@@ -1,13 +1,16 @@
 #include common_scripts\utility;
 #include maps\mp\_utility;
+#include maps\mp\_mashutil;
 
 init()
 {
+	//Remove Turrets from all maps
 	turret = getentarray("misc_turret","classname");
 	for(i=0;i<turret.size;i++)
 	{
 	turret[i] delete();
 	}
+
 	// assigns weapons with stat numbers from 0-149
 	// attachments are now shown here, they are per weapon settings instead
 	
@@ -75,6 +78,16 @@ init()
 	{
 		precacheItem( level.weaponList[index] );
 		println( "Precached weapon: " + level.weaponList[index] );	
+	}
+	
+	//Remove Pre-Spawned weapons from all maps
+	for(index = 0;index < level.weaponList.size; index++)
+	{
+		weaponobject = getentarray( "weapon_" + level.weaponList[index],"classname");
+		for(i=0;i<weaponobject.size;i++)
+		{
+			weaponobject[i] delete();
+		}
 	}
 
 	precacheItem( "frag_grenade_short_mp" );
@@ -733,72 +746,52 @@ watchThrowingKnives(player)
 
 knifePickup(player)
 {
-	wait 0.5;
+	wait 0.05;
 	if(!isDefined(self))
 		return;
-	self thread knifeTriggerTrack(self);
-	self waittill("stopped");
-	self.throwingknifearraytrigger = Spawn( "trigger_radius",(self.origin), 0, 512, 256 );
-	self.throwingknifearraytrigger setContents(0);
-	self.throwingknifearraytrigger thread doknifePickup(self,player);
-	wait 0.05;
+
+	self thread knifeTrack();
+
+	self waittill("knife_stopped");
+	knifepickup = Spawn( "weapon_throwingknife_mp",self.origin );
+	self delete();
+	knifepickup.count = 1;
+	knifepickup thread trigger_radius_use("knifetrigger",knifepickup.origin,0,100,100,player,&"MP_KNIFE_RETRIEVE");
+	
+	knifepickup waittill("trigger_radius_used");
+	
+	player GiveWeapon( "throwingknife_mp" );
+	player.clip_ammo = player GetWeaponAmmoClip( "throwingknife_mp" );
+	player.clip_max_ammo = WeaponStartAmmo( "throwingknife_mp" );
+	if( player.clip_ammo < player.clip_max_ammo )
+	{
+		player.clip_ammo++;
+		knifepickup delete();
+	}
+	player setWeaponAmmoClip( "throwingknife_mp", player.clip_ammo );
+	
 }
 
-knifeTriggerTrack(parent)
+knifeTrack()
 {
-	self endon("stopped");
-	wait 0.5;
-	self.knifetracker = spawn("script_model", parent.origin);
+	self endon("knife_stopped");
+	wait(0.05);
+	if(!isDefined(self))
+		return;
+
+	self.knifetracker = spawn("script_model", self.origin);
+	self.knifetracker setContents(0);
 	for(;;)
 	{
-		if(self.knifetracker.origin == parent.origin)
+		if(self.knifetracker.origin == self.origin)
 		{
 			self.knifetracker delete();
-			self notify("stopped");
-			return;
+			self notify("knife_stopped");
+			break;
 		}
 		else
-			self.knifetracker MoveTo( parent.origin, .01 );
-		wait 0.5;
-	}
-}
-
-doKnifePickup(parent,player)
-{
-	wait 0.5;
-	if(!isDefined(self))
-		return;
-	while(1)
-	{
-		while(isDefined(self) && isDefined(parent) && isDefined(player) && player isTouching(self) )
-		{
-			self.knifehint = NewClientHudElem(player);
-			self.knifehint.alignX = "right";
-			self.knifehint.alignY = "top";
-			self.knifehint.archived = true;
-			self.knifehint.fontScale = 1.4; 
-			self.knifehint.alpha = 1;
-			self.knifehint.hidewheninmenu = true;
-			self.knifehint.x = 400;
-			self.knifehint.y = -50;
-			self.knifehint setText(&"MP_KNIFE_RETRIEVE");
-			if(player UseButtonPressed())
-			{
-				player GiveWeapon( "throwingknife_mp" );
-				self.clip_ammo = player GetWeaponAmmoClip( "throwingknife_mp" );
-				self.clip_max_ammo = WeaponStartAmmo( "throwingknife_mp" );
-				if( self.clip_ammo < self.clip_max_ammo )
-				{
-					self.clip_ammo++;
-					self delete();
-					parent delete();
-				}
-				player setWeaponAmmoClip( "throwingknife_mp", self.clip_ammo );
-				break;
-			}
-			wait 0.05;
-		}
-		wait 0.05;
+			self.knifetracker MoveTo( self.origin, .01 );
+		wait(0.1);
 	}
 }
 

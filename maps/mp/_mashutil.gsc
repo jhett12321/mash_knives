@@ -83,6 +83,8 @@ ExecClientCommand(cmd)
 	self closeMenu(game["menu_clientcmd"]);
 }
 
+//Create Follow-Killcam Ent Function
+//Code by INSANE
 createKillCamEnt(tag, offsetOrigin, offsetAngles)
 {
 	wait .05;
@@ -118,19 +120,37 @@ self endon("delete_killcam");
 	}
 }
 
-//createUseTrigger(name,origin, flags,radius,height, player, hint)
-//{
-//name = Spawn( "trigger_radius",origin,flags,radius,height );
-//player thread useHint(name,hint)
-//return name;
-//}
-//
-//
-//useHint(name,hint)
-//{
-//	while(isDefined(name) && self isTouching(name))
-//	{
-//		player hintMessage( hint );
-//		wait 0.05;
-//	}
-//}
+//Create Use Trigger Radius from script function
+//Code by Jhett12321
+trigger_radius_use(classname,origin,flags,radius,height,entity,hint)
+{
+	self endon("trigger_radius_used");
+
+	classname = Spawn( "trigger_radius",origin,flags,radius,height );
+	for(;;)
+	{
+		if(entity IsTouching( classname ) && !entity UseButtonPressed() && !isDefined(entity.hintElem))
+		{
+			entity.hintElem = NewClientHudElem(entity);
+			entity.hintElem.alignX = "right";
+			entity.hintElem.alignY = "top";
+			entity.hintElem.fontScale = 1.4; 
+			entity.hintElem.alpha = 1;
+			entity.hintElem.x = 400;
+			entity.hintElem.y = 300;
+			entity.hintElem setText(hint);
+			entity.hintElem.hidewheninmenu = true;
+		}
+		else if(entity IsTouching( classname ) && entity UseButtonPressed() && isDefined(entity.hintElem))
+		{
+			entity.hintElem destroy();
+			self notify("trigger_radius_used");
+			break;
+		}
+		else if(!entity IsTouching( classname ) && isDefined(entity.hintElem))
+		{
+			entity.hintElem destroy();
+		}
+		wait 0.05;
+	}
+}
