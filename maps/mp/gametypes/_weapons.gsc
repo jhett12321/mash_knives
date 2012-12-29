@@ -746,6 +746,8 @@ watchThrowingKnives(player)
 
 knifePickup(player)
 {
+	self endon( "spawned_player" );
+	self endon( "disconnect" );
 	wait 0.05;
 	if(!isDefined(self))
 		return;
@@ -753,6 +755,8 @@ knifePickup(player)
 	self thread knifeTrack();
 
 	self waittill("knife_stopped");
+	if(!isDefined(self))
+		return;
 	knifepickup = Spawn( "script_model",self.origin );
 	knifepickup SetModel( "weapon_parabolic_knife" );
 	self delete();
@@ -785,14 +789,17 @@ knifeTrack()
 	for(;;)
 	{
 		wait(0.05);
-		if( Distance(self.knifetracker.origin,self.origin) <= 1 )
+		if( isDefined(self) && Distance(self.knifetracker.origin,self.origin) <= 1 )
 		{
 			self.knifetracker delete();
 			self notify("knife_stopped");
 			break;
 		}
-		else
+		else if( isDefined(self) )
 			self.knifetracker MoveTo( self.origin, .01 );
+		else
+			self notify("knife_stopped");
+			break; //Player Switched Teams/Died/Disconnected
 	}
 }
 
