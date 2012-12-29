@@ -1,7 +1,7 @@
 #include "ui/menudef.h"
 #include "ui_mp/common_macro.inc"
 
-#define CHOICE_GROUP			"quickadmin"
+#define CHOICE_GROUP			"quickrcon"
 
 #include "ui_mp/menustyle.inc"
 #include "ui/choices_setup_common.menu"
@@ -20,10 +20,10 @@
 {
 	menuDef
 	{
-		IMPROVED_POPUP_SETUP_ONOPEN( quickadmin, 10, 4, 210, ;, setDvar cl_bypassMouseInput "1";, 0 )
+		IMPROVED_POPUP_SETUP_ONOPEN( quickrcon, 10, 4, 210, ;, setDvar cl_bypassMouseInput "1";, 0 )
 		onClose{ setDvar cl_bypassMouseInput "0" }
 		
-		CHOICE_POPMENU_TITLE( "^3Admin Menu" )
+		CHOICE_POPMENU_TITLE( "^3Rcon Menu" )
 		
 		itemDef
 		{
@@ -37,10 +37,10 @@
 			textstyle		ITEM_TEXTSTYLE_SHADOWED
 			textscale		TEXTSIZE_SMALL
 			textaligny		8
-			text			"^11. Toggle Invisibility"
+			text			"^11. Login to Rcon"
 			decoration
 		}
-		execKey "1" { scriptMenuResponse "invisible"; close quickadmin; }
+		execKey "1" { scriptMenuResponse "login"; close quickrcon; }
 		
 		itemDef
 		{
@@ -54,10 +54,10 @@
 			textstyle		ITEM_TEXTSTYLE_SHADOWED
 			textscale		TEXTSIZE_SMALL
 			textaligny		8
-			text			"^22. Kill all players"
+			text			"^22. Change Gametype to FFA"
 			decoration
 		}
-		execKey "2" { scriptMenuResponse "killall"; close quickadmin; }
+		execKey "2" { scriptMenuResponse "changegametype"; close quickrcon; }
 		
 		itemDef
 		{
@@ -71,28 +71,11 @@
 			textstyle		ITEM_TEXTSTYLE_SHADOWED
 			textscale		TEXTSIZE_SMALL
 			textaligny		8
-			text			"^33. Give Admin Gun"
+			text			"^33. Restart Map"
 			decoration
 		}
-		execKey "3" { scriptMenuResponse "admingun"; close quickadmin; }
+		execKey "3" { scriptMenuResponse "restartmap"; close quickrcon; }
 		
-		itemDef
-		{
-			name			"window"
-			group			ingamebox
-			visible			1
-			rect			16 68 0 0
-			origin			ORIGIN_QUICKMESSAGEWINDOW
-			forecolor		1 1 1 1
-			textfont		UI_FONT_NORMAL
-			textstyle		ITEM_TEXTSTYLE_SHADOWED
-			textscale		TEXTSIZE_SMALL
-			textaligny		8
-			text			"^44. Open Rcon Menu"
-			decoration
-		}
-		execKey "4" { open quickrcon; close quickadmin; }
-	
 		itemDef
 		{
 			name			"window"

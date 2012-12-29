@@ -1401,7 +1401,7 @@ self endon("joined_spectators");
 
 self GiveWeapon("throwingknife_mp", 0, false);
 self GiveStartAmmo("throwingknife_mp");
-self iprintlnbold( "^2Press ^3[{+frag}]^2 to throw knife." );
+self iprintlnbold( "^2Press ^3[{+smoke}]^2 to throw knife." );
 }
 
 useSpeedItem()

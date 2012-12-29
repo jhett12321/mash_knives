@@ -798,6 +798,7 @@ giveLoadout( team, class )
 		{
 			self GiveWeapon( "throwingknife_mp" );
 			self SetWeaponAmmoClip( "throwingknife_mp", 1 );
+			self setOffhandSecondaryClass("flash");
 			self SwitchToOffhand( "throwingknife_mp" );
 			self thread logClassChoice( class, primaryWeapon, "", self.specialty );
 		}

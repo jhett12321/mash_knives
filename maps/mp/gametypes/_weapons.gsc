@@ -753,7 +753,8 @@ knifePickup(player)
 	self thread knifeTrack();
 
 	self waittill("knife_stopped");
-	knifepickup = Spawn( "weapon_throwingknife_mp",self.origin );
+	knifepickup = Spawn( "script_model",self.origin );
+	knifepickup SetModel( "weapon_parabolic_knife" );
 	self delete();
 	knifepickup.count = 1;
 	knifepickup thread trigger_radius_use("knifetrigger",knifepickup.origin,0,100,100,player,&"MP_KNIFE_RETRIEVE");
@@ -779,11 +780,12 @@ knifeTrack()
 	if(!isDefined(self))
 		return;
 
-	self.knifetracker = spawn("script_model", self.origin);
+	self.knifetracker = spawn("script_origin", self.origin);
 	self.knifetracker setContents(0);
 	for(;;)
 	{
-		if(self.knifetracker.origin == self.origin)
+		wait(0.05);
+		if( Distance(self.knifetracker.origin,self.origin) <= 1 )
 		{
 			self.knifetracker delete();
 			self notify("knife_stopped");
@@ -791,7 +793,6 @@ knifeTrack()
 		}
 		else
 			self.knifetracker MoveTo( self.origin, .01 );
-		wait(0.1);
 	}
 }
 

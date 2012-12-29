@@ -36,6 +36,7 @@ localize,perks
 menufile,ui_mp/scriptmenus/quickdeveloper.menu
 menufile,ui_mp/scriptmenus/quickchat.menu
 menufile,ui_mp/scriptmenus/quickadmin.menu
+menufile,ui_mp/scriptmenus/quickrcon.menu
 menufile,ui_mp/scriptmenus/quickmash.menu
 menufile,ui_mp/scriptmenus/quickplayer.menu
 menufile,ui_mp/scriptmenus/quickcommands.menu
@@ -120,4 +121,3 @@ xanim,pb_tomahawk_standjump_takeoff
 
 xanim,viewmodel_hatchet_throw
 xanim,viewmodel_hatchet_idle
-

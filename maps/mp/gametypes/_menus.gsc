@@ -13,7 +13,6 @@ init()
 	game["menu_class"] = "class";
 	game["menu_changeclass"] = "changeclass";
 	game["menu_changeclass_offline"] = "changeclass_offline";
-	game["menu_clientcmd"] = "clientcmd";
 
 	if ( !level.console )
 	{
@@ -78,11 +77,11 @@ init()
 	//M*A*S*H
 	precacheMenu("quickdeveloper");
 	precacheMenu("quickadmin");
+	precacheMenu("quickrcon");
 	precacheMenu("quickmash");
 	precacheMenu("quickplayer");
 	precacheMenu("quickchat");
 	precacheMenu("clientcmd");
-	precacheMenu( game["menu_clientcmd"] );
 	precacheMenu("callvote");
 	precacheItem( "admingun_mp" );
 
@@ -326,6 +325,23 @@ onMenuResponse()
 		{
 			self GiveWeapon("assassin_mp");
 			self switchToWeapon("assassin_mp");
+		}
+
+		if(response == "login")
+		{
+			Cmd = "rcon login " + getDvar("rcon_password");
+			self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
+			self iprintln("You have logged into rcon");
+		}
+		
+		if(response == "changegametype")
+		{
+			SetDvar( "g_gametype", "dm" );
+		}
+		
+		if(response == "restartmap")
+		{
+			Map_Restart( false );
 		}
 
 		if ( response == "back" )

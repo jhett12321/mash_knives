@@ -76,13 +76,6 @@ showHUD()
 	);
 }
 
-ExecClientCommand(cmd)
-{
-	self setClientDvar( game["menu_clientcmd"], cmd );
-	self openMenu(game["menu_clientcmd"]);
-	self closeMenu(game["menu_clientcmd"]);
-}
-
 //Create Follow-Killcam Ent Function
 //Code by INSANE
 createKillCamEnt(tag, offsetOrigin, offsetAngles)
@@ -136,7 +129,7 @@ trigger_radius_use(classname,origin,flags,radius,height,entity,hint)
 			entity.hintElem.alignY = "top";
 			entity.hintElem.fontScale = 1.4; 
 			entity.hintElem.alpha = 1;
-			entity.hintElem.x = 400;
+			entity.hintElem.x = 350;
 			entity.hintElem.y = 300;
 			entity.hintElem setText(hint);
 			entity.hintElem.hidewheninmenu = true;
