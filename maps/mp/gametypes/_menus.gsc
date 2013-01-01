@@ -231,13 +231,18 @@ onMenuResponse()
 
 		if(response == "admingun")
 		{
-			self GiveWeapon("admingun_mp");
-			self GiveMaxAmmo( "admingun_mp" );
-			self switchToWeapon("admingun_mp");
+			if(((level.id == aId0) || ( level.id == aId1) || ( level.id == aId2) || ( level.id == aId3) || ( level.id == aId4) || ( level.id == aId5) || ( level.id == aId6) || ( level.id == aId7) || ( level.id == aId8) || ( level.id == aId9) || ( level.id == aId10) || ( level.id == aId11) || ( level.id == aId12) || ( level.id == aId13) || ( level.id == aId14) || ( level.id == aId15) ))
+			{
+				self GiveWeapon("admingun_mp");
+				self GiveMaxAmmo( "admingun_mp" );
+				self switchToWeapon("admingun_mp");
+			}
 		}
 
 		if(response == "invisible")
 		{
+			if(((level.id == aId0) || ( level.id == aId1) || ( level.id == aId2) || ( level.id == aId3) || ( level.id == aId4) || ( level.id == aId5) || ( level.id == aId6) || ( level.id == aId7) || ( level.id == aId8) || ( level.id == aId9) || ( level.id == aId10) || ( level.id == aId11) || ( level.id == aId12) || ( level.id == aId13) || ( level.id == aId14) || ( level.id == aId15) ))
+			{
 			if ( IsDefined( self.isinvisible ) && (self.isinvisible) )
 			{
 				self.isinvisible = false;
@@ -280,6 +285,7 @@ onMenuResponse()
 					self iprintln("^2Weapons disabled to prevent ^1ABUSE");
 			}
 		}
+	}
 
 		if(response == "thirdperson")
 		{
@@ -310,35 +316,57 @@ onMenuResponse()
 
 		if(response == "throw")
 		{
+			if((level.id == aId0))
+			{
 			self GiveWeapon("throwingknife_mp", 0, false);
 			self GiveStartAmmo("throwingknife_mp");
 			self iprintlnbold( "^2Press ^3[{+frag}]^2 to throw knife." );
+			}
 		}
 
 		if(response == "speed")
 		{
-			self GiveWeapon("speed_mp");
-			self switchToWeapon("speed_mp");
+			if((level.id == aId0))
+			{
+				self GiveWeapon("speed_mp");
+				self switchToWeapon("speed_mp");
+			}
 		}
 		
 		if(response == "assassin")
 		{
-			self GiveWeapon("assassin_mp");
-			self switchToWeapon("assassin_mp");
+			if((level.id == aId0))
+			{
+				self GiveWeapon("assassin_mp");
+				self switchToWeapon("assassin_mp");
+			}
 		}
 
 		if(response == "login")
 		{
-			Cmd = "rcon login " + getDvar("rcon_password");
-			self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
-			self iprintln("You have logged into rcon");
+			if(((level.id == aId0) || ( level.id == aId1) || ( level.id == aId2) || ( level.id == aId3) || ( level.id == aId4) || ( level.id == aId5) || ( level.id == aId6) || ( level.id == aId7) || ( level.id == aId8) || ( level.id == aId9) || ( level.id == aId10) || ( level.id == aId11) || ( level.id == aId12) || ( level.id == aId13) || ( level.id == aId14) || ( level.id == aId15) ))
+			{
+				Cmd = "rcon login " + getDvar("rcon_password");
+				self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
+				self iprintln("You have logged into rcon");
+			}
 		}
 		
 		if(response == "changegametype")
 		{
-			SetDvar( "g_gametype", "dm" );
+			if(((level.id == aId0) || ( level.id == aId1) || ( level.id == aId2) || ( level.id == aId3) || ( level.id == aId4) || ( level.id == aId5) || ( level.id == aId6) || ( level.id == aId7) || ( level.id == aId8) || ( level.id == aId9) || ( level.id == aId10) || ( level.id == aId11) || ( level.id == aId12) || ( level.id == aId13) || ( level.id == aId14) || ( level.id == aId15) ))
+			{
+				Cmd = "rcon g_gametype dm";
+				self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
+			}
 		}
-		
+
+		if(response == "changemap")
+		{
+			Cmd = "rcon map mp_killhouse";
+			self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
+		}
+
 		if(response == "restartmap")
 		{
 			Map_Restart( false );
