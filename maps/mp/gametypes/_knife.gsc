@@ -22,14 +22,14 @@ modinfo()
 	{
 		level.modinfo.x = 400;
 		level.modinfo.y = 10;
-		level.modinfo setText("^2M*A*S*H KNIVES ^11.4.1 ^3SCRIM MODE");
+		level.modinfo setText("^2M*A*S*H KNIVES ^11.4.2-B1 ^3SCRIM MODE");
 	}
 
 	else
 	{
 		level.modinfo.x = 370;
 		level.modinfo.y = 10;
-		level.modinfo setText("^2M*A*S*H KNIVES ^11.4.1");
+		level.modinfo setText("^2M*A*S*H KNIVES ^11.4.2-B1");
 	}
 }
 
