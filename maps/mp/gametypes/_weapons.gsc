@@ -746,84 +746,33 @@ watchThrowingKnives(player)
 
 knifePickup(player)
 {
-	self endon( "spawned_player" );
-	self endon( "disconnect" );
 	wait 0.05;
 	if(!isDefined(self))
 		return;
+	
+	player thread deleteOnDeath(self);
+	player thread deleteOnDisconnect(self);
 
-	self thread knifeTrack();
-
-	self waittill("knife_stopped");
+	self waitTillNotMoving();
 	if(!isDefined(self))
 		return;
-	knifepickup = Spawn( "script_model",self.origin );
-	knifepickup SetModel( "weapon_parabolic_knife" );
-	self delete();
-	knifepickup.count = 1;
-	knifepickup thread trigger_radius_use("knifetrigger",knifepickup.origin,0,100,100,player,&"MP_KNIFE_RETRIEVE");
-	
-	knifepickup waittill("trigger_radius_used");
+
+	self thread trigger_radius_use(self,self.origin,0,100,100,player,&"MP_KNIFE_RETRIEVE");
+	self waittill("trigger_radius_used");
+	if(!isDefined(self) )
+		return;
 	
 	player GiveWeapon( "throwingknife_mp" );
 	player.clip_ammo = player GetWeaponAmmoClip( "throwingknife_mp" );
-	player.clip_max_ammo = WeaponStartAmmo( "throwingknife_mp" );
+	player.clip_max_ammo = WeaponClipSize( "throwingknife_mp" );
 	if( player.clip_ammo < player.clip_max_ammo )
 	{
 		player.clip_ammo++;
-		knifepickup delete();
+		self delete();
 	}
 	player setWeaponAmmoClip( "throwingknife_mp", player.clip_ammo );
 	
 }
-
-knifeTrack()
-{
-	self endon("knife_stopped");
-	wait(0.05);
-	if(!isDefined(self))
-		return;
-
-	self.knifetracker = spawn("script_origin", self.origin);
-	self.knifetracker setContents(0);
-	for(;;)
-	{
-		wait(0.05);
-		if( isDefined(self) && Distance(self.knifetracker.origin,self.origin) <= 1 )
-		{
-			self.knifetracker delete();
-			self notify("knife_stopped");
-			break;
-		}
-		else if( isDefined(self) )
-			self.knifetracker MoveTo( self.origin, .01 );
-		else
-			self notify("knife_stopped");
-			break; //Player Switched Teams/Died/Disconnected
-	}
-}
-
-//stickToFlesh()
-//{
-//	players = getEntArray( "player", "classname" );
-//	
-//	throwing_knife_model = GetWeaponModel("throwingknife_mp");
-//	while(1)
-//	{
-//		for ( i = 0; i < players.size; i++ )
-//		{
-//			if ( self IsTouching( players[i] ) )
-//			{
-//				self.throwingknife[i] = spawn("script_model", self.origin);
-//				self.throwingknife[i] SetModel( throwing_knife_model );
-//				self.throwingknife[i] linkTo(players[i]);
-//				self Hide();
-//				self thread showKnife(players[i],self.throwingknife[i]);
-//			}
-//		}
-//		wait(0.0000001);
-//	}
-//}
 	
 watchC4()
 {
@@ -997,6 +946,14 @@ shouldAffectClaymore( claymore )
 deleteOnDeath(ent)
 {
 	self waittill("death");
+	wait .05;
+	if ( isdefined(ent) )
+		ent delete();
+}
+
+deleteOnDisconnect(ent)
+{
+	self waittill("disconnect");
 	wait .05;
 	if ( isdefined(ent) )
 		ent delete();

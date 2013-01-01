@@ -117,12 +117,13 @@ self endon("delete_killcam");
 //Code by Jhett12321
 trigger_radius_use(classname,origin,flags,radius,height,entity,hint)
 {
-	self endon("trigger_radius_used");
+	self endon("trigger_radius_delete");
+	entity endon("disconnect");
 
 	classname = Spawn( "trigger_radius",origin,flags,radius,height );
 	for(;;)
 	{
-		if(entity IsTouching( classname ) && !entity UseButtonPressed() && !isDefined(entity.hintElem))
+		if(entity IsTouching( classname ) && !entity UseButtonPressed() && !isDefined(entity.hintElem) && isDefined(self))
 		{
 			entity.hintElem = NewClientHudElem(entity);
 			entity.hintElem.alignX = "right";
@@ -134,15 +135,20 @@ trigger_radius_use(classname,origin,flags,radius,height,entity,hint)
 			entity.hintElem setText(hint);
 			entity.hintElem.hidewheninmenu = true;
 		}
-		else if(entity IsTouching( classname ) && entity UseButtonPressed() && isDefined(entity.hintElem))
+		if(entity IsTouching( classname ) && entity UseButtonPressed() && isDefined(entity.hintElem) && isDefined(self))
 		{
-			entity.hintElem destroy();
 			self notify("trigger_radius_used");
-			break;
 		}
-		else if(!entity IsTouching( classname ) && isDefined(entity.hintElem))
-		{
+		if(!entity IsTouching( classname ) && isDefined(entity.hintElem) && isDefined(self))
 			entity.hintElem destroy();
+
+		if(!isDefined(self))
+		{
+			if(isDefined(entity.hintElem))
+				entity.hintElem destroy();
+
+			self notify("trigger_radius_delete");
+			break;
 		}
 		wait 0.05;
 	}
