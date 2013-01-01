@@ -41,10 +41,10 @@ REFERENCE           NO_AMMO
 LANG_ENGLISH        "No Ammo"
 
 REFERENCE           NO_FRAG_GRENADE
-LANG_ENGLISH        "No Grenades/Throwing Knives Remaining"
+LANG_ENGLISH        "No Grenades Remaining"
 
 REFERENCE           NO_SPECIAL_GRENADE
-LANG_ENGLISH        "No Special Grenades Remaining"
+LANG_ENGLISH        "No Special Grenades/Throwing Knives Remaining"
 
 REFERENCE           LOCATION_SELECTOR
 LANG_ENGLISH        "Select a location"
