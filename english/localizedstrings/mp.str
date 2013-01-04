@@ -46,6 +46,8 @@ LANG_ENGLISH "Your flag returning in: &&1"
 REFERENCE ENEMY_FLAG_RETURNING_IN
 LANG_ENGLISH "Enemy flag returning in: &&1"
 
+REFERENCE           SPECTATOR_1V1
+LANG_ENGLISH        "You are currently spectating a 1v1 Match"
 
 REFERENCE           CANT_CAPTURE_FLAG
 LANG_ENGLISH        "You can only capture the flags marked on your compass."

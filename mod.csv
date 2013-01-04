@@ -9,6 +9,8 @@ rawfile,maps/mp/gametypes/gvk.gsc
 rawfile,maps/mp/gametypes/gvk.txt
 rawfile,maps/mp/gametypes/ctf.gsc
 rawfile,maps/mp/gametypes/ctf.txt
+rawfile,maps/mp/gametypes/1v1.gsc
+rawfile,maps/mp/gametypes/1v1.txt
 rawfile,maps/mp/gametypes/_gametypes.txt
 
 rawfile,maps/mp/gametypes/_globallogic.gsc
@@ -121,3 +123,4 @@ xanim,pb_tomahawk_standjump_takeoff
 
 xanim,viewmodel_hatchet_throw
 xanim,viewmodel_hatchet_idle
+

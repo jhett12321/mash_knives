@@ -6,3 +6,4 @@ war
 koth
 gvk
 ctf
+1v1

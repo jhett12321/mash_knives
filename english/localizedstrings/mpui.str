@@ -22,6 +22,9 @@ LANG_ENGLISH        "Gunners"
 REFERENCE           GVK
 LANG_ENGLISH        "Guns vs Knives"
 
+REFERENCE           1V1
+LANG_ENGLISH        "1v1 Deathmatch"
+
 REFERENCE           CTF
 LANG_ENGLISH        "Capture the Flag"
 

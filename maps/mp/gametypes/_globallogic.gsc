@@ -3383,6 +3383,27 @@ TimeUntilSpawn( includeTeamkillDelay )
 
 maySpawn()
 {
+	if( isDefined( level.is1v1 ) && level.is1v1 )
+	{
+		if( isDefined(level.duelplayercount) && level.duelplayercount >= 2 || GetDvar( "scr_1v1_lockspawn" ) == "1" )
+		{
+			if(!isDefined(self.isduelplayer) || !self.isduelplayer || GetDvar( "scr_1v1_lockspawn" ) == "1" )
+			{
+				return false;
+			}
+		}
+		else if(isDefined(level.duelplayercount) && GetDvar( "scr_1v1_lockspawn" ) == "0")
+		{
+			self.isduelplayer = true;
+			level.duelplayercount++;
+		}
+		else if (GetDvar( "scr_1v1_lockspawn" ) == "0")
+		{
+			self.isduelplayer = true;
+			level.duelplayercount = 1;
+		}
+	}
+
 	if ( level.inOvertime )
 		return false;
 
@@ -3422,7 +3443,17 @@ spawnClient( timeAlreadyPassed )
 			shouldShowRespawnMessage = false;
 		if ( level.scoreLimit > 1 && level.teambased && game["teamScores"]["allies"] >= level.scoreLimit - 1 && game["teamScores"]["axis"] >= level.scoreLimit - 1 )
 			shouldShowRespawnMessage = false;
-		if ( shouldShowRespawnMessage )
+		if ( shouldShowRespawnMessage && !isDefined( level.is1v1 ) )
+		{
+			setLowerMessage( game["strings"]["spawn_next_round"] );
+			self thread removeSpawnMessageShortly( 3 );
+		}
+		else if ( shouldShowRespawnMessage && isDefined( level.is1v1 ) && level.is1v1 )
+		{
+			setLowerMessage( game["strings"]["spectator_1v1"] );
+			self thread removeSpawnMessageShortly( 3 );
+		}
+		else if ( shouldShowRespawnMessage && isDefined( level.is1v1 ) && !level.is1v1 )
 		{
 			setLowerMessage( game["strings"]["spawn_next_round"] );
 			self thread removeSpawnMessageShortly( 3 );
@@ -3602,6 +3633,7 @@ Callback_StartGameType()
 		}
 		game["strings"]["match_starting_in"] = &"MP_MATCH_STARTING_IN";
 		game["strings"]["spawn_next_round"] = &"MP_SPAWN_NEXT_ROUND";
+		game["strings"]["spectator_1v1"] = &"MP_SPECTATOR_1V1";
 		game["strings"]["waiting_to_spawn"] = &"MP_WAITING_TO_SPAWN";
 		game["strings"]["match_starting"] = &"MP_MATCH_STARTING";
 		game["strings"]["change_class"] = &"MP_CHANGE_CLASS_NEXT_SPAWN";
