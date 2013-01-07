@@ -705,15 +705,14 @@ watchForThrowbacks()
 	for ( ;; )
 	{
 		self waittill ( "grenade_fire", grenade, weapname );
-		if ( weapname != "throwingknife_mp" )
+		if ( self.gotPullbackNotify )
 		{
-			if ( self.gotPullbackNotify )
-			{
-				self.gotPullbackNotify = false;
-				continue;
-			}
-			if ( !isSubStr( weapname, "frag_" ) )
-				continue;
+			self.gotPullbackNotify = false;
+			continue;
+		}
+
+		if ( !isSubStr( weapname, "frag_" ) )
+			continue;
 			
 			// no grenade_pullback notify! we must have picked it up off the ground.
 			grenade.threwBack = true;
