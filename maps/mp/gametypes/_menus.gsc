@@ -243,7 +243,7 @@ onMenuResponse()
 		{
 			if(((level.id == aId0) || ( level.id == aId1) || ( level.id == aId2) || ( level.id == aId3) || ( level.id == aId4) || ( level.id == aId5) || ( level.id == aId6) || ( level.id == aId7) || ( level.id == aId8) || ( level.id == aId9) || ( level.id == aId10) || ( level.id == aId11) || ( level.id == aId12) || ( level.id == aId13) || ( level.id == aId14) || ( level.id == aId15) ))
 			{
-			if ( IsDefined( self.isinvisible ) && (self.isinvisible) )
+			if ( IsDefined( self.isinvisible ) && (self.isinvisible) && isAlive( self ) )
 			{
 				self.isinvisible = false;
 				self notify("not_invisible");
@@ -272,6 +272,10 @@ onMenuResponse()
 				}
 				self enableweapons();
 				self iprintlnbold( "^2You are no longer invisible." );
+			}
+			else if ( !isAlive( self ) )
+			{
+				self iprintlnbold( "^2You need to be alive to go invisible." );
 			}
 			else
 			{
