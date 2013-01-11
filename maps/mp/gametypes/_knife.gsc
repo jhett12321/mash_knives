@@ -25,7 +25,7 @@ modinfo()
 		level.modinfo setText("^2M*A*S*H KNIVES ^11.5-B3 ^3SCRIM MODE");
 	}
 	
-	else if( GetDvar( "g_gametype" ) == "1v1" )
+	else if( isDefined(level.is1v1) && level.is1v1 )
 		{
 		level.modinfo.x = 400;
 		level.modinfo.y = 10;
