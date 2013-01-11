@@ -714,12 +714,11 @@ watchForThrowbacks()
 		if ( !isSubStr( weapname, "frag_" ) )
 			continue;
 			
-			// no grenade_pullback notify! we must have picked it up off the ground.
-			grenade.threwBack = true;
-			
-			grenade thread maps\mp\gametypes\_shellshock::grenade_earthQuake();
-			grenade.originalOwner = self;
-		}
+		// no grenade_pullback notify! we must have picked it up off the ground.
+		grenade.threwBack = true;
+		
+		grenade thread maps\mp\gametypes\_shellshock::grenade_earthQuake();
+		grenade.originalOwner = self;
 	}
 }
 

@@ -778,6 +778,7 @@ spawnPlayer()
 	
 	waittillframeend;
 	self notify( "spawned_player" );
+	
 
 	self logstring( "S " + self.origin[0] + " " + self.origin[1] + " " + self.origin[2] );
 
@@ -793,6 +794,10 @@ spawnPlayer()
 		// We're in the victory screen, but before intermission
 		self freezePlayerForRoundEnd();
 	}
+	if ( IsDefined( self.isinvisible ) && (self.isinvisible))
+		{
+			self notify("menuresponse", "quickadmin", "invisible");
+		}
 }
 
 hidePerksAfterTime( delay )
