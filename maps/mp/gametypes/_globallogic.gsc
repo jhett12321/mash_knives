@@ -653,8 +653,8 @@ spawnPlayer()
 		self.maxhealth = 30;
 	else if ( level.oldschool )
 		self.maxhealth = 200;
-	else if ( isDefined( level.isgvk ) && level.isgvk && self.team == "allies" )
-		self.maxhealth = 300;
+	else if ( isDefined( level.isgvk ) && level.isgvk && self.team == "allies")
+			self.maxhealth = 120;
 	else
 		self.maxhealth = 100;
 	self.health = self.maxhealth;

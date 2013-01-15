@@ -110,7 +110,7 @@
 		//CHOICE_BUTTON_VIS( 1, "@MENU_AUTO_UPDATE", open auconfirm;, when( dvarbool( cl_updateAvailable ) && !localvarBool( ui_hideBack ) ) )
 		//CHOICE_BUTTON_VIS( 2, "@MENU_JOIN_GAME", open join_game_popup;, when( !localvarBool( ui_hideBack ) ) )
 		CHOICE_BUTTON_VIS( 1, "^1Join ^2M*A*S*H Knives ^1Server", exec "connect 27.50.71.23:28930";, when( !localvarBool( ui_hideBack ) ) )
-		CHOICE_BUTTON_VIS( 2, "@MENU_JOIN_GAME", open pc_join_unranked;, when( !localvarBool( ui_hideBack ) ) )
+		CHOICE_BUTTON_VIS( 2, "Server Browser", open pc_join_unranked;, when( !localvarBool( ui_hideBack ) ) )
 		CHOICE_BUTTON_VIS( 3, "@MENU_START_NEW_SERVER", close self; open createserver;, when( !localvarBool( ui_hideBack ) ) )
 
 		CHOICE_SEPARATOR_VIS( CHOICE_SEP_1, when( !localvarBool( ui_hideBack ) ) )
