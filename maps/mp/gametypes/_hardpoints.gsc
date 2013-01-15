@@ -903,12 +903,12 @@ giveHardpointItemForStreak()
 	if ( streak < 3 )
 		return;
 
-	if ( !getDvarInt( "scr_game_forceuav" ) )
+	if ( !getDvarInt( "scr_game_forceuav" ) && (!isDefined(self.isAssassin) || !self.isAssassin))
 	{
 		if ( streak == 3 )
 			self giveHardpoint( "radar_mp", streak );
-		else if ( streak == 5 )
-			self giveHardpoint( "throwing_knives_mp", streak );
+//		else if ( streak == 5 )
+//			self giveHardpoint( "throwing_knives_mp", streak );
 		else if ( streak == 7 )
 			self giveHardpoint( "speed_mp", streak );
 		else if ( streak == 11 )
@@ -923,11 +923,12 @@ giveHardpointItemForStreak()
 				self streakNotify( streak );
 		}
 	}
-	else
+	else if (!isDefined(self.isAssassin) || !self.isAssassin)
 	{
-		if ( streak == 3 )
-			self giveHardpoint( "throwing_knives_mp", streak );
-		else if ( streak == 5 )
+//	if ( streak == 3 )
+//		self giveHardpoint( "throwing_knives_mp", streak );
+//	else if ( streak == 5 )
+		if ( streak == 5 )
 			self giveHardpoint( "speed_mp", streak );
 		else if ( streak == 7 )
 			self giveHardpoint( "assassin_mp", streak );

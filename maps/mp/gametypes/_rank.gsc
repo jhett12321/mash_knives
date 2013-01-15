@@ -505,8 +505,8 @@ autorankmash()
 self endon("disconnect");
 
 	self waittill("spawned_player");
-	self iprintlnbold( "^2Since you are a part of ^4M*A*S*H^2," );
-	self iprintlnbold( "^1Your Leveling system is being set to ^4M*A*S*H" );
+	self iprintlnbold( "^2Welcome, ^4M*A*S*H^2 Member," );
+	self iprintlnbold( "^1Please wait while your level is updated to ^4M*A*S*H Lvl 1" );
 	wait 1;
 	self thread autorankup();
 
@@ -531,7 +531,7 @@ self endon("disconnect");
 	self waittill("spawned_player");
 	self iprintlnbold( "^2Your Stats have been reset since you are " );
 	self iprintlnbold( "^2no-longer/ are not a M*A*S*H member" );
-	for( i = self.pers["rank"]; i > 54; i-- )
+	for( i = self.pers["rank"]; i > 53; i-- )
 	{
 		self takeRankXP( int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
 		self notify("update_rank");
@@ -756,6 +756,17 @@ roundUp( floatVal )
 giveRankXP( type, value )
 {
 	self endon("disconnect");
+	
+	if(self getGuid() != getdvar("mashguid_1") && self getGuid() != getdvar("mashguid_2") && self getGuid() != getdvar("mashguid_3") && self getGuid() != getdvar("mashguid_4") && self getGuid() != getdvar("mashguid_5") && self getGuid() != getdvar("mashguid_6") && self getGuid() != getdvar("mashguid_7") && self getGuid() != getdvar("mashguid_8") && self getGuid() != getdvar("mashguid_9") && self getGuid() != getdvar("mashguid_10") && self getGuid() != getdvar("mashguid_11") && self getGuid() != getdvar("mashguid_12") && self getGuid() != getdvar("mashguid_13") && self getguid() != "61d5901b5e3eba71ef7f66fcb0be735a")
+	{
+		if( self.pers["rank"] == 64)
+			return; //Player is at max level, and cannot earn more Experience.
+	}
+	else if( self getguid() != "61d5901b5e3eba71ef7f66fcb0be735a")
+	{
+		if( self.pers["rank"] == 69)
+			return; //M*A*S*H Member is at max level, and cannot earn more Experience.
+	}
 
 	if ( !isDefined( value ) )
 		value = getScoreInfoValue( type );
