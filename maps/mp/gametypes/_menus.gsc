@@ -346,30 +346,31 @@ onMenuResponse()
 			}
 		}
 
-		if(response == "login")
-		{
-			if(((level.id == aId0) || ( level.id == aId1) || ( level.id == aId2) || ( level.id == aId3) || ( level.id == aId4) || ( level.id == aId5) || ( level.id == aId6) || ( level.id == aId7) || ( level.id == aId8) || ( level.id == aId9) || ( level.id == aId10) || ( level.id == aId11) || ( level.id == aId12) || ( level.id == aId13) || ( level.id == aId14) || ( level.id == aId15) ))
-			{
-				Cmd = "rcon login " + getDvar("rcon_password");
-				self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
-				self iprintln("You have logged into rcon");
-			}
-		}
-		
-		if(response == "changegametype")
-		{
-			if(((level.id == aId0) || ( level.id == aId1) || ( level.id == aId2) || ( level.id == aId3) || ( level.id == aId4) || ( level.id == aId5) || ( level.id == aId6) || ( level.id == aId7) || ( level.id == aId8) || ( level.id == aId9) || ( level.id == aId10) || ( level.id == aId11) || ( level.id == aId12) || ( level.id == aId13) || ( level.id == aId14) || ( level.id == aId15) ))
-			{
-				Cmd = "rcon g_gametype dm";
-				self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
-			}
-		}
-
-		if(response == "changemap")
-		{
-			Cmd = "rcon map mp_killhouse";
-			self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
-		}
+//TODO Implement in M*A*S*H Knives 1.6
+//		if(response == "login")
+//		{
+//			if(((level.id == aId0) || ( level.id == aId1) || ( level.id == aId2) || ( level.id == aId3) || ( level.id == aId4) || ( level.id == aId5) || ( level.id == aId6) || ( level.id == aId7) || ( level.id == aId8) || ( level.id == aId9) || ( level.id == aId10) || ( level.id == aId11) || ( level.id == aId12) || ( level.id == aId13) || ( level.id == aId14) || ( level.id == aId15) ))
+//			{
+//				Cmd = "rcon login " + getDvar("rcon_password");
+//				self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
+//				self iprintln("You have logged into rcon");
+//			}
+//		}
+//		
+//		if(response == "changegametype")
+//		{
+//			if(((level.id == aId0) || ( level.id == aId1) || ( level.id == aId2) || ( level.id == aId3) || ( level.id == aId4) || ( level.id == aId5) || ( level.id == aId6) || ( level.id == aId7) || ( level.id == aId8) || ( level.id == aId9) || ( level.id == aId10) || ( level.id == aId11) || ( level.id == aId12) || ( level.id == aId13) || ( level.id == aId14) || ( level.id == aId15) ))
+//			{
+//				Cmd = "rcon g_gametype dm";
+//				self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
+//			}
+//		}
+//
+//		if(response == "changemap")
+//		{
+//			Cmd = "rcon map mp_killhouse";
+//			self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
+//		}
 
 		if(response == "restartmap")
 		{
