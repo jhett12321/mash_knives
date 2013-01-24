@@ -1,4 +1,5 @@
 name,sequence,file,vol_min,vol_max,vol_mod,pitch_min,pitch_max,dist_min,dist_max,channel,type,probability,loop,masterslave,loadspec,subtitle,compression,secondaryaliasname,volumefalloffcurve,startdelay,speakermap,reverb,lfe percentage,center percentage,platform,envelop_min,envelop_max,envelop percentage
+
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #Benny Hill Speed Music,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 mash,1,mods\mash\mash.wav,1,,max,,,,,local,streamed,,,master,all_mp,,,,,,radio,nowetlevel,,0.1,,,,
@@ -10,3 +11,68 @@ UK_1mc_assassin,1,mods/mash/UK_1mc_assassin_01.wav,0.7,0.7,,,,360,600,announcer,
 US_1mc_assassin,1,mods/mash/US_1mc_assassin_01.wav,0.7,0.7,,,,360,600,announcer,streamed,,,master,all_mp,,,,,,radio,nowetlevel,,0.1,,,,
 mp_killstreak_assassin,,mods/mash/mp_killstreak_assassin.wav,1,,max,,,,,auto2d,streamed,,,,all_mp,,,,,,music,nowetlevel fulldrylevel,,,,,,
 mp_killstreak_speed,,mods/mash/mp_killstreak_speed.wav,1,,max,,,,,auto2d,streamed,,,,all_mp,,,,,,music,nowetlevel fulldrylevel,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+#Throwing Knife Bounce,,,,,,,,,,,,,,,,,,,
+wpn_throwingknife_bounce_default,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_default,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_bark,1,wpn/throwingknife/bounce/wood/wood_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_bark,2,wpn/throwingknife/bounce/wood/wood_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_bark,3,wpn/throwingknife/bounce/wood/wood_02.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_brick,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_brick,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_carpet,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_carpet,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_cloth,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_cloth,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_concrete,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_concrete,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_dirt,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_dirt,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_flesh,1,wpn/throwingknife/hit/throwingknife_hit_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_flesh,2,wpn/throwingknife/hit/throwingknife_hit_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_flesh,3,wpn/throwingknife/hit/throwingknife_hit_02.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_flesh,4,wpn/throwingknife/hit/throwingknife_hit_03.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_flesh,5,wpn/throwingknife/hit/throwingknife_hit_04.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_flesh,6,wpn/throwingknife/hit/throwingknife_hit_05.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_foliage,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_foliage,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_glass,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_glass,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_grass,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_grass,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_gravel,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_gravel,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_ice,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_ice,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_metal,1,wpn/throwingknife/bounce/metal/metal_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_metal,2,wpn/throwingknife/bounce/metal/metal_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_mud,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_mud,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_paper,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_paper,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_plaster,1,wpn/throwingknife/bounce/metal/metal_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_plaster,2,wpn/throwingknife/bounce/metal/metal_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_rock,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_rock,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_sand,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_sand,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_snow,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_snow,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_water,,footsteps/foot_water_shallow1.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_wood,1,wpn/throwingknife/bounce/wood/wood_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_wood,2,wpn/throwingknife/bounce/wood/wood_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_wood,3,wpn/throwingknife/bounce/wood/wood_02.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_asphalt,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_asphalt,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_ceramic,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_ceramic,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_plastic,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_plastic,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_rubber,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_rubber,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_cushion,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_cushion,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_fruit,1,wpn/throwingknife/bounce/earth/earth_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_fruit,2,wpn/throwingknife/bounce/earth/earth_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_paintedmetal,1,wpn/throwingknife/bounce/metal/metal_00.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
+wpn_throwingknife_bounce_paintedmetal,2,wpn/throwingknife/bounce/metal/metal_01.wav,0.85,0.95,na,0.9,0.95,10,1500,auto,,,,,,,,,weapon_grenadebounce
