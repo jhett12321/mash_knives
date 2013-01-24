@@ -31,7 +31,7 @@ killcam(
 	if(attackerNum < 0)
 		return;
 
-	if (sWeapon == "throwingknife_mp" || sWeapon == "frag_grenade_mp" || sWeapon == "artillery_mp")
+	if (sWeapon == "throwingknife_mp" || sWeapon == "frag_grenade_mp" || sWeapon == "artillery_mp") //Follow camera for throwing knives, airstrikes and grenades.
 	{
 		camtime = 5.0;
 		self SetClientDvar("cg_airstrikeKillCamDist", "125");
@@ -58,11 +58,11 @@ killcam(
 	if(camtime > 5.0 && (sWeapon == "artillery_mp" ))
 		camtime = 5.0;
 		
-// Go to thirdperson if the player was (To be implemeted
-//	if(isDefined(attacker) && isPlayer(attacker) && attacker.isThirdperson )
-//		self setClientDvar("cg_thirdperson", 1);
-//	else
-//		self setClientDvar("cg_thirdperson", 0);
+// Change into thirdperson if the attacker was in third person
+	if(isDefined(attacker) && isPlayer(attacker) && attacker.isThirdperson )
+		self setClientDvar("cg_thirdperson", 1);
+	else
+		self setClientDvar("cg_thirdperson", 0);
 		
 	self setClientDvar("r_dof_enable", 0);
 	

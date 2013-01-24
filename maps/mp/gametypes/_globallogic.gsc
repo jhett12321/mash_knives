@@ -679,7 +679,7 @@ spawnPlayer()
 
 	//self clearPerks();
 
-	//self setClientDvar( "cg_thirdPerson", "0" );
+	self setClientDvar( "cg_thirdPerson", "0" );
 	//self setDepthOfField( 0, 0, 512, 512, 4, 0 );
 	//self setClientDvar( "cg_fov", "65" );
 	

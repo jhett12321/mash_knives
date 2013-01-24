@@ -22,21 +22,21 @@ modinfo()
 	{
 		level.modinfo.x = 400;
 		level.modinfo.y = 10;
-		level.modinfo setText("^2M*A*S*H KNIVES ^11.5.2 ^3SCRIM MODE");
+		level.modinfo setText("^2M*A*S*H KNIVES ^11.6-D1 ^3SCRIM MODE");
 	}
 	
 	else if( isDefined(level.is1v1) && level.is1v1 )
 		{
 		level.modinfo.x = 400;
 		level.modinfo.y = 10;
-		level.modinfo setText("^2M*A*S*H KNIVES ^11.5.2 ^31v1 Mode");
+		level.modinfo setText("^2M*A*S*H KNIVES ^11.6-D1 ^31v1 Mode");
 	}
 
 	else
 	{
 		level.modinfo.x = 370;
 		level.modinfo.y = 10;
-		level.modinfo setText("^2M*A*S*H KNIVES ^11.5.2");
+		level.modinfo setText("^2M*A*S*H KNIVES ^11.6-D1");
 	}
 }
 
