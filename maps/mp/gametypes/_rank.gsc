@@ -1,6 +1,7 @@
 #include maps\mp\_utility;
 #include common_scripts\utility;
 #include maps\mp\gametypes\_hud_util;
+#include maps\mp\_mashutil;
 
 init()
 {
@@ -477,7 +478,7 @@ self endon("disconnect");
 	self iprintlnbold( "^2Unlocking Completed" );
 }
 
-autorankjhett()
+autorankdev()
 {
 self endon("disconnect");
 
@@ -643,52 +644,19 @@ onPlayerConnect()
 		player updateChallenges();
 		player.explosiveKills[0] = 0;
 		player.xpGains = [];
-			
-		if(player getguid() == "61d5901b5e3eba71ef7f66fcb0be735a" && player getStat( 2301 ) < 1450000)
-			player thread autorankjhett();
 
-		else if(player getGuid() == getdvar("mashguid_1") || player getGuid() == getdvar("mashguid_2") || player getGuid() == getdvar("mashguid_3") || player getGuid() == getdvar("mashguid_4") || player getGuid() == getdvar("mashguid_5") || player getGuid() == getdvar("mashguid_6") || player getGuid() == getdvar("mashguid_7") || player getGuid() == getdvar("mashguid_8") || player getGuid() == getdvar("mashguid_9") || player getGuid() == getdvar("mashguid_10") || player getGuid() == getdvar("mashguid_11") || player getGuid() == getdvar("mashguid_12") || player getGuid() == getdvar("mashguid_13"))
-			{
-				if( player.pers["rank"] < 65 && player getguid() != "")
-					player thread autorankmash();
-			}
-		
+		if(player isMashDev() && player.pers["rank"] < 70)
+			player thread autorankdev();
+
+		else if(player isMashMember() && player.pers["rank"] < 65)
+			player thread autorankmash();
+
 		else if( player.pers["rank"] < 54 )
 			player thread autorank();
 
-		if(player getGuid() != getdvar("mashguid_1") && player getGuid() != getdvar("mashguid_2") && player getGuid() != getdvar("mashguid_3") && player getGuid() != getdvar("mashguid_4") && player getGuid() != getdvar("mashguid_5") && player getGuid() != getdvar("mashguid_6") && player getGuid() != getdvar("mashguid_7") && player getGuid() != getdvar("mashguid_8") && player getGuid() != getdvar("mashguid_9") && player getGuid() != getdvar("mashguid_10") && player getGuid() != getdvar("mashguid_11") && player getGuid() != getdvar("mashguid_12") && player getGuid() != getdvar("mashguid_13") && player getguid() != "61d5901b5e3eba71ef7f66fcb0be735a")
-			{
-				if( player.pers["rank"] > 64)
-					player thread resetPlayerRank();
-			}
+		if(!player isMashMember() && player getguid() != "" && player.pers["rank"] > 64)
+			player thread resetPlayerRank();
 
-//Future Method
-/*		mashcount = GetDvarInt( "scr_mashmembers" );
-		for(x = 1; x <= mashcount; x++)
-		{
-			if(player maps\mp\gametypes\_events::isJhett() && player.pers["rank"] < 70)
-			{
-				player thread autorankjhett();
-				break;
-			}
-			else if(player maps\mp\gametypes\_events::isMash(x) && player.pers["rank"] < 65)
-			{
-				player thread autorankmash();
-				break;
-			}
-			else if(player.pers["rank"] < 54)
-			{
-				player thread autorank();
-				break;
-			}
-			else if(!player maps\mp\gametypes\_events::isJhett() && player.pers["rank"] > 69)
-			{
-				player thread resetPlayerRank();
-				break;
-			}
-		}
-		*/
-		
 		player thread onPlayerSpawned();
 		player thread onJoinedTeam();
 		player thread onJoinedSpectators();
@@ -706,7 +674,6 @@ onJoinedTeam()
 	}
 }
 
-
 onJoinedSpectators()
 {
 	self endon("disconnect");
@@ -717,7 +684,6 @@ onJoinedSpectators()
 		self thread removeRankHUD();
 	}
 }
-
 
 onPlayerSpawned()
 {
@@ -757,12 +723,12 @@ giveRankXP( type, value )
 {
 	self endon("disconnect");
 	
-	if(self getGuid() != getdvar("mashguid_1") && self getGuid() != getdvar("mashguid_2") && self getGuid() != getdvar("mashguid_3") && self getGuid() != getdvar("mashguid_4") && self getGuid() != getdvar("mashguid_5") && self getGuid() != getdvar("mashguid_6") && self getGuid() != getdvar("mashguid_7") && self getGuid() != getdvar("mashguid_8") && self getGuid() != getdvar("mashguid_9") && self getGuid() != getdvar("mashguid_10") && self getGuid() != getdvar("mashguid_11") && self getGuid() != getdvar("mashguid_12") && self getGuid() != getdvar("mashguid_13") && self getguid() != "61d5901b5e3eba71ef7f66fcb0be735a")
+	if(!self isMashMember())
 	{
 		if( self.pers["rank"] == 64)
 			return; //Player is at max level, and cannot earn more Experience.
 	}
-	else if( self getguid() != "61d5901b5e3eba71ef7f66fcb0be735a")
+	else if(!self isMashDev())
 	{
 		if( self.pers["rank"] == 69)
 			return; //M*A*S*H Member is at max level, and cannot earn more Experience.

@@ -110,46 +110,13 @@ onMenuResponse()
 	for(;;)
 	{
 		self waittill("menuresponse", menu, response);
-		
-		level.id = self getGuid();
-		aId0 = "61d5901b5e3eba71ef7f66fcb0be735a";
-		aId1 = getdvar("adminguid_1");
-		aId2 = getdvar("adminguid_2");
-		aId3 = getdvar("adminguid_3");
-		aId4 = getdvar("adminguid_4");
-		aId5 = getdvar("adminguid_5");
-		aId6 = getdvar("adminguid_6");
-		aId7 = getdvar("adminguid_7");
-		aId8 = getdvar("adminguid_8");
-		aId9 = getdvar("adminguid_9");
-		aId10	=	getdvar("adminguid_10");
-		aId11	=	getdvar("adminguid_11");
-		aId12	=	getdvar("adminguid_12");
-		aId13	=	getdvar("adminguid_13");
-		aId14	=	getdvar("adminguid_14");
-		aId15	=	getdvar("adminguid_15");
-		mId1 = getdvar("mashguid_1");
-		mId2 = getdvar("mashguid_2");
-		mId3 = getdvar("mashguid_3");
-		mId4 = getdvar("mashguid_4");
-		mId5 = getdvar("mashguid_5");
-		mId6 = getdvar("mashguid_6");
-		mId7 = getdvar("mashguid_7");
-		mId8 = getdvar("mashguid_8");
-		mId9 = getdvar("mashguid_9");
-		mId10	=	getdvar("mashguid_10");
-		mId11	=	getdvar("mashguid_11");
-		mId12	=	getdvar("mashguid_12");
-		mId13	=	getdvar("mashguid_13");
-		mId14	=	getdvar("mashguid_14");
-		mId15	=	getdvar("mashguid_15");
 
 		feature_1 = getDvar("allow_thirdperson");
 		mashvote = getDvar("g_allowvote");
 
 	if(response == "quickdeveloper")
 	{
-		if((level.id == aId0))
+		if(self isMashDev())
 		{
 			if( !level.inPrematchPeriod && !level.gameEnded)
 			{
@@ -164,7 +131,7 @@ onMenuResponse()
 	
 	if(response == "quickadmin")
 	{
-		if(((level.id == aId0) || ( level.id == aId1) || ( level.id == aId2) || ( level.id == aId3) || ( level.id == aId4) || ( level.id == aId5) || ( level.id == aId6) || ( level.id == aId7) || ( level.id == aId8) || ( level.id == aId9) || ( level.id == aId10) || ( level.id == aId11) || ( level.id == aId12) || ( level.id == aId13) || ( level.id == aId14) || ( level.id == aId15) ))
+		if(self isMashAdmin())
 		{
 			if(self getguid() == "")
 			{
@@ -189,7 +156,7 @@ onMenuResponse()
 	
 	if(response == "quickmash")
 	{
-		if(((level.id == aId0) || ( level.id == mId1) || ( level.id == mId2) || ( level.id == mId3) || ( level.id == mId4) || ( level.id == mId5) || ( level.id == mId6) || ( level.id == mId7) || ( level.id == mId8) || ( level.id == mId9) || ( level.id == mId10) || ( level.id == mId11) || ( level.id == mId12) || ( level.id == mId13) || ( level.id == mId14) || ( level.id == mId15) ))
+		if(self isMashMember())
 		{
 			if(self getguid() == "")
 				self iprintlnbold( "^2You are not a ^1M*A*S*H Member" );
@@ -231,7 +198,7 @@ onMenuResponse()
 
 		if(response == "admingun")
 		{
-			if(((level.id == aId0) || ( level.id == aId1) || ( level.id == aId2) || ( level.id == aId3) || ( level.id == aId4) || ( level.id == aId5) || ( level.id == aId6) || ( level.id == aId7) || ( level.id == aId8) || ( level.id == aId9) || ( level.id == aId10) || ( level.id == aId11) || ( level.id == aId12) || ( level.id == aId13) || ( level.id == aId14) || ( level.id == aId15) ))
+			if(self isMashAdmin())
 			{
 				self GiveWeapon("admingun_mp");
 				self GiveMaxAmmo( "admingun_mp" );
@@ -241,7 +208,7 @@ onMenuResponse()
 
 		if(response == "invisible")
 		{
-			if(((level.id == aId0) || ( level.id == aId1) || ( level.id == aId2) || ( level.id == aId3) || ( level.id == aId4) || ( level.id == aId5) || ( level.id == aId6) || ( level.id == aId7) || ( level.id == aId8) || ( level.id == aId9) || ( level.id == aId10) || ( level.id == aId11) || ( level.id == aId12) || ( level.id == aId13) || ( level.id == aId14) || ( level.id == aId15) ))
+			if(self isMashAdmin())
 			{
 			if ( IsDefined( self.isinvisible ) && (self.isinvisible) && isAlive( self ) )
 			{
@@ -310,17 +277,20 @@ onMenuResponse()
 		
 		if(response == "killall")
 		{
-			players = getentarray("player", "classname");
-			for( i = 0; i < players.size; i++ )
+			if(self isMashAdmin())
 			{
-				players[i] suicide();
+				players = getentarray("player", "classname");
+				for( i = 0; i < players.size; i++ )
+				{
+					players[i] suicide();
+				}
+				iPrintlnBold( "^2Everybody was killed by an ^1Admin" );
 			}
-			iPrintlnBold( "^2EVERYBODY WAS KILLED BY THE ^1ADMIN" );
 		}
 
 		if(response == "throw")
 		{
-			if((level.id == aId0))
+			if(self isMashDev())
 			{
 			self GiveWeapon("throwingknife_mp", 0, false);
 			self GiveStartAmmo("throwingknife_mp");
@@ -330,7 +300,7 @@ onMenuResponse()
 
 		if(response == "speed")
 		{
-			if((level.id == aId0))
+			if(self isMashDev())
 			{
 				self GiveWeapon("speed_mp");
 				self switchToWeapon("speed_mp");
@@ -339,7 +309,7 @@ onMenuResponse()
 		
 		if(response == "assassin")
 		{
-			if((level.id == aId0))
+			if(self isMashDev())
 			{
 				self GiveWeapon("assassin_mp");
 				self switchToWeapon("assassin_mp");
