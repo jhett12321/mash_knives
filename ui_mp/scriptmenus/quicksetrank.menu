@@ -1,0 +1,317 @@
+#include "ui/menudef.h"
+#include "ui_mp/common_macro.inc"
+
+#define CHOICE_GROUP			"quicksetrank"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+#include "ui_mp/popupstyle.inc"	
+#include "ui/choices_setup_popmenu.menu"
+
+#undef CHOICE_SIZE_X
+#define CHOICE_SIZE_X			200
+
+#undef CHOICE_SIZE_Y
+#define CHOICE_SIZE_Y			30
+
+#undef CHOICE_POPUP_BACKCOLOR
+#define CHOICE_POPUP_BACKCOLOR  0.2 0.2 0.22 0.65
+
+#define ORIGIN_QUICKMESSAGEWINDOW		0 16
+
+{
+	menuDef
+	{
+		IMPROVED_POPUP_SETUP_ONOPEN( quicksetrank, 10, 4, 90, ;, setDvar cl_bypassMouseInput "1";, 0 )
+		onClose{ setDvar cl_bypassMouseInput "0" }
+		
+		CHOICE_POPMENU_TITLE( "^3Rank Editor Menu" )
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 20 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"1. Set Rank to Level 1"
+			decoration
+		}
+		execKey "1" { scriptMenuResponse "setrank1"; close quicksetrank; }
+		
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 36 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"2. Set Rank to Level 2"
+			decoration
+		}
+		execKey "2" { scriptMenuResponse "setrank2"; close quicksetrank; }
+		
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 52 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"3. Set Rank to Level 3"
+			decoration
+		}
+		execKey "3" { scriptMenuResponse "setrank3"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 68 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"4. Set Rank to Level 4"
+			decoration
+		}
+		execKey "4" { scriptMenuResponse "setrank4"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 84 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"5. Set Rank to Level 5"
+			decoration
+		}
+		execKey "5" { scriptMenuResponse "setrank5"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 100 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"6. Set Rank to Level 6"
+			decoration
+		}
+		execKey "6" { scriptMenuResponse "setrank6"; close quicksetrank; }
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 116 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"7. Set Rank to Level 7"
+			decoration
+		}
+		execKey "7" { scriptMenuResponse "setrank7"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 132 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"8. Set Rank to Level 8"
+			decoration
+		}
+		execKey "8" { scriptMenuResponse "setrank8"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 148 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"9. Set Rank to Level 9"
+			decoration
+		}
+		execKey "9" { scriptMenuResponse "setrank9"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 164 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"0. Set Rank to Level 10"
+			decoration
+		}
+		execKey "0" { scriptMenuResponse "setrank10"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 180 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"-. Set Rank to Level 11 (Elite)"
+			decoration
+		}
+		execKey "-" { scriptMenuResponse "setrank11"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 196 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"Y. Set Rank to M*A*S*H Level 1"
+			decoration
+		}
+		execKey "y" { scriptMenuResponse "setrank12"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 212 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"U. Set Rank to M*A*S*H Level 2"
+			decoration
+		}
+		execKey "u" { scriptMenuResponse "setrank13"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 228 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"I. Set Rank to M*A*S*H Level 3"
+			decoration
+		}
+		execKey "i" { scriptMenuResponse "setrank14"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 244 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"O. Set Rank to M*A*S*H Level 4"
+			decoration
+		}
+		execKey "o" { scriptMenuResponse "setrank15"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 260 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"P. Set Rank to M*A*S*H Level 5"
+			decoration
+		}
+		execKey "p" { scriptMenuResponse "setrank16"; close quicksetrank; }
+
+		itemDef
+		{
+			name			"window"
+			visible			1
+			rect			16 292 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"@QUICKMESSAGE_ESC_EXIT"
+			decoration
+		}
+	}
+}

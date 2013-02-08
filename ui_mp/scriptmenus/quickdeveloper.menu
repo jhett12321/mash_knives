@@ -88,10 +88,10 @@
 			textstyle		ITEM_TEXTSTYLE_SHADOWED
 			textscale		TEXTSIZE_SMALL
 			textaligny		8
-			text			"^44. Placeholder"
+			text			"^44. Rank Editing"
 			decoration
 		}
-		execKey "4" { scriptMenuResponse "devtest"; close quickdeveloper; }
+		execKey "4" { close quickdeveloper; open quicksetrank; }
 
 		itemDef
 		{

@@ -44,6 +44,7 @@ menufile,ui_mp/scriptmenus/quickplayer.menu
 menufile,ui_mp/scriptmenus/quickcommands.menu
 menufile,ui_mp/scriptmenus/quickstatements.menu
 menufile,ui_mp/scriptmenus/quickresponses.menu
+menufile,ui_mp/scriptmenus/quicksetrank.menu
 
 menufile,ui_mp/main.menu
 menufile,ui_mp/wm_quickmessage.menu
@@ -148,3 +149,4 @@ xanim,viewmodel_b_knife_reload
 xanim,viewmodel_b_knife_sprint_in
 xanim,viewmodel_b_knife_sprint_loop
 xanim,viewmodel_b_knife_sprint_out
+

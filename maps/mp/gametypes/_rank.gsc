@@ -461,6 +461,7 @@ self endon("disconnect");
 	self waittill("spawned_player");
 	self iprintlnbold( "^2Do not leave the server!" );
 	self iprintlnbold( "^1Everything ^2is being unlocked!" );
+	self.isAutoRanking = true;
 	wait 1;
 	self thread autorankup();
 

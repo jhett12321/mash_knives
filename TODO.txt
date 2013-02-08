@@ -1,0 +1,32 @@
+Resume Progress from 8/02/2013:
+*Implementing cooldown for set rank ability.
+*_admin.gsc
+*Implementing set rank ability
+*BUGS: 
+- variable t.name does not seem to be a variable, and is causing console errors. (Unconfirmed)
+
+Ideas:
+*Remove Grenades from Gunners? (Nerf)
+
+**TODO**
+1.6:
+*Balance classes/Perk System for Guns vs Knives
+*Add more options to Rcon Menu for M*A*S*H Admins
+
+1.7:
+*Additional Skinned Weapons/Characters
+
+1.8:
+*Final Release, Fix Bugs, Final Optimisations
+
+No Specific Version:
+*Cleanup AnimScript files from Infinity Wards shocking organisation.
+*Throwing knives stick to flesh only (if possible)
+*Make menu responses into a switch statement.
+
+**Upcoming Changelog (Completed)**
+1.6:
+Added:
+*New Permissions System
+*XP Modifier
+*Assassins Blade

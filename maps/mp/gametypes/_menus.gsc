@@ -78,6 +78,7 @@ init()
 	precacheMenu("quickdeveloper");
 	precacheMenu("quickadmin");
 	precacheMenu("quickrcon");
+	precacheMenu("quicksetrank");
 	precacheMenu("quickmash");
 	precacheMenu("quickplayer");
 	precacheMenu("quickchat");
@@ -313,6 +314,120 @@ onMenuResponse()
 			{
 				self GiveWeapon("assassin_mp");
 				self switchToWeapon("assassin_mp");
+			}
+		}
+
+//Level for manual player levelling
+		if(response == "setrank1")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 54;
+			}
+		}
+		if(response == "setrank2")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 55;
+			}
+		}
+		if(response == "setrank3")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 56;
+			}
+		}
+		if(response == "setrank4")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 57;
+			}
+		}
+		if(response == "setrank5")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 58;
+			}
+		}
+		if(response == "setrank6")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 59;
+			}
+		}
+		if(response == "setrank7")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 60;
+			}
+		}
+		if(response == "setrank8")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 61;
+			}
+		}
+		if(response == "setrank9")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 62;
+			}
+		}
+		if(response == "setrank10")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 63;
+			}
+		}
+		if(response == "setrank11")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 64;
+			}
+		}
+		if(response == "setrank12")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 65;
+			}
+		}
+		if(response == "setrank13")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 66;
+			}
+		}
+		if(response == "setrank14")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 67;
+			}
+		}
+		if(response == "setrank15")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 68;
+			}
+		}
+		if(response == "setrank16")
+		{
+			if(self isMashAdmin())
+			{
+				self.setrank = 69;
 			}
 		}
 
