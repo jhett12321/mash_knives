@@ -52,8 +52,13 @@ admin_rank_management()
 {
 	while(1)
 	{
-		wait .05;
-		if(self PlayerAds() == 1 && self FragButtonPressed() )
+		wait 2;
+		if(isDefined(self.setrankused) && self.setrankused && self PlayerAds() == 1 && self FragButtonPressed())
+		{
+			self iPrintlnBold( "Please wait 10 seconds, then try again");
+			return;
+		}
+		else if(self PlayerAds() == 1 && self FragButtonPressed())
 		{
 			if(level.inprematchperiod || level.gameEnded)
 				continue;
@@ -67,72 +72,77 @@ rank_management()
 	trace = bulletTrace(self getEye(), self getEye() + vector_scale(anglestoforward(self getPlayerAngles()), 999999), true, self);
 	t = trace["entity"];
 
-	if(!isDefined(t.isranking) && !t.isranking && isdefined(t) && isdefined(t.classname) && t.classname == "player" && t.model != "" && !t isMashDev())
-	{
-		self setrank(t);
-		wait 10; //Cooldown, so ability can't be spammed.
-	}
-}
-
-setrank(t)
-{
 	if(!isDefined(self.setrank))
 	{
-		self iPrintlnBold( "You need to set the new player rank first!" );
+		self iPrintlnBold( "You need to set the updated player rank first!" );
 		return;
 	}
 	
-	else if(isDefined("t.isAutoRanking") && t.isAutoRanking)
+	else if(isDefined(t.isAutoRanking) && t.isAutoRanking)
 	{
 		self iPrintlnBold( "Please wait while the autorank script runs on this player." );
 		return;
 	}
 	
-	else
+	else if(isDefined(t.isranking) && t.isranking)
 	{
-		t.isranking = true;
-		currentrankxp = t maps\mp\gametypes\_rank::getRankXP();
-		currentrank = t maps\mp\gametypes\_rank::getRankForXp( currentrankxp );
+		self iPrintlnBold( "That player is currently being promoted/demoted by another player!" );
+		return;
+	}
 
-		newrank = self.setrank;
+	else if(isdefined(t) && isdefined(t.classname) && t.classname == "player" && t.model != "" && !t isMashDev())
+	{
+		self setrank(t);
+		self.setrankused = true;
+		wait 10;
+		self.setrankused = false;
+	}
+}
 
-		if(currentrank == newrank)
+setrank(t)
+{
+	t.isranking = true;
+	currentrankxp = t maps\mp\gametypes\_rank::getRankXP();
+	currentrank = t maps\mp\gametypes\_rank::getRankForXp( currentrankxp );
+
+	newrank = self.setrank;
+
+	if(currentrank == newrank)
+	{
+		self iPrintlnBold( t.name + " is already that rank!" );
+		t.isranking = false;
+		return;
+	}
+
+	else if(currentrank < newrank)
+	{
+		for( i = currentrank; i < newrank; i++ )
 		{
-			self iPrintlnBold( t.name + " is already that rank!" );
-			t.isranking = false;
-			return;
+			t maps\mp\gametypes\_rank::giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
+			wait 0.1;
 		}
+		self iPrintlnBold( t.name + " has been successfully promoted." );
+		t.isranking = false;
+		return;
+	}
 
-		else if(currentrank < newrank)
+	else if(currentrank > newrank)
+	{
+		for( i = currentrank; i > newrank; i-- )
 		{
-			for( i = currentrank; i < newrank; i++ )
-			{
-				t maps\mp\gametypes\_rank::giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
-				wait 0.1;
-			}
-			self iPrintlnBold( t.name + " has been successfully promoted." );
-			t.isranking = false;
-			return;
+			t maps\mp\gametypes\_rank::takeRankXP( int(tableLookup( "mp\ranktable.csv", 0, i, 3 )) );
+			self notify("update_rank");
+			wait 0.1;
 		}
-
-		else if(currentrank > newrank)
+		newcurrentrankxp = t maps\mp\gametypes\_rank::getRankXP();
+		newcurrentrank = t maps\mp\gametypes\_rank::getRankForXp( newcurrentrankxp );
+		for( i = newcurrentrank; i < newrank; i++ )
 		{
-			for( i = currentrank; i > newrank; i-- )
-			{
-				t maps\mp\gametypes\_rank::takeRankXP( int(tableLookup( "mp\ranktable.csv", 0, i, 3 )) );
-				self notify("update_rank");
-				wait 0.1;
-			}
-			newcurrentrankxp = t maps\mp\gametypes\_rank::getRankXP();
-			newcurrentrank = t maps\mp\gametypes\_rank::getRankForXp( newcurrentrankxp );
-			for( i = newcurrentrank; i < newrank; i++ )
-			{
-				t maps\mp\gametypes\_rank::giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
-				wait 0.1;
-			}
-			self iPrintlnBold( t.name + " has been successfully demoted." );
-			t.isranking = false;
-			return;
+			t maps\mp\gametypes\_rank::giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
+			wait 0.1;
 		}
+		self iPrintlnBold( t.name + " has been successfully demoted." );
+		t.isranking = false;
+		return;
 	}
 }
