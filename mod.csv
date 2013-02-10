@@ -29,11 +29,8 @@ rawfile,maps/mp/gametypes/_healthoverlay.gsc
 rawfile,maps/mp/gametypes/_readyup.gsc
 rawfile,maps/mp/gametypes/_scoreboard.gsc
 
-localize,rank
-localize,mp
-localize,mpui
 localize,weapon
-localize,perks
+localize,mash
 
 menufile,ui_mp/scriptmenus/quickdeveloper.menu
 menufile,ui_mp/scriptmenus/quickchat.menu
@@ -149,4 +146,5 @@ xanim,viewmodel_b_knife_reload
 xanim,viewmodel_b_knife_sprint_in
 xanim,viewmodel_b_knife_sprint_loop
 xanim,viewmodel_b_knife_sprint_out
+
 

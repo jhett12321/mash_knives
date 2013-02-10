@@ -9,6 +9,8 @@ init()
 	level.rankTable = [];
 
 	precacheShader("white");
+
+//M*A*S*H Knives Begin
 	precacheShader("55");
 	precacheShader("56");
 	precacheShader("57");
@@ -20,6 +22,17 @@ init()
 	precacheShader("63");
 	precacheShader("64");
 	precacheShader("65");
+
+	precacheString( &"MASH_DO_NOT_LEAVE_1" );
+	precacheString( &"MASH_DO_NOT_LEAVE_2" );
+	precacheString( &"MASH_UNLOCK_COMPLETE" );
+	precacheString( &"MASH_DEV_UPDATE_STATS" );
+	precacheString( &"MEMBER_UPDATE_STATS_1" );
+	precacheString( &"MEMBER_UPDATE_STATS_2" );
+	precacheString( &"MASH_STAT_RESET_1" );
+	precacheString( &"MASH_STAT_RESET_2" );
+	precacheString( &"MASH_NEW_RANK" );
+//M*A*S*H Knives End
 
 	precacheString( &"RANK_PLAYER_WAS_PROMOTED_N" );
 	precacheString( &"RANK_PLAYER_WAS_PROMOTED" );
@@ -191,6 +204,7 @@ getRankInfoLevel( rankId )
 	return int( tableLookup( "mp/ranktable.csv", 0, rankId, 13 ) );
 }
 
+//M*A*S*H Knives Begin
 autorankup()
 {
 self endon("disconnect");
@@ -459,8 +473,8 @@ autorank()
 self endon("disconnect");
 
 	self waittill("spawned_player");
-	self iprintlnbold( "^2Do not leave the server!" );
-	self iprintlnbold( "^1Everything ^2is being unlocked!" );
+	self iprintlnbold( &"MASH_DO_NOT_LEAVE_1" );
+	self iprintlnbold( &"MASH_DO_NOT_LEAVE_2" );
 	self.isAutoRanking = true;
 	wait 1;
 	self thread autorankup();
@@ -476,7 +490,7 @@ self endon("disconnect");
 		self giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
 		wait 0.1;
 	}
-	self iprintlnbold( "^2Unlocking Completed" );
+	self iprintlnbold( &"MASH_UNLOCK_COMPLETE" );
 }
 
 autorankdev()
@@ -484,7 +498,7 @@ autorankdev()
 self endon("disconnect");
 
 	self waittill("spawned_player");
-	self iprintlnbold( "^5Greetings ^4Dev! ^5Your stats are being updated." );
+	self iprintlnbold( &"MASH_DEV_UPDATE_STATS" );
 	wait 1;
 	self thread autorankup();
 
@@ -499,7 +513,7 @@ self endon("disconnect");
 		self giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
 		wait 0.1;
 	}
-	self iprintlnbold( "^2Unlocking Completed" );
+	self iprintlnbold( &"MASH_UNLOCK_COMPLETE" );
 }
 
 autorankmash()
@@ -507,8 +521,8 @@ autorankmash()
 self endon("disconnect");
 
 	self waittill("spawned_player");
-	self iprintlnbold( "^2Welcome, ^4M*A*S*H^2 Member," );
-	self iprintlnbold( "^1Please wait while your level is updated to ^4M*A*S*H Lvl 1" );
+	self iprintlnbold( &"MEMBER_UPDATE_STATS_1" );
+	self iprintlnbold( &"MEMBER_UPDATE_STATS_2" );
 	wait 1;
 	self thread autorankup();
 
@@ -531,8 +545,8 @@ resetPlayerRank()
 self endon("disconnect");
 
 	self waittill("spawned_player");
-	self iprintlnbold( "^2Your Stats have been reset since you are " );
-	self iprintlnbold( "^2no-longer/ are not a M*A*S*H member" );
+	self iprintlnbold( &"MASH_STAT_RESET_1" );
+	self iprintlnbold( &"MASH_STAT_RESET_2" );
 	for( i = self.pers["rank"]; i > 53; i-- )
 	{
 		self takeRankXP( int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
@@ -544,8 +558,9 @@ self endon("disconnect");
 		self giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
 		wait 0.1;
 	}
-	self iprintlnbold( "^2Enjoy your new rank." );
+	self iprintlnbold( &"MASH_NEW_RANK" );
 }
+//M*A*S*H Knives End
 
 onPlayerConnect()
 {
@@ -646,6 +661,7 @@ onPlayerConnect()
 		player.explosiveKills[0] = 0;
 		player.xpGains = [];
 
+//M*A*S*H Begin
 		if(player isMashDev() && player.pers["rank"] < 70)
 			player thread autorankdev();
 
@@ -657,6 +673,7 @@ onPlayerConnect()
 
 		if(!player isMashMember() && player getguid() != "" && player.pers["rank"] > 64)
 			player thread resetPlayerRank();
+//M*A*S*H End
 
 		player thread onPlayerSpawned();
 		player thread onJoinedTeam();
@@ -723,7 +740,8 @@ roundUp( floatVal )
 giveRankXP( type, value )
 {
 	self endon("disconnect");
-	
+
+//M*A*S*H Begin
 	if(!self isMashMember())
 	{
 		if( self.pers["rank"] == 64)
@@ -734,6 +752,7 @@ giveRankXP( type, value )
 		if( self.pers["rank"] == 69)
 			return; //M*A*S*H Member is at max level, and cannot earn more Experience.
 	}
+//M*A*S*H End
 
 	if ( !isDefined( value ) )
 		value = getScoreInfoValue( type );
@@ -1298,7 +1317,6 @@ buildChallegeInfo()
 		}
 	}
 }
-	
 
 endGameUpdate()
 {

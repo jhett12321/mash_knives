@@ -10,9 +10,26 @@ init()
 	precacheItem( "helicopter_mp" );
 	precacheItem( "throwing_knives_mp" );
 	precacheItem( "artillery_mp" );
+
+//M*A*S*H Knives Begin
 	precacheItem( "speed_mp" );
 	precacheItem( "assassin_mp" );
 	precacheItem( "assassinweapon_mp" );
+	
+	precacheString( &"MASH_SPEED_BOOST_LABEL" );
+	precacheString( &"MASH_SPEED_BOOST_1_MIN" );
+	precacheString( &"MASH_SPEED_BOOST_30_SEC" );
+	precacheString( &"MASH_SPEED_BOOST_15_SEC" );
+	precacheString( &"MASH_SPEED_BOOST_5_SEC" );
+	precacheString( &"MASH_ASSASSIN_WATCH_OUT" );
+	precacheString( &"MASH_ASSASSIN_HELP_1" );
+	precacheString( &"MASH_ASSASSIN_SLO_MO_LABEL" );
+	precacheString( &"MASH_ASSASSIN_SLO_MO_COOLDOWN_LABEL" );
+	precacheString( &"MASH_ASSASSIN_SLO_MO_COOLDOWN_30_SEC" );
+	precacheString( &"MASH_ASSASSIN_SLO_MO_COOLDOWN_15_SEC" );
+	precacheString( &"MASH_ASSASSIN_SLO_MO_COOLDOWN_5_SEC" );
+	precacheString( &"MASH_ASSASSIN_SLO_MO_COOLDOWN_USE_AGAIN" );
+//M*A*S*H Knives End
 
 	makeDvarServerInfo( "ui_uav_allies", 0 );
 	makeDvarServerInfo( "ui_uav_axis", 0 );
@@ -62,20 +79,22 @@ init()
 		}
 	}
 
-	level.hardpointHints["radar_mp"] = &"MP_EARNED_RADAR";
-	level.hardpointHints["airstrike_mp"] = &"MP_EARNED_AIRSTRIKE";
-	level.hardpointHints["helicopter_mp"] = &"MP_EARNED_HELICOPTER";
-	level.hardpointHints["throwing_knives_mp"] = &"MP_EARNED_TKNIVES";
-	level.hardpointHints["speed_mp"] = &"MP_EARNED_SPEED";
-	level.hardpointHints["assassin_mp"] = &"MP_EARNED_ASSASSIN";
+//M*A*S*H Knives Begin
+	level.hardpointHints["radar_mp"] = &"MASH_EARNED_RADAR";
+	level.hardpointHints["airstrike_mp"] = &"MASH_EARNED_AIRSTRIKE";
+	level.hardpointHints["helicopter_mp"] = &"MASH_EARNED_HELICOPTER";
+	level.hardpointHints["throwing_knives_mp"] = &"MASH_EARNED_TKNIVES";
+	level.hardpointHints["speed_mp"] = &"MASH_EARNED_SPEED";
+	level.hardpointHints["assassin_mp"] = &"MASH_EARNED_ASSASSIN";
 
-	level.hardpointHints["radar_mp_not_available"] = &"MP_RADAR_NOT_AVAILABLE";
-	level.hardpointHints["airstrike_mp_not_available"] = &"MP_AIRSTRIKE_NOT_AVAILABLE";
-	level.hardpointHints["helicopter_mp_not_available"] = &"MP_HELICOPTER_NOT_AVAILABLE";
-	level.hardpointHints["throwing_knives_mp_not_available"] = &"MP_TKNIVES_NOT_AVAILABLE";
-	level.hardpointHints["speed_mp_not_available"] = &"MP_SPEED_NOT_AVAILABLE";
-	level.hardpointHints["speed_mp_self_not_available"] = &"MP_SPEED_SELF_NOT_AVAILABLE";
-	level.hardpointHints["assassin_mp_not_available"] = &"MP_ASSASSIN_NOT_AVAILABLE";
+	level.hardpointHints["radar_mp_not_available"] = &"MASH_RADAR_NOT_AVAILABLE";
+	level.hardpointHints["airstrike_mp_not_available"] = &"MASH_AIRSTRIKE_NOT_AVAILABLE";
+	level.hardpointHints["helicopter_mp_not_available"] = &"MASH_HELICOPTER_NOT_AVAILABLE";
+	level.hardpointHints["throwing_knives_mp_not_available"] = &"MASH_TKNIVES_NOT_AVAILABLE";
+	level.hardpointHints["speed_mp_not_available"] = &"MASH_SPEED_NOT_AVAILABLE";
+	level.hardpointHints["speed_mp_self_not_available"] = &"MASH_SPEED_SELF_NOT_AVAILABLE";
+	level.hardpointHints["assassin_mp_not_available"] = &"MASH_ASSASSIN_NOT_AVAILABLE";
+//M*A*S*H Knives End
 
 	level.hardpointInforms["radar_mp"] = "mp_killstreak_radar";
 	level.hardpointInforms["airstrike_mp"] = "mp_killstreak_jet";
@@ -100,7 +119,7 @@ init()
 	precacheString( level.hardpointHints["throwing_knives_mp_not_available"] );   
 	precacheString( level.hardpointHints["assassin_mp_not_available"] );   
 
-	precacheString( &"MP_KILLSTREAK_N" );   
+	precacheString( &"MASH_KILLSTREAK_N" );   //M*A*S*H Knives
 
 	precacheLocationSelector( "map_artillery_selector" );
 
@@ -955,14 +974,15 @@ streakNotify( streakVal )
 	wait .05;
    
 	notifyData = spawnStruct();
-	notifyData.titleLabel = &"MP_KILLSTREAK_N";
+//M*A*S*H Knives Begin
+	notifyData.titleLabel = &"MASH_KILLSTREAK_N_1";
 	notifyData.titleText = streakVal;
    
 	self maps\mp\gametypes\_hud_message::notifyMessage( notifyData );
    
-	iprintln( &"RANK_KILL_STREAK_N", self, streakVal );
+	iprintln( &"MASH_KILL_STREAK_N_2", self, streakVal );
 }
-
+//M*A*S*H Knives End
 
 giveHardpoint( hardpointType, streak )
 {
@@ -982,7 +1002,7 @@ hardpointNotify( hardpointType, streakVal )
 	wait .05;
    
 	notifyData = spawnStruct();
-	notifyData.titleLabel = &"MP_KILLSTREAK_N";
+	notifyData.titleLabel = &"MASH_KILLSTREAK_N_1"; //M*A*S*H Knives
 	notifyData.titleText = streakVal;
 	notifyData.notifyText = level.hardpointHints[hardpointType];
 	notifyData.sound = level.hardpointInforms[hardpointType];
@@ -1394,6 +1414,7 @@ useAirstrike( pos )
 	thread doArtillery( pos, self, self.pers["team"] );
 }
 
+//M*A*S*H Knives Begin
 useknifeItem()
 {
 self endon("disconnect");
@@ -1418,14 +1439,14 @@ useSpeedItem()
 	{
 	players[i] PlayLocalSound( "mash" );
 	}
-	self iprintlnbold( "^2You have ^31^2 minute of ^1Speed Boost." );
-	self thread addTimer("Speed Boost",60);
+	self iprintlnbold( &"MASH_SPEED_BOOST_1_MIN" );
+	self thread addTimer(&"MASH_SPEED_BOOST_LABEL",60);
 	wait ( 30 );
-	self iprintlnbold( "^2You have ^330^2 seconds remaining of ^1Speed Boost." );
+	self iprintlnbold( &"MASH_SPEED_BOOST_30_SEC" );
 	wait ( 15 );
-	self iprintlnbold( "^2You have ^315^2 seconds remaining of ^1Speed Boost." );
+	self iprintlnbold( &"MASH_SPEED_BOOST_15_SEC" );
 	wait ( 10 );
-	self iprintlnbold( "^2You have ^35^2 seconds remaining of ^1Speed Boost." );
+	self iprintlnbold( &"MASH_SPEED_BOOST_5_SEC" );
 	wait ( 5 );
 	self SetMoveSpeedScale( 1 );
 	self iprintlnbold( "^2You no-longer have ^1Speed Boost." );
@@ -1453,8 +1474,8 @@ self endon("assassin_used");
 	self setClientDvars( "player_meleechargefriction", 5000,
 						 "aim_automelee_range", 255 );
 
-	iprintlnbold( "^2There is an ^3ASSASSIN! ^2Watch out!" );
-	self iprintlnbold( "^2As an ^3ASSASSIN ^2you can ^3SLOW DOWN^2 time. Press ^3[{+activate}]" );
+	iprintlnbold( &"MASH_ASSASSIN_WATCH_OUT" );
+	self iprintlnbold( &"MASH_ASSASSIN_HELP_1" );
 
 	while(1)
 	{
@@ -1477,7 +1498,7 @@ assassin_time()
 
 	self.isnotFrozen = false;
 
-	self thread addTimer("Slow Motion",5);
+	self thread addTimer(&"MASH_ASSASSIN_SLO_MO_LABEL",5);
 	for(i = 1; i > 0.45; i-= 0.05)
 	{
 		SetDvar( "timescale", i );
@@ -1493,13 +1514,12 @@ assassin_time()
 	}
 
 	wait 1;
-	self iprintlnbold( "^2You have 30 Seconds cooldown on ^3SLOW MOTION" );
-	self thread addTimer("Assassin Slow-mo Cooldown",30);
-	
+	self iprintlnbold( &"MASH_ASSASSIN_SLO_MO_COOLDOWN_30_SEC" );
+	self thread addTimer(&"MASH_ASSASSIN_SLO_MO_COOLDOWN_LABEL",30);
 	wait 15;
-	self iprintlnbold( "^2You have 15 Seconds cooldown remaining on ^3SLOW MOTION" );
+	self iprintlnbold( &"MASH_ASSASSIN_SLO_MO_COOLDOWN_15_SEC" );
 	wait 10;
-	self iprintlnbold( "^2You have 5 Seconds cooldown remaining on ^3SLOW MOTION" );
+	self iprintlnbold( &"MASH_ASSASSIN_SLO_MO_COOLDOWN_5_SEC" );
 	wait 5;
 	self.isnotFrozen = true;
 	self iprintlnbold( "^2You can use ^3SLOW MOTION ^2Again" );
@@ -1533,3 +1553,4 @@ if( isdefined(self.isAssassin) && self.isAssassin )
 		self.isAssassin = false;
 	}
 }
+//M*A*S*H Knives End

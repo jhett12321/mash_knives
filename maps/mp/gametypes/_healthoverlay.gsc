@@ -138,7 +138,7 @@ playerHealthRegen()
 			if (gettime() - lastSoundTime_Recover > level.playerHealth_RegularRegenDelay)
 			{
 				lastSoundTime_Recover = gettime();
-					if(!isdefined(player.isAssassin) || !player.isAssassin)
+					if(!isdefined(player.isAssassin) || !player.isAssassin) //M*A*S*H Knives
 						self playLocalSound("breathing_better");
 			}
 	

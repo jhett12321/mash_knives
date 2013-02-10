@@ -28,13 +28,13 @@ start()
 	 game["readyupperiod"] = true;
 
 	 // Precache some resources we'll be using
-	 precacheString( &"MP_READYUP_PERIOD" );
-	 precacheString( &"MP_READYUP_PERIOD_ROUND" );
-	 precacheString( &"MP_READYUP_READY" );
-	 precacheString( &"MP_READYUP_NOT_READY" );
-	 precacheString( &"MP_READYUP_PRESS_TO_TOGGLE" );
-	 precacheString( &"MP_READYUP_ALL_PLAYERS_READY" );
-	 precacheString( &"MP_READYUP_WAITING_FOR_MORE_PLAYERS" );
+	 precacheString( &"MASH_READYUP_PERIOD" );
+	 precacheString( &"MASH_READYUP_PERIOD_ROUND" );
+	 precacheString( &"MASH_READYUP_READY" );
+	 precacheString( &"MASH_READYUP_NOT_READY" );
+	 precacheString( &"MASH_READYUP_PRESS_TO_TOGGLE" );
+	 precacheString( &"MASH_READYUP_ALL_PLAYERS_READY" );
+	 precacheString( &"MASH_READYUP_WAITING_FOR_MORE_PLAYERS" );
 	 precacheStatusIcon( "hud_status_ready" );
 	 precacheStatusIcon( "hud_status_notready" );
 
@@ -50,9 +50,9 @@ start()
 	 game["readyUpPeriod"].x = 0;
 	 game["readyUpPeriod"].y = 60;
 	 if( game["roundsplayed"] ) {
-			game["readyUpPeriod"] setText( &"MP_READYUP_PERIOD_ROUND" );
+			game["readyUpPeriod"] setText( &"MASH_READYUP_PERIOD_ROUND" );
 	 } else {
-			game["readyUpPeriod"] setText( &"MP_READYUP_PERIOD" );
+			game["readyUpPeriod"] setText( &"MASH_READYUP_PERIOD" );
 	 }
 
 	 // Let's wait until we have enough players to start a match
@@ -165,7 +165,7 @@ readyUpPeriod()
 	 self.readyUpToggleText.sort = 1001;
 	 self.readyUpToggleText.foreground = false;
 	 self.readyUpToggleText.hidewheninmenu = true;
-	 self.readyUpToggleText setText( &"MP_READYUP_PRESS_TO_TOGGLE" );
+	 self.readyUpToggleText setText( &"MASH_READYUP_PRESS_TO_TOGGLE" );
 
 	 // We are going to monitor this player until the readyup period ends
 	 keyDown = false;
@@ -185,12 +185,12 @@ readyUpPeriod()
 			if ( self.matchReady && self.statusicon != "hud_status_ready" ) {
 				 self.statusicon = "hud_status_ready";
 				 self.readyUpText.color = ( 0.07, 0.69, 0.26 );
-				 self.readyUpText setText( &"MP_READYUP_READY" );
+				 self.readyUpText setText( &"MASH_READYUP_READY" );
 			}
 			if ( !self.matchReady && self.statusicon != "hud_status_notready" ) {
 				 self.statusicon = "hud_status_notready";
 				 self.readyUpText.color = ( 0.694, 0.220, 0.114 );
-				 self.readyUpText setText( &"MP_READYUP_NOT_READY" );
+				 self.readyUpText setText( &"MASH_READYUP_NOT_READY" );
 			}
 
 			// If the player pressed the use key then we have to wait until the key is released
@@ -224,7 +224,7 @@ waitForPlayers()
 	 waitingForPlayersText.foreground = false;
 	 waitingForPlayersText.hidewheninmenu = true;
 	 waitingForPlayersText.color = ( 1.0, 1.0, 0.5 );
-	 waitingForPlayersText setText( &"MP_READYUP_WAITING_FOR_MORE_PLAYERS" );
+	 waitingForPlayersText setText( &"MASH_READYUP_WAITING_FOR_MORE_PLAYERS" );
 
 	 while ( level.waitingForPlayers )
 	 {
@@ -280,7 +280,7 @@ checkServerPassword()
 	 serverNoPassword.y = 86;
 	 serverNoPassword.alpha = 1;
 	 serverNoPassword.color = ( 0.694, 0.220, 0.114 );
-	 serverNoPassword setText( &"MP_READYUP_NOPASSWORD" );
+	 serverNoPassword setText( &"MASH_READYUP_NOPASSWORD" );
 
 	 oldTime = gettime();
 

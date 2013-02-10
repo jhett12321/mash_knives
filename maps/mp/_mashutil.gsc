@@ -126,11 +126,13 @@ trigger_radius_use(classname,origin,flags,radius,height,entity,hint)
 		if(entity IsTouching( classname ) && !entity UseButtonPressed() && !isDefined(entity.hintElem) && isDefined(self))
 		{
 			entity.hintElem = NewClientHudElem(entity);
-			entity.hintElem.alignX = "right";
-			entity.hintElem.alignY = "top";
+			entity.hintElem.alignX = "center";
+			entity.hintElem.alignY = "middle";
+			entity.hintElem.horzAlign = "center_safearea";
+//			entity.hintElem.vertAlign = "middle";
 			entity.hintElem.fontScale = 1.4; 
 			entity.hintElem.alpha = 1;
-			entity.hintElem.x = 350;
+//			entity.hintElem.x = 350;
 			entity.hintElem.y = 300;
 			entity.hintElem setText(hint);
 			entity.hintElem.hidewheninmenu = true;
@@ -220,23 +222,12 @@ addTimer(name,time)
 	if(!isDefined(self.timer1))
 	{
 		self.timer1 = newClientHudElem(self);
-		self.timer1.x = 100;
-		self.timer1.y = 200;
-		self.timer1.alignX = "center";
-		self.timer1.alignY = "middle";
-		self.timer1.alpha = 1;
-		self.timer1.fontscale = 1.4;
-		
 		self.timer1label = newClientHudElem(self);
-		self.timer1label.x = -100;
-		self.timer1label.y = 200;
-		self.timer1label.alignX = "left";
-		self.timer1label.alignY = "middle";
-		self.timer1label.alpha = 1;
-		self.timer1label.fontscale = 1.4;
 
-		self.timer1label setText(name);
-		self.timer1 SetTimer( time );
+		setupTimer(name,time,self.timer1,self.timer1label);
+
+		self.timer1.y = 200;
+		self.timer1label.y = 200;
 
 		self thread watchTimer(self.timer1,self.timer1label);
 		wait time;
@@ -248,26 +239,16 @@ addTimer(name,time)
 		}
 		return;
 	}
+
 	if(!isDefined(self.timer2))
 	{
 		self.timer2 = newClientHudElem(self);
-		self.timer2.x = 100;
-		self.timer2.y = 215;
-		self.timer2.alignX = "center";
-		self.timer2.alignY = "middle";
-		self.timer2.alpha = 1;
-		self.timer2.fontscale = 1.4;
-		
 		self.timer2label = newClientHudElem(self);
-		self.timer2label.x = -100;
-		self.timer2label.y = 215;
-		self.timer2label.alignX = "left";
-		self.timer2label.alignY = "middle";
-		self.timer2label.alpha = 1;
-		self.timer2label.fontscale = 1.4;
 
-		self.timer2label setText(name);
-		self.timer2 SetTimer( time );
+		setupTimer(name,time,self.timer2,self.timer2label);
+
+		self.timer2.y = 200;
+		self.timer2label.y = 200;
 
 		self thread watchTimer(self.timer2,self.timer2label);
 		wait time;
@@ -279,26 +260,16 @@ addTimer(name,time)
 		}
 		return;
 	}
+
 	if(!isDefined(self.timer3))
 	{
 		self.timer3 = newClientHudElem(self);
-		self.timer3.x = 100;
-		self.timer3.y = 230;
-		self.timer3.alignX = "center";
-		self.timer3.alignY = "middle";
-		self.timer3.alpha = 1;
-		self.timer3.fontscale = 1.4;
-		
 		self.timer3label = newClientHudElem(self);
-		self.timer3label.x = -100;
-		self.timer3label.y = 230;
-		self.timer3label.alignX = "left";
-		self.timer3label.alignY = "middle";
-		self.timer3label.alpha = 1;
-		self.timer3label.fontscale = 1.4;
 
-		self.timer3label setText(name);
-		self.timer3 SetTimer( time );
+		setupTimer(name,time,self.timer3,self.timer3label);
+
+		self.timer3.y = 200;
+		self.timer3label.y = 200;
 
 		self thread watchTimer(self.timer3,self.timer3label);
 		wait time;
@@ -310,26 +281,16 @@ addTimer(name,time)
 		}
 		return;
 	}
+
 	if(!isDefined(self.timer4))
 	{
 		self.timer4 = newClientHudElem(self);
-		self.timer4.x = 100;
-		self.timer4.y = 245;
-		self.timer4.alignX = "center";
-		self.timer4.alignY = "middle";
-		self.timer4.alpha = 1;
-		self.timer4.fontscale = 1.4;
-		
 		self.timer4label = newClientHudElem(self);
-		self.timer4label.x = -100;
-		self.timer4label.y = 245;
-		self.timer4label.alignX = "left";
-		self.timer4label.alignY = "middle";
-		self.timer4label.alpha = 1;
-		self.timer4label.fontscale = 1.4;
 
-		self.timer4label setText(name);
-		self.timer4 SetTimer( time );
+		setupTimer(name,time,self.timer4,self.timer4label);
+
+		self.timer4.y = 200;
+		self.timer4label.y = 200;
 
 		self thread watchTimer(self.timer4,self.timer4label);
 		wait time;
@@ -341,26 +302,16 @@ addTimer(name,time)
 		}
 		return;
 	}
+
 	if(!isDefined(self.timer5))
 	{
 		self.timer5 = newClientHudElem(self);
-		self.timer5.x = 100;
-		self.timer5.y = 260;
-		self.timer5.alignX = "center";
-		self.timer5.alignY = "middle";
-		self.timer5.alpha = 1;
-		self.timer5.fontscale = 1.4;
-		
 		self.timer5label = newClientHudElem(self);
-		self.timer5label.x = -100;
-		self.timer5label.y = 260;
-		self.timer5label.alignX = "left";
-		self.timer5label.alignY = "middle";
-		self.timer5label.alpha = 1;
-		self.timer5label.fontscale = 1.4;
 
-		self.timer5label setText(name);
-		self.timer5 SetTimer( time );
+		setupTimer(name,time,self.timer5,self.timer5label);
+
+		self.timer5.y = 200;
+		self.timer5label.y = 200;
 
 		self thread watchTimer(self.timer5,self.timer5label);
 		wait time;
@@ -374,6 +325,29 @@ addTimer(name,time)
 	}
 }
 
+setupTimer(name,time,timer,label)
+{
+//Timer Setup
+	timer.x = -20;
+	timer.alignX = "center";
+	timer.alignY = "middle";
+	timer.horzAlign = "right";
+	timer.alpha = 1;
+	timer.fontscale = 1.4;
+
+//Label Setup
+	label.x = -40;
+	label.alignX = "right";
+	label.alignY = "middle";
+	label.horzAlign = "right";
+	label.alpha = 1;
+	label.fontscale = 1.4;
+
+//Final Init
+	timer SetTimer( time );
+	label setText(name);
+}
+
 watchTimer(timer,label)
 {
 	self waittill("killed_player");
@@ -383,3 +357,13 @@ watchTimer(timer,label)
 		label Destroy();
 	}
 }
+
+//Combines 2 localised strings into 1.
+combineStrings(str1,str2)
+{
+	string1 = str1;
+	string2 = str2;
+	string = str1 + str2;
+	return string;
+}
+	

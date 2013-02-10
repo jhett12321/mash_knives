@@ -91,7 +91,7 @@ init()
 	}
 
 	precacheItem( "frag_grenade_short_mp" );
-	precacheItem( "throwingknife_mp" );
+	precacheItem( "throwingknife_mp" );//M*A*S*H Knives
 	
 	precacheItem( "destructible_car" );	
 	
@@ -755,7 +755,7 @@ knifePickup(player)
 	if(!isDefined(self))
 		return;
 
-	self thread trigger_radius_use(self,self.origin,0,100,100,player,&"MP_KNIFE_RETRIEVE");
+	self thread trigger_radius_use(self,self.origin,0,100,100,player,&"MASH_KNIFE_RETRIEVE");
 	self waittill("trigger_radius_used");
 	if(!isDefined(self) )
 		return;

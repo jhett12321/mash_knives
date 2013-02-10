@@ -2,6 +2,10 @@
 
 init()
 {
+	precacheString( &"MASH_MOD_NAME_SCRIM_MODE" );
+	precacheString( &"MASH_MOD_NAME_1V1_MODE" );
+	precacheString( &"MASH_MOD_NAME" );
+
 	thread modinfo();
 	thread addTestClients();
 	if(!getDvarInt("scr_scrimmode"))
@@ -13,6 +17,7 @@ modinfo()
 	level.modinfo = NewHudElem();
 	level.modinfo.alignX = "center";
 	level.modinfo.alignY = "top";
+	level.modinfo.y = 10;
 	level.modinfo.horzAlign = "center_safearea";
 	level.modinfo.archived = true;
 	level.modinfo.fontScale = 1.4; 
@@ -20,11 +25,11 @@ modinfo()
 	level.modinfo.hidewheninmenu = true;
 
 	if(getDvarInt("scr_scrimmode"))
-		level.modinfo setText("^2M*A*S*H KNIVES ^11.6-D5 ^3SCRIM MODE");
+		level.modinfo setText(&"MASH_MOD_NAME_SCRIM_MODE");
 	else if( isDefined(level.is1v1) && level.is1v1 )
-		level.modinfo setText("^2M*A*S*H KNIVES ^11.6-D5 ^31v1 Mode");
+		level.modinfo setText(&"MASH_MOD_NAME_1V1_MODE");
 	else
-		level.modinfo setText("^2M*A*S*H KNIVES ^11.6-D5");
+		level.modinfo setText(&"MASH_MOD_NAME");
 }
 
 server_messages()

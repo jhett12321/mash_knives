@@ -1,0 +1,361 @@
+// Note to translators:
+// If a sentence is the same in your language then please change it to "#same"
+//
+// eg:
+// LANG_ENGLISH  "HALT"
+// LANG_GERMAN   "#same"
+//
+// (This is so we can tell which strings have been signed-off as ok to be the same words for QA
+//  and because we do not store duplicate strings, which will then get exported again next time
+//  as being untranslated.)
+//
+VERSION             "1"
+CONFIG              "C:\trees\cod3\cod3\bin\StringEd.cfg"
+FILENOTES           ""
+
+//_admin.gsc
+REFERENCE           ERROR_NO_RANK
+LANG_ENGLISH        "You need to set the updated player rank first!"
+
+REFERENCE           ERROR_AUTORANKING
+LANG_ENGLISH        "Please wait while the autorank script runs on this player."
+
+REFERENCE           ERROR_OTHER_PLAYER
+LANG_ENGLISH        "That player is currently being promoted/demoted by another player!"
+
+//Timers
+REFERENCE           ADMIN_RANK_COOLDOWN
+LANG_ENGLISH        "^1(Admin) ^7Set Player Rank Cooldown"
+
+REFERENCE           ERROR_IS_ALREADY_RANK
+LANG_ENGLISH        " is already that rank!"
+
+REFERENCE           ADMIN_RANK_SUCCESSFUL_PR
+LANG_ENGLISH        " has been successfully promoted."
+
+REFERENCE           ADMIN_RANK_SUCCESSFUL_DE
+LANG_ENGLISH        " has been successfully demoted."
+
+//_hardpoints.gsc
+REFERENCE           EARNED_AIRSTRIKE
+LANG_ENGLISH        "^2Press ^3[{+actionslot 4}] ^2for ^1AIRSTRIKE."
+
+REFERENCE           EARNED_RADAR
+LANG_ENGLISH        "^2Press ^3[{+actionslot 4}] ^2for ^1RADAR."
+
+REFERENCE           EARNED_HELICOPTER
+LANG_ENGLISH        "^2Press ^3[{+actionslot 4}] ^2for ^1HELICOPTER."
+
+REFERENCE           EARNED_TKNIVES
+LANG_ENGLISH        "^2Press ^3[{+actionslot 4}] ^2for ^1THROWING KNIVES"
+
+REFERENCE           EARNED_SPEED
+LANG_ENGLISH        "^2Press ^3[{+actionslot 4}] ^2for ^1SPEED BOOST"
+
+REFERENCE           EARNED_ASSASSIN
+LANG_ENGLISH        "^2Press ^3[{+actionslot 4}] ^2for ^1ASSASSIN MODE"
+
+REFERENCE           RADAR_NOT_AVAILABLE
+LANG_ENGLISH        "^1RADAR ^2not available"
+
+REFERENCE           AIRSTIKE_NOT_AVAILABLE
+LANG_ENGLISH        "^1AIRSTRIKE ^2not available"
+
+REFERENCE           TKNIVES_NOT_AVAILABLE
+LANG_ENGLISH        "^1THROWING KNIVES ^2not available"
+
+REFERENCE           SPEED_NOT_AVAILABLE
+LANG_ENGLISH        "^1SPEED BOOST ^2not available"
+
+REFERENCE           ASSASSIN_NOT_AVAILABLE
+LANG_ENGLISH        "^1ASSASSIN MODE ^2not available"
+
+REFERENCE           HELICOPTER_NOT_AVAILABLE
+LANG_ENGLISH        "Helicopter not available"
+
+REFERENCE           KILLSTREAK_3
+LANG_ENGLISH        "^13 ^3Kill Streak!"
+
+REFERENCE           KILLSTREAK_5
+LANG_ENGLISH        "^15 ^3Kill Streak!"
+
+REFERENCE           KILLSTREAK_7
+LANG_ENGLISH        "^17 ^3Kill Streak!"
+
+REFERENCE           KILLSTREAK_N_1
+LANG_ENGLISH        "^1&&1 ^3Kill Streak!"
+
+REFERENCE           KILL_STREAK_N_2
+LANG_ENGLISH        "&&1 has a killstreak of &&2!"
+
+REFERENCE           SPEED_BOOST_LABEL
+LANG_ENGLISH        "Speed Boost"
+
+REFERENCE           SPEED_BOOST_1_MIN
+LANG_ENGLISH        "^2You have ^31^2 minute of ^1Speed Boost."
+
+REFERENCE           SPEED_BOOST_30_SEC
+LANG_ENGLISH        "^2You have ^330^2 seconds remaining of ^1Speed Boost."
+
+REFERENCE           SPEED_BOOST_15_SEC
+LANG_ENGLISH        "^2You have ^315^2 seconds remaining of ^1Speed Boost."
+
+REFERENCE           SPEED_BOOST_5_SEC
+LANG_ENGLISH        "^2You have ^35^2 seconds remaining of ^1Speed Boost."
+
+REFERENCE           ASSASSIN_WATCH_OUT
+LANG_ENGLISH        "^2There is an ^3ASSASSIN! ^2Watch out!"
+
+REFERENCE           ASSASSIN_HELP_1
+LANG_ENGLISH        "^2As an ^3ASSASSIN ^2you can ^3SLOW DOWN^2 time. Press ^3[{+activate}]"
+
+REFERENCE           ASSASSIN_SLO_MO_LABEL
+LANG_ENGLISH        "Slow Motion"
+
+REFERENCE           ASSASSIN_SLO_MO_COOLDOWN_LABEL
+LANG_ENGLISH        "Assassin Slow-mo Cooldown"
+
+REFERENCE           ASSASSIN_SLO_MO_COOLDOWN_30_SEC
+LANG_ENGLISH        "^2You have 30 Seconds cooldown on ^3SLOW MOTION"
+
+REFERENCE           ASSASSIN_SLO_MO_COOLDOWN_15_SEC
+LANG_ENGLISH        "^2You have 15 Seconds cooldown on ^3SLOW MOTION"
+
+REFERENCE           ASSASSIN_SLO_MO_COOLDOWN_5_SEC
+LANG_ENGLISH        "^2You have 5 Seconds cooldown on ^3SLOW MOTION"
+
+REFERENCE           ASSASSIN_SLO_MO_COOLDOWN_USE_AGAIN
+LANG_ENGLISH        "^2You can use ^3SLOW MOTION ^2Again"
+
+//_menu.gsc
+REFERENCE           PLEASE_WAIT
+LANG_ENGLISH        "^2Please wait."
+
+REFERENCE           SCRIM_MENU_NOT_AVAILABLE_P
+LANG_ENGLISH        "^2Player Menu not available in Scrim Mode."
+
+REFERENCE           SCRIM_MENU_NOT_AVAILABLE_M
+LANG_ENGLISH        "^2Member Menu not available in Scrim Mode."
+
+REFERENCE           SCRIM_MENU_NOT_AVAILABLE_A
+LANG_ENGLISH        "^2Admin Menu not available in Scrim Mode."
+
+REFERENCE           ERROR_MENU_NOT_MEMBER
+LANG_ENGLISH        "^2You are not a ^1M*A*S*H Member"
+
+REFERENCE           ERROR_MENU_NOT_ADMIN
+LANG_ENGLISH        "^2You are not an ^1Admin!"
+
+REFERENCE           ERROR_MENU_THIRD_PERSON
+LANG_ENGLISH        "^2This Feature is not enabled."
+
+REFERENCE           NOLONGER_INVISIBLE
+LANG_ENGLISH        "^2You are no longer invisible."
+
+REFERENCE           ERROR_INVISIBLE_NOT_ALIVE
+LANG_ENGLISH        "^2You need to be alive to go invisible."
+
+REFERENCE           INVISIBLE
+LANG_ENGLISH        "^2You are now currently invisible."
+
+REFERENCE           KILLALL
+LANG_ENGLISH        "^2Everybody was killed by an ^1Admin"
+
+REFERENCE           SETRANK
+LANG_ENGLISH        "^2Rank set to "
+
+//_knife.gsc
+REFERENCE           MOD_NAME
+LANG_ENGLISH        "^2M*A*S*H KNIVES ^11.6-D5"
+
+REFERENCE           MOD_NAME_SCRIM_MODE
+LANG_ENGLISH        "^2M*A*S*H KNIVES ^11.6-D5 ^3SCRIM MODE"
+
+REFERENCE           MOD_NAME_1V1_MODE
+LANG_ENGLISH        "^2M*A*S*H KNIVES ^11.6-D5 ^31v1 Mode"
+
+//MP
+REFERENCE           KNIFE_NAME
+LANG_ENGLISH        "Knifers"
+
+REFERENCE           GUN_NAME
+LANG_ENGLISH        "Gunners"
+
+REFERENCE           ENEMY_FLAG_DROPPED
+LANG_ENGLISH        "Enemy flag was dropped!"
+
+REFERENCE           ENEMY_FLAG_RETURNED_BY
+LANG_ENGLISH        "Enemy flag was returned by &&1!"
+
+REFERENCE           FLAG_DROPPED
+LANG_ENGLISH        "Your flag was dropped!"
+
+REFERENCE           FLAG_DROPPED_BY
+LANG_ENGLISH        "&&1 dropped your flag!"
+
+REFERENCE           FLAG_RECOVERED_BY
+LANG_ENGLISH        "Your flag was recovered by &&1!"
+
+REFERENCE           ENEMY_FLAG_RECOVERED_BY
+LANG_ENGLISH        "Enemy flag was recovered by &&1!"
+
+REFERENCE           YOUR_FLAG_RETURNING_IN
+LANG_ENGLISH        "Your flag returning in: &&1"
+
+REFERENCE           ENEMY_FLAG_RETURNING_IN
+LANG_ENGLISH        "Enemy flag returning in: &&1"
+
+REFERENCE           SPECTATOR_1V1
+LANG_ENGLISH        "You are currently spectating a 1v1 Match"
+
+REFERENCE           CANT_CAPTURE_FLAG
+LANG_ENGLISH        "You can only capture the flags marked on your compass."
+
+REFERENCE           CTF_OBJ_TEXT
+LANG_ENGLISH        "Gain points by stealing the enemy flag and then touching your flag at your base. First team with &&1 captures wins."
+
+REFERENCE           CTF_OBJ_TEXT_NOSCORE
+LANG_ENGLISH        "Gain points by stealing the enemy flag and then touching your flag at your base."
+
+REFERENCE           NULL
+LANG_ENGLISH        "%s"
+
+REFERENCE           READYUP_ALL_PLAYERS_READY
+LANG_ENGLISH        "All players are ready!"
+
+REFERENCE           READYUP_MOD_CHECKSUMS
+LANG_ENGLISH        "^3CheckSums^7: &&1."
+
+REFERENCE           READYUP_NOPASSWORD
+LANG_ENGLISH        "Warning! Server has no password!"
+
+REFERENCE           READYUP_NOT_READY
+LANG_ENGLISH        "Not ready"
+
+REFERENCE           READYUP_PERIOD
+LANG_ENGLISH        "Match Ready Up Period"
+
+REFERENCE           READYUP_PERIOD_ROUND
+LANG_ENGLISH        "Intermission Ready Up Period"
+
+REFERENCE           READYUP_PRESS_TO_TOGGLE
+LANG_ENGLISH        "Press^3 [{+activate}] ^7to toggle readiness status"
+
+REFERENCE           READYUP_READY
+LANG_ENGLISH        "Ready"
+
+REFERENCE           READYUP_RECORD_REMINDER
+LANG_ENGLISH        "^3Don't forget to /RECORD the match!"
+
+REFERENCE           READYUP_WAITING_FOR_MORE_PLAYERS
+LANG_ENGLISH        "Waiting for more players..."
+
+//UI
+REFERENCE           KNIFE
+LANG_ENGLISH        "Knifers"
+
+REFERENCE           GUN
+LANG_ENGLISH        "Gunners"
+
+REFERENCE           GVK
+LANG_ENGLISH        "Guns vs Knives"
+
+REFERENCE           1V1
+LANG_ENGLISH        "1v1 Deathmatch"
+
+REFERENCE           CTF
+LANG_ENGLISH        "Capture the Flag"
+
+//PERKS
+
+//_rank.gsc
+REFERENCE           DO_NOT_LEAVE_1
+LANG_ENGLISH        "^2Do not leave the server!"
+
+REFERENCE           DO_NOT_LEAVE_2
+LANG_ENGLISH        "^1Everything ^2is being unlocked!"
+
+REFERENCE           UNLOCK_COMPLETE
+LANG_ENGLISH        "^2Unlocking Completed"
+
+REFERENCE           DEV_UPDATE_STATS
+LANG_ENGLISH        "^5Greetings ^4Dev! ^5Your stats are being updated."
+
+REFERENCE           MEMBER_UPDATE_STATS_1
+LANG_ENGLISH        "^2Welcome, ^4M*A*S*H^2 Member,"
+
+REFERENCE           MEMBER_UPDATE_STATS_2
+LANG_ENGLISH        "^1Please wait while your level is updated to ^4M*A*S*H Lvl 1"
+
+REFERENCE           STAT_RESET_1
+LANG_ENGLISH        "^2Your Stats have been reset since you are "
+
+REFERENCE           STAT_RESET_2
+LANG_ENGLISH        "^2no-longer/ are not a M*A*S*H member"
+
+REFERENCE           NEW_RANK
+LANG_ENGLISH        "^2Enjoy your new rank."
+
+//Ranks
+REFERENCE           1_FULL_N
+LANG_ENGLISH        "Level 1"
+
+REFERENCE           2_FULL_N
+LANG_ENGLISH        "Level 2"
+
+REFERENCE           3_FULL_N
+LANG_ENGLISH        "Level 3"
+
+REFERENCE           4_FULL_N
+LANG_ENGLISH        "Level 4"
+
+REFERENCE           5_FULL_N
+LANG_ENGLISH        "Level 5"
+
+REFERENCE           6_FULL_N
+LANG_ENGLISH        "Level 6"
+
+REFERENCE           7_FULL_N
+LANG_ENGLISH        "Level 7"
+
+REFERENCE           8_FULL_N
+LANG_ENGLISH        "Level 8"
+
+REFERENCE           9_FULL_N
+LANG_ENGLISH        "Level 9"
+
+REFERENCE           10_FULL_N
+LANG_ENGLISH        "Level 10"
+
+REFERENCE           11_FULL_N
+LANG_ENGLISH        "Elite"
+
+REFERENCE           MASH_FULL_N
+LANG_ENGLISH        "M*A*S*H Level 1"
+
+REFERENCE           MASH2_FULL_N
+LANG_ENGLISH        "M*A*S*H Level 2"
+
+REFERENCE           MASH3_FULL_N
+LANG_ENGLISH        "M*A*S*H Level 3"
+
+REFERENCE           MASH4_FULL_N
+LANG_ENGLISH        "M*A*S*H Level 4"
+
+REFERENCE           MASH5_FULL_N
+LANG_ENGLISH        "M*A*S*H Level 5"
+
+REFERENCE           DEV_FULL_N
+LANG_ENGLISH        "Developer"
+
+//Weapons
+REFERENCE           NO_SPECIAL_GRENADE
+LANG_ENGLISH        "No Special Grenades/Throwing Knives Remaining"
+
+REFERENCE           KNIFE_RETRIEVE
+LANG_ENGLISH        "Press ^3[{+activate}]^7 to pick up"
+
+
+ENDMARKER
+
+

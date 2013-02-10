@@ -3,14 +3,14 @@ init()
 	if ( isdefined(level.isgvk) && level.isgvk )
 	{
 		//Allies
-		setdvar("g_TeamName_Allies", &"MPUI_KNIFE");
+		setdvar("g_TeamName_Allies", &"MASH_KNIFE");
 		precacheShader("faction_128_sas");
 		setdvar("g_TeamIcon_Allies", "faction_128_sas");
 		setdvar("g_TeamColor_Allies", ".5 .5 .5");
 		setdvar("g_ScoresColor_Allies", "0 0 0");
 		
 		//Axis
-		setdvar("g_TeamName_Axis", &"MPUI_GUN");
+		setdvar("g_TeamName_Axis", &"MASH_GUN");
 		precacheShader("faction_128_arab");
 		setdvar("g_TeamIcon_Axis", "faction_128_arab");
 		setdvar("g_TeamColor_Axis", "0.65 0.57 0.41");		

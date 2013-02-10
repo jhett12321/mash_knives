@@ -3,6 +3,14 @@
 
 init()
 {
+	precacheString( &"MASH_ERROR_NO_RANK" );
+	precacheString( &"MASH_ERROR_AUTORANKING" );
+	precacheString( &"MASH_ERROR_OTHER_PLAYER" );
+	precacheString( &"MASH_ADMIN_RANK_COOLDOWN" );
+	precacheString( &"MASH_ERROR_IS_ALREADY_RANK" );
+	precacheString( &"MASH_ADMIN_RANK_SUCCESSFUL_PR" );
+	precacheString( &"MASH_ADMIN_RANK_SUCCESSFUL_DE" );
+
 	while(1)
 	{
 		level waittill("connected", player);
@@ -75,24 +83,24 @@ rank_management()
 	{
 		if(!isDefined(self.setrank))
 		{
-			self iPrintlnBold( "You need to set the updated player rank first!" );
+			self iPrintlnBold( &"MASH_ERROR_NO_RANK" );
 			return;
 		}
 		else if(isDefined(t.isAutoRanking) && t.isAutoRanking)
 		{
-			self iPrintlnBold( "Please wait while the autorank script runs on this player." );
+			self iPrintlnBold( &"MASH_ERROR_AUTORANKING" );
 			return;
 		}
 		else if(isDefined(t.isranking) && t.isranking)
 		{
-			self iPrintlnBold( "That player is currently being promoted/demoted by another player!" );
+			self iPrintlnBold( &"MASH_ERROR_OTHER_PLAYER" );
 			return;
 		}
 		else
 		{
 			self setrank(t);
 			self.setrankused = true;
-			self thread addTimer("^1(Admin) ^7Set Player Rank Cooldown",10);
+			self thread addTimer(&"MASH_ADMIN_RANK_COOLDOWN",10);
 			wait 10;
 			self.setrankused = false;
 		}
@@ -109,7 +117,7 @@ setrank(t)
 
 	if(currentrank == newrank)
 	{
-		self iPrintlnBold( t.name + " is already that rank!" );
+		self iPrintlnBold( t.name + &"MASH_ERROR_IS_ALREADY_RANK" );
 		t.isranking = false;
 		return;
 	}
@@ -121,7 +129,7 @@ setrank(t)
 			t maps\mp\gametypes\_rank::giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
 			wait 0.1;
 		}
-		self iPrintlnBold( t.name + " has been successfully promoted." );
+		self iPrintlnBold( t.name + &"MASH_ADMIN_RANK_SUCCESSFUL_PR" );
 		t.isranking = false;
 		return;
 	}
@@ -141,7 +149,7 @@ setrank(t)
 			t maps\mp\gametypes\_rank::giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
 			wait 0.1;
 		}
-		self iPrintlnBold( t.name + " has been successfully demoted." );
+		self iPrintlnBold( t.name + &"MASH_ADMIN_RANK_SUCCESSFUL_DE" );
 		t.isranking = false;
 		return;
 	}

@@ -53,20 +53,20 @@
 52,gen2,110220,4970,RANK_GEN,RANK_GEN_FULL2,rank_gen2,115190,;,;,tier_10_b,;,;,53,53,;,RANK_GEN_FULL_N
 53,gen3,115190,5090,RANK_GEN,RANK_GEN_FULL3,rank_gen3,120280,;,;,tier_10_c,;,;,54,54,;,RANK_GEN_FULL_N
 54,Level 1,120280,4720,Level 1,Level 1,rank_comm1,125000,deserteaglegold,;,;,;,;,1,1,;,RANK_1_FULL_N
-55,Level 2,125000,5000,Level 2,Level 2,55,130000,;,;,;,;,;,2,2,;,RANK_2_FULL_N
-56,Level 3,130000,5000,Level 3,Level 3,56,135000,;,;,;,;,;,3,3,;,RANK_3_FULL_N
-57,Level 4,135000,5000,Level 4,Level 4,57,140000,;,;,;,;,;,4,4,;,RANK_4_FULL_N
-58,Level 5,140000,5000,Level 5,Level 5,58,145000,;,;,;,;,;,5,5,;,RANK_5_FULL_N
-59,Level 6,145000,5000,Level 6,Level 6,59,150000,;,;,;,;,;,6,6,;,RANK_6_FULL_N
-60,Level 7,150000,10000,Level 7,Level 7,60,160000,;,;,;,;,;,7,7,;,RANK_7_FULL_N
-61,Level 8,160000,15000,Level 8,Level 8,61,175000,;,;,;,;,;,8,8,;,RANK_8_FULL_N
-62,Level 9,175000,20000,Level 9,Level 9,62,195000,;,;,;,;,;,9,9,;,RANK_9_FULL_N
-63,Level 10,195000,155000,Level 10,Level 10,63,350000,;,;,;,;,;,10,10,;,RANK_10_FULL_N
-64,ELITE,350000,250000,Elite,ELITE,64,550000,;,;,;,;,;,11,ELITE,;,RANK_11_FULL_N
-65,M*A*S*H Level 1,600000,25000,M*A*S*H Level 1,M*A*S*H Level 1,65,625000,;,;,;,;,;,1,M*A*S*H,;,RANK_MASH_FULL_N
-66,M*A*S*H Level 2,625000,75000,M*A*S*H Level 2,M*A*S*H Level 2,66,700000,;,;,;,;,;,2,M*A*S*H,;,RANK_MASH2_FULL_N
-67,M*A*S*H Level 3,700000,100000,M*A*S*H Level 3,M*A*S*H Level 3,67,800000,;,;,;,;,;,3,M*A*S*H,;,RANK_MASH3_FULL_N
-68,M*A*S*H Level 4,800000,200000,M*A*S*H Level 4,M*A*S*H Level 4,68,900000,;,;,;,;,;,4,M*A*S*H,;,RANK_MASH4_FULL_N
-69,M*A*S*H Level 5,900000,550000,M*A*S*H Level 5,M*A*S*H Level 5,69,1400000,;,;,;,;,;,5,M*A*S*H,;,RANK_MASH5_FULL_N
-70,Developer,1450000,500000,Developer,Developer,70,1950000,;,;,;,;,;,1,DEV,;,RANK_DEV_FULL_N
+55,Level 2,125000,5000,Level 2,Level 2,55,130000,;,;,;,;,;,2,2,;,MASH_2_FULL_N
+56,Level 3,130000,5000,Level 3,Level 3,56,135000,;,;,;,;,;,3,3,;,MASH_3_FULL_N
+57,Level 4,135000,5000,Level 4,Level 4,57,140000,;,;,;,;,;,4,4,;,MASH_4_FULL_N
+58,Level 5,140000,5000,Level 5,Level 5,58,145000,;,;,;,;,;,5,5,;,MASH_5_FULL_N
+59,Level 6,145000,5000,Level 6,Level 6,59,150000,;,;,;,;,;,6,6,;,MASH_6_FULL_N
+60,Level 7,150000,10000,Level 7,Level 7,60,160000,;,;,;,;,;,7,7,;,MASH_7_FULL_N
+61,Level 8,160000,15000,Level 8,Level 8,61,175000,;,;,;,;,;,8,8,;,MASH_8_FULL_N
+62,Level 9,175000,20000,Level 9,Level 9,62,195000,;,;,;,;,;,9,9,;,MASH_9_FULL_N
+63,Level 10,195000,155000,Level 10,Level 10,63,350000,;,;,;,;,;,10,10,;,MASH_10_FULL_N
+64,ELITE,350000,250000,Elite,ELITE,64,550000,;,;,;,;,;,11,ELITE,;,MASH_11_FULL_N
+65,M*A*S*H Level 1,600000,25000,M*A*S*H Level 1,M*A*S*H Level 1,65,625000,;,;,;,;,;,1,M*A*S*H,;,MASH_MASH_FULL_N
+66,M*A*S*H Level 2,625000,75000,M*A*S*H Level 2,M*A*S*H Level 2,66,700000,;,;,;,;,;,2,M*A*S*H,;,MASH_MASH2_FULL_N
+67,M*A*S*H Level 3,700000,100000,M*A*S*H Level 3,M*A*S*H Level 3,67,800000,;,;,;,;,;,3,M*A*S*H,;,MASH_MASH3_FULL_N
+68,M*A*S*H Level 4,800000,200000,M*A*S*H Level 4,M*A*S*H Level 4,68,900000,;,;,;,;,;,4,M*A*S*H,;,MASH_MASH4_FULL_N
+69,M*A*S*H Level 5,900000,550000,M*A*S*H Level 5,M*A*S*H Level 5,69,1400000,;,;,;,;,;,5,M*A*S*H,;,MASH_MASH5_FULL_N
+70,Developer,1450000,500000,Developer,Developer,70,1950000,;,;,;,;,;,1,DEV,;,MASH_DEV_FULL_N
 maxrank,70

@@ -13,20 +13,27 @@ BUGS:
 
 **TODO**
 1.6:
--Balance classes/Perk System for Guns vs Knives
 -Add more options to Rcon Menu for M*A*S*H Admins
 
 1.7:
 *Additional Skinned Weapons/Characters
+*Balance classes/Perk System for Guns vs Knives
 
 1.8:
 *Final Release, Fix Bugs, Final Optimisations (No doubt this will move)
-*Cleanup AnimScript files from Infinity Wards shocking organisation.
+
 
 No Specific Version:
 *Throwing knives stick to flesh only (if possible)
 *Make menu responses into a switch statement.
-*Killstreak HUD timers.
+*Cleanup AnimScript files from Infinity Wards shocking organisation.
+*Properly fix throwing knives blowing up cars
+*Comment Code to show changes/additions
+	Files Completed:
+	_hardpoints.gsc
+	_rank.gsc
+	_healthoverlay.gsc
+	_menus.gsc
 
 **Upcoming Changelog (Completed Features)**
 1.6:
@@ -34,3 +41,7 @@ Added:
 *New Permissions System
 *Admin XP Modifier
 *Assassins Blade
+*Killstreak/Status HUD timers.
+
+Updated:
+*Re-localised code into mash.str

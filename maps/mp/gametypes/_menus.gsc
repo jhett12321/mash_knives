@@ -74,7 +74,7 @@ init()
 	precacheString( &"MP_HOST_ENDED_GAME" );
 	precacheString( &"MP_HOST_ENDGAME_RESPONSE" );
 	
-	//M*A*S*H
+	//M*A*S*H Knives Begin
 	precacheMenu("quickdeveloper");
 	precacheMenu("quickadmin");
 	precacheMenu("quickrcon");
@@ -84,7 +84,31 @@ init()
 	precacheMenu("quickchat");
 	precacheMenu("clientcmd");
 	precacheMenu("callvote");
+
 	precacheItem( "admingun_mp" );
+
+	precacheString( &"MASH_PLEASE_WAIT" );
+	precacheString( &"MASH_SCRIM_MENU_NOT_AVAILABLE_P" );
+	precacheString( &"MASH_SCRIM_MENU_NOT_AVAILABLE_M" );
+	precacheString( &"MASH_SCRIM_MENU_NOT_AVAILABLE_A" );
+	precacheString( &"MASH_SETRANK" );
+	precacheString( &"MASH_1_FULL_N" );
+	precacheString( &"MASH_2_FULL_N" );
+	precacheString( &"MASH_3_FULL_N" );
+	precacheString( &"MASH_4_FULL_N" );
+	precacheString( &"MASH_5_FULL_N" );
+	precacheString( &"MASH_6_FULL_N" );
+	precacheString( &"MASH_7_FULL_N" );
+	precacheString( &"MASH_8_FULL_N" );
+	precacheString( &"MASH_9_FULL_N" );
+	precacheString( &"MASH_10_FULL_N" );
+	precacheString( &"MASH_11_FULL_N" );
+	precacheString( &"MASH_MASH_FULL_N" );
+	precacheString( &"MASH_MASH2_FULL_N" );
+	precacheString( &"MASH_MASH3_FULL_N" );
+	precacheString( &"MASH_MASH4_FULL_N" );
+	precacheString( &"MASH_MASH5_FULL_N" );
+	//M*A*S*H Knives End
 
 	level thread onPlayerConnect();
 }
@@ -121,10 +145,10 @@ onMenuResponse()
 			if(!level.inPrematchPeriod && !level.gameEnded && !getDvarInt("scr_scrimmode") )
 				self openMenu("quickplayer");
 			else if( getDvarInt("scr_scrimmode") )
-				self iprintlnbold( "^2Player Menu not available in Scrim Mode." );
+				self iprintlnbold( &"MASH_SCRIM_MENU_NOT_AVAILABLE_P" );
 			else
 			{
-			self iprintlnbold( "^2Please wait." );
+			self iprintlnbold( &"MASH_PLEASE_WAIT" );
 			}
 		}
 
@@ -134,14 +158,14 @@ onMenuResponse()
 			if(self isMashMember())
 			{
 				if( getDvarInt("scr_scrimmode") )
-					self iprintlnbold( "^2Member Menu not available in Scrim Mode." );
+					self iprintlnbold( &"MASH_SCRIM_MENU_NOT_AVAILABLE_M" );
 				else if( !level.inPrematchPeriod && !level.gameEnded )
 					self openMenu("quickmash");
 				else
-					self iprintlnbold( "^2Please wait." );
+					self iprintlnbold( &"MASH_PLEASE_WAIT" );
 			}
 			else
-				self iprintlnbold( "^2You are not a ^1M*A*S*H Member" );
+				self iprintlnbold( &"MASH_ERROR_MENU_NOT_MEMBER" );
 		}
 
 		if(response == "quickadmin")
@@ -149,14 +173,14 @@ onMenuResponse()
 			if(self isMashAdmin())
 			{
 				if( getDvarInt("scr_scrimmode") )
-					self iprintlnbold( "^2Admin Menu not available in Scrim Mode." );
+					self iprintlnbold( &"MASH_SCRIM_MENU_NOT_AVAILABLE_A" );
 				else if( !level.inPrematchPeriod && !level.gameEnded )
 					self openMenu("quickadmin");
 				else
-					self iprintlnbold( "^2Please wait." );
+					self iprintlnbold( &"MASH_PLEASE_WAIT" );
 			}
 			else
-				self iprintlnbold( "^2You are not an ^1Admin!" );
+				self iprintlnbold( &"MASH_ERROR_MENU_NOT_ADMIN" );
 		}
 
 		if(response == "quickdeveloper")
@@ -166,7 +190,7 @@ onMenuResponse()
 				if( !level.inPrematchPeriod && !level.gameEnded)
 					self openMenu("quickdeveloper");
 				else
-					self iprintlnbold( "^2Please wait." );
+					self iprintlnbold( &"MASH_PLEASE_WAIT" );
 			}
 		}
 
@@ -185,7 +209,7 @@ onMenuResponse()
 				self SetClientDvar( "cg_thirdperson", "1" );
 			}
 			else
-				self iprintlnbold( "^2This Feature is not enabled." );
+				self iprintlnbold( &"MASH_ERROR_MENU_THIRD_PERSON" );
 		}
 
 //Admin Menu
@@ -213,10 +237,10 @@ onMenuResponse()
 							self thread character\character_mp_opforce_cqb::main();
 					}
 					self enableweapons();
-					self iprintlnbold( "^2You are no longer invisible." );
+					self iprintlnbold( &"MASH_NOLONGER_INVISIBLE" );
 				}
 				else if ( !isAlive( self ) )
-					self iprintlnbold( "^2You need to be alive to go invisible." );
+					self iprintlnbold( &"MASH_ERROR_INVISIBLE_NOT_ALIVE" );
 				else
 				{
 						self.isinvisible = true;
@@ -225,8 +249,7 @@ onMenuResponse()
 						self setModel("");
 						self setClientDvar("scr_disable_menu", "1");
 						self disableweapons();
-						self iprintlnbold( "^2You are now currently invisible." );
-						self iprintln("^2Weapons disabled to prevent ^1ABUSE");
+						self iprintlnbold( &"MASH_INVISIBLE" );
 				}
 			}
 		}
@@ -240,7 +263,7 @@ onMenuResponse()
 				{
 					players[i] suicide();
 				}
-				iPrintlnBold( "^2Everybody was killed by an ^1Admin" );
+				iPrintlnBold( &"MASH_KILLALL" );
 			}
 		}
 
@@ -292,112 +315,128 @@ onMenuResponse()
 			if(self isMashAdmin())
 			{
 				self.setrank = 54;
-				self iprintlnbold( "^2Rank set to Level 1" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_1_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank2":
 			if(self isMashAdmin())
 			{
 				self.setrank = 55;
-				self iprintlnbold( "^2Rank set to Level 2" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_2_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank3":
 			if(self isMashAdmin())
 			{
 				self.setrank = 56;
-				self iprintlnbold( "^2Rank set to Level 3" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_3_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank4":
 			if(self isMashAdmin())
 			{
 				self.setrank = 57;
-				self iprintlnbold( "^2Rank set to Level 4" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_4_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank5":
 			if(self isMashAdmin())
 			{
 				self.setrank = 58;
-				self iprintlnbold( "^2Rank set to Level 5" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_5_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank6":
 			if(self isMashAdmin())
 			{
 				self.setrank = 59;
-				self iprintlnbold( "^2Rank set to Level 6" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_6_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank7":
 			if(self isMashAdmin())
 			{
 				self.setrank = 60;
-				self iprintlnbold( "^2Rank set to Level 7" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_7_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank8":
 			if(self isMashAdmin())
 			{
 				self.setrank = 61;
-				self iprintlnbold( "^2Rank set to Level 8" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_8_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank9":
 			if(self isMashAdmin())
 			{
 				self.setrank = 62;
-				self iprintlnbold( "^2Rank set to Level 9" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_9_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank10":
 			if(self isMashAdmin())
 			{
 				self.setrank = 63;
-				self iprintlnbold( "^2Rank set to Level 10" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_10_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank11":
 			if(self isMashAdmin())
 			{
 				self.setrank = 64;
-				self iprintlnbold( "^2Rank set to Elite" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_11_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank12":
 			if(self isMashAdmin())
 			{
 				self.setrank = 65;
-				self iprintlnbold( "^2Rank set to M*A*S*H Level 1" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_MASH_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank13":
 			if(self isMashAdmin())
 			{
 				self.setrank = 66;
-				self iprintlnbold( "^2Rank set to M*A*S*H Level 2" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_MASH2_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank14":
 			if(self isMashAdmin())
 			{
 				self.setrank = 67;
-				self iprintlnbold( "^2Rank set to M*A*S*H Level 3" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_MASH3_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank15":
 			if(self isMashAdmin())
 			{
 				self.setrank = 68;
-				self iprintlnbold( "^2Rank set to M*A*S*H Level 4" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_MASH4_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		case "setrank16":
 			if(self isMashAdmin())
 			{
 				self.setrank = 69;
-				self iprintlnbold( "^2Rank set to M*A*S*H Level 5" );
+				string = combineStrings(&"MASH_SETRANK",&"MASH_MASH5_FULL_N");
+				self iprintlnbold( string );
 				break;
 			}
 		}
@@ -409,7 +448,6 @@ onMenuResponse()
 			{
 			self GiveWeapon("throwingknife_mp", 0, false);
 			self GiveStartAmmo("throwingknife_mp");
-			self iprintlnbold( "^2Press ^3[{+frag}]^2 to throw knife." );
 			}
 		}
 
