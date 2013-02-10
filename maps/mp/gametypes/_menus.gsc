@@ -112,153 +112,65 @@ onMenuResponse()
 	{
 		self waittill("menuresponse", menu, response);
 
+//M*A*S*H Knives Begin
 		feature_1 = getDvar("allow_thirdperson");
 		mashvote = getDvar("g_allowvote");
 
-	if(response == "quickdeveloper")
-	{
-		if(self isMashDev())
+		if(response == "quickplayer")
 		{
-			if( !level.inPrematchPeriod && !level.gameEnded)
-			{
-				self openMenu("quickdeveloper");
-			}
-			else
-			{
-			self iprintlnbold( "^2Please wait." );
-			}
-		}
-	}
-	
-	if(response == "quickadmin")
-	{
-		if(self isMashAdmin())
-		{
-			if(self getguid() == "")
-			{
-				self iprintlnbold( "^2You are not an ^1Admin!" );
-			}
+			if(!level.inPrematchPeriod && !level.gameEnded && !getDvarInt("scr_scrimmode") )
+				self openMenu("quickplayer");
 			else if( getDvarInt("scr_scrimmode") )
-			{
-				self iprintlnbold( "^2Admin Menu not available in Scrim Mode." );
-			}
-			else if( !level.inPrematchPeriod && !level.gameEnded )
-			{
-				self openMenu("quickadmin");
-			}
+				self iprintlnbold( "^2Player Menu not available in Scrim Mode." );
 			else
 			{
 			self iprintlnbold( "^2Please wait." );
 			}
 		}
-		else
-		self iprintlnbold( "^2You are not an ^1Admin!" );
-	}
-	
-	if(response == "quickmash")
-	{
-		if(self isMashMember())
+
+//Main Menu's
+		if(response == "quickmash")
 		{
-			if(self getguid() == "")
+			if(self isMashMember())
+			{
+				if( getDvarInt("scr_scrimmode") )
+					self iprintlnbold( "^2Member Menu not available in Scrim Mode." );
+				else if( !level.inPrematchPeriod && !level.gameEnded )
+					self openMenu("quickmash");
+				else
+					self iprintlnbold( "^2Please wait." );
+			}
+			else
 				self iprintlnbold( "^2You are not a ^1M*A*S*H Member" );
-
-			else if( !level.inPrematchPeriod && !level.gameEnded )
-				self openMenu("quickmash");
-
-			else
-				self iprintlnbold( "^2Please wait." );
-
 		}
-		else
-			self iprintlnbold( "^2You are not a ^1M*A*S*H Member" );
-	}
 
-	if(response == "quickplayer")
-	{
-		if(!level.inPrematchPeriod && !level.gameEnded && !getDvarInt("scr_scrimmode") )
-		{
-			self openMenu("quickplayer");
-		}
-		else if( getDvarInt("scr_scrimmode") )
-		{
-			self iprintlnbold( "^2Player Menu not available in Scrim Mode." );
-		}
-		else
-		{
-		self iprintlnbold( "^2Please wait." );
-		}
-	}
-	
-	//Comment if unused
-//	if(response == "devtest")
-//	{
-//		fps = self GetClientDvar("com_maxfps");
-//		wait 1;
-//		self iprintlnbold( fps );
-//	}
-
-		if(response == "admingun")
+		if(response == "quickadmin")
 		{
 			if(self isMashAdmin())
 			{
-				self GiveWeapon("admingun_mp");
-				self GiveMaxAmmo( "admingun_mp" );
-				self switchToWeapon("admingun_mp");
-			}
-		}
-
-		if(response == "invisible")
-		{
-			if(self isMashAdmin())
-			{
-			if ( IsDefined( self.isinvisible ) && (self.isinvisible) && isAlive( self ) )
-			{
-				self.isinvisible = false;
-				self notify("not_invisible");
-				self setClientDvar("scr_disable_menu", "0");
-				if(self.pers["team"] == "allies")
-				{
-					if( game["allies"] == "sas" )
-					{
-					self thread character\character_mp_sas_urban_specops::main();
-					}
-					else if( game["allies"] == "marines" )
-					{
-					self thread character\character_mp_usmc_specops::main();
-					}
-				}
-				else if(self.pers["team"] == "axis")
-				{
-					if( game["axis"] == "opfor" )
-					{
-					self thread character\character_mp_arab_regular_cqb::main();
-					}
-					else if( game["axis"] == "russian" )
-					{
-					self thread character\character_mp_opforce_cqb::main();
-					}
-				}
-				self enableweapons();
-				self iprintlnbold( "^2You are no longer invisible." );
-			}
-			else if ( !isAlive( self ) )
-			{
-				self iprintlnbold( "^2You need to be alive to go invisible." );
+				if( getDvarInt("scr_scrimmode") )
+					self iprintlnbold( "^2Admin Menu not available in Scrim Mode." );
+				else if( !level.inPrematchPeriod && !level.gameEnded )
+					self openMenu("quickadmin");
+				else
+					self iprintlnbold( "^2Please wait." );
 			}
 			else
+				self iprintlnbold( "^2You are not an ^1Admin!" );
+		}
+
+		if(response == "quickdeveloper")
+		{
+			if(self isMashDev())
 			{
-					self.isinvisible = true;
-					self notify("invisible");
-					self detachAll();
-					self setModel("");
-					self setClientDvar("scr_disable_menu", "1");
-					self disableweapons();
-					self iprintlnbold( "^2You are now currently invisible." );
-					self iprintln("^2Weapons disabled to prevent ^1ABUSE");
+				if( !level.inPrematchPeriod && !level.gameEnded)
+					self openMenu("quickdeveloper");
+				else
+					self iprintlnbold( "^2Please wait." );
 			}
 		}
-	}
 
+//Player Menu
 		if(response == "thirdperson")
 		{
 			if ( IsDefined( self.isthirdperson ) && (self.isthirdperson) )
@@ -275,7 +187,50 @@ onMenuResponse()
 			else
 				self iprintlnbold( "^2This Feature is not enabled." );
 		}
-		
+
+//Admin Menu
+		if(response == "invisible")
+		{
+			if(self isMashAdmin())
+			{
+				if ( IsDefined( self.isinvisible ) && (self.isinvisible) && isAlive( self ) )
+				{
+					self.isinvisible = false;
+					self notify("not_invisible");
+					self setClientDvar("scr_disable_menu", "0");
+					if(self.pers["team"] == "allies")
+					{
+						if( game["allies"] == "sas" )
+							self thread character\character_mp_sas_urban_specops::main();
+						else if( game["allies"] == "marines" )
+							self thread character\character_mp_usmc_specops::main();
+					}
+					else if(self.pers["team"] == "axis")
+					{
+						if( game["axis"] == "opfor" )
+							self thread character\character_mp_arab_regular_cqb::main();
+						else if( game["axis"] == "russian" )
+							self thread character\character_mp_opforce_cqb::main();
+					}
+					self enableweapons();
+					self iprintlnbold( "^2You are no longer invisible." );
+				}
+				else if ( !isAlive( self ) )
+					self iprintlnbold( "^2You need to be alive to go invisible." );
+				else
+				{
+						self.isinvisible = true;
+						self notify("invisible");
+						self detachAll();
+						self setModel("");
+						self setClientDvar("scr_disable_menu", "1");
+						self disableweapons();
+						self iprintlnbold( "^2You are now currently invisible." );
+						self iprintln("^2Weapons disabled to prevent ^1ABUSE");
+				}
+			}
+		}
+
 		if(response == "killall")
 		{
 			if(self isMashAdmin())
@@ -289,148 +244,16 @@ onMenuResponse()
 			}
 		}
 
-		if(response == "throw")
-		{
-			if(self isMashDev())
-			{
-			self GiveWeapon("throwingknife_mp", 0, false);
-			self GiveStartAmmo("throwingknife_mp");
-			self iprintlnbold( "^2Press ^3[{+frag}]^2 to throw knife." );
-			}
-		}
-
-		if(response == "speed")
-		{
-			if(self isMashDev())
-			{
-				self GiveWeapon("speed_mp");
-				self switchToWeapon("speed_mp");
-			}
-		}
-		
-		if(response == "assassin")
-		{
-			if(self isMashDev())
-			{
-				self GiveWeapon("assassin_mp");
-				self switchToWeapon("assassin_mp");
-			}
-		}
-
-//Level for manual player levelling
-		if(response == "setrank1")
+		if(response == "admingun")
 		{
 			if(self isMashAdmin())
 			{
-				self.setrank = 54;
+				self GiveWeapon("admingun_mp");
+				self GiveMaxAmmo( "admingun_mp" );
+				self switchToWeapon("admingun_mp");
 			}
 		}
-		if(response == "setrank2")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 55;
-			}
-		}
-		if(response == "setrank3")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 56;
-			}
-		}
-		if(response == "setrank4")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 57;
-			}
-		}
-		if(response == "setrank5")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 58;
-			}
-		}
-		if(response == "setrank6")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 59;
-			}
-		}
-		if(response == "setrank7")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 60;
-			}
-		}
-		if(response == "setrank8")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 61;
-			}
-		}
-		if(response == "setrank9")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 62;
-			}
-		}
-		if(response == "setrank10")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 63;
-			}
-		}
-		if(response == "setrank11")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 64;
-			}
-		}
-		if(response == "setrank12")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 65;
-			}
-		}
-		if(response == "setrank13")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 66;
-			}
-		}
-		if(response == "setrank14")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 67;
-			}
-		}
-		if(response == "setrank15")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 68;
-			}
-		}
-		if(response == "setrank16")
-		{
-			if(self isMashAdmin())
-			{
-				self.setrank = 69;
-			}
-		}
-
+//RCON Menu (Admin)
 //TODO Implement in M*A*S*H Knives 1.6
 //		if(response == "login")
 //		{
@@ -461,6 +284,161 @@ onMenuResponse()
 		{
 			Map_Restart( false );
 		}
+
+//Level Editor Menu (Admin)
+		switch(response)
+		{
+		case "setrank1":
+			if(self isMashAdmin())
+			{
+				self.setrank = 54;
+				self iprintlnbold( "^2Rank set to Level 1" );
+				break;
+			}
+		case "setrank2":
+			if(self isMashAdmin())
+			{
+				self.setrank = 55;
+				self iprintlnbold( "^2Rank set to Level 2" );
+				break;
+			}
+		case "setrank3":
+			if(self isMashAdmin())
+			{
+				self.setrank = 56;
+				self iprintlnbold( "^2Rank set to Level 3" );
+				break;
+			}
+		case "setrank4":
+			if(self isMashAdmin())
+			{
+				self.setrank = 57;
+				self iprintlnbold( "^2Rank set to Level 4" );
+				break;
+			}
+		case "setrank5":
+			if(self isMashAdmin())
+			{
+				self.setrank = 58;
+				self iprintlnbold( "^2Rank set to Level 5" );
+				break;
+			}
+		case "setrank6":
+			if(self isMashAdmin())
+			{
+				self.setrank = 59;
+				self iprintlnbold( "^2Rank set to Level 6" );
+				break;
+			}
+		case "setrank7":
+			if(self isMashAdmin())
+			{
+				self.setrank = 60;
+				self iprintlnbold( "^2Rank set to Level 7" );
+				break;
+			}
+		case "setrank8":
+			if(self isMashAdmin())
+			{
+				self.setrank = 61;
+				self iprintlnbold( "^2Rank set to Level 8" );
+				break;
+			}
+		case "setrank9":
+			if(self isMashAdmin())
+			{
+				self.setrank = 62;
+				self iprintlnbold( "^2Rank set to Level 9" );
+				break;
+			}
+		case "setrank10":
+			if(self isMashAdmin())
+			{
+				self.setrank = 63;
+				self iprintlnbold( "^2Rank set to Level 10" );
+				break;
+			}
+		case "setrank11":
+			if(self isMashAdmin())
+			{
+				self.setrank = 64;
+				self iprintlnbold( "^2Rank set to Elite" );
+				break;
+			}
+		case "setrank12":
+			if(self isMashAdmin())
+			{
+				self.setrank = 65;
+				self iprintlnbold( "^2Rank set to M*A*S*H Level 1" );
+				break;
+			}
+		case "setrank13":
+			if(self isMashAdmin())
+			{
+				self.setrank = 66;
+				self iprintlnbold( "^2Rank set to M*A*S*H Level 2" );
+				break;
+			}
+		case "setrank14":
+			if(self isMashAdmin())
+			{
+				self.setrank = 67;
+				self iprintlnbold( "^2Rank set to M*A*S*H Level 3" );
+				break;
+			}
+		case "setrank15":
+			if(self isMashAdmin())
+			{
+				self.setrank = 68;
+				self iprintlnbold( "^2Rank set to M*A*S*H Level 4" );
+				break;
+			}
+		case "setrank16":
+			if(self isMashAdmin())
+			{
+				self.setrank = 69;
+				self iprintlnbold( "^2Rank set to M*A*S*H Level 5" );
+				break;
+			}
+		}
+
+//Developer Menu
+		if(response == "throw")
+		{
+			if(self isMashDev())
+			{
+			self GiveWeapon("throwingknife_mp", 0, false);
+			self GiveStartAmmo("throwingknife_mp");
+			self iprintlnbold( "^2Press ^3[{+frag}]^2 to throw knife." );
+			}
+		}
+
+		if(response == "speed")
+		{
+			if(self isMashDev())
+			{
+				self GiveWeapon("speed_mp");
+				self switchToWeapon("speed_mp");
+			}
+		}
+
+		if(response == "assassin")
+		{
+			if(self isMashDev())
+			{
+				self GiveWeapon("assassin_mp");
+				self switchToWeapon("assassin_mp");
+			}
+		}
+
+	//Comment if unused
+//	if(response == "devtest")
+//	{
+//		fps = self GetClientDvar("com_maxfps");
+//		wait 1;
+//		self iprintlnbold( fps );
+//	}
+//M*A*S*H Knives End
 
 		if ( response == "back" )
 		{

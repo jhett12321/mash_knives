@@ -91,7 +91,7 @@
 			text			"^44. Open Rcon Menu"
 			decoration
 		}
-		execKey "4" { open quickrcon; close quickadmin; }
+		execKey "4" { close quickadmin; open quickrcon; }
 	
 		itemDef
 		{
