@@ -214,3 +214,172 @@ isMashDev()
 	else
 		return false;
 }
+
+addTimer(name,time)
+{
+	if(!isDefined(self.timer1))
+	{
+		self.timer1 = newClientHudElem(self);
+		self.timer1.x = 100;
+		self.timer1.y = 200;
+		self.timer1.alignX = "center";
+		self.timer1.alignY = "middle";
+		self.timer1.alpha = 1;
+		self.timer1.fontscale = 1.4;
+		
+		self.timer1label = newClientHudElem(self);
+		self.timer1label.x = -100;
+		self.timer1label.y = 200;
+		self.timer1label.alignX = "left";
+		self.timer1label.alignY = "middle";
+		self.timer1label.alpha = 1;
+		self.timer1label.fontscale = 1.4;
+
+		self.timer1label setText(name);
+		self.timer1 SetTimer( time );
+
+		self thread watchTimer(self.timer1,self.timer1label);
+		wait time;
+
+		if(isDefined(self.timer1) && isDefined(self.timer1label))
+		{
+			self.timer1 Destroy();
+			self.timer1label Destroy();
+		}
+		return;
+	}
+	if(!isDefined(self.timer2))
+	{
+		self.timer2 = newClientHudElem(self);
+		self.timer2.x = 100;
+		self.timer2.y = 215;
+		self.timer2.alignX = "center";
+		self.timer2.alignY = "middle";
+		self.timer2.alpha = 1;
+		self.timer2.fontscale = 1.4;
+		
+		self.timer2label = newClientHudElem(self);
+		self.timer2label.x = -100;
+		self.timer2label.y = 215;
+		self.timer2label.alignX = "left";
+		self.timer2label.alignY = "middle";
+		self.timer2label.alpha = 1;
+		self.timer2label.fontscale = 1.4;
+
+		self.timer2label setText(name);
+		self.timer2 SetTimer( time );
+
+		self thread watchTimer(self.timer2,self.timer2label);
+		wait time;
+
+		if(isDefined(self.timer2) && isDefined(self.timer2label))
+		{
+			self.timer2 Destroy();
+			self.timer2label Destroy();
+		}
+		return;
+	}
+	if(!isDefined(self.timer3))
+	{
+		self.timer3 = newClientHudElem(self);
+		self.timer3.x = 100;
+		self.timer3.y = 230;
+		self.timer3.alignX = "center";
+		self.timer3.alignY = "middle";
+		self.timer3.alpha = 1;
+		self.timer3.fontscale = 1.4;
+		
+		self.timer3label = newClientHudElem(self);
+		self.timer3label.x = -100;
+		self.timer3label.y = 230;
+		self.timer3label.alignX = "left";
+		self.timer3label.alignY = "middle";
+		self.timer3label.alpha = 1;
+		self.timer3label.fontscale = 1.4;
+
+		self.timer3label setText(name);
+		self.timer3 SetTimer( time );
+
+		self thread watchTimer(self.timer3,self.timer3label);
+		wait time;
+
+		if(isDefined(self.timer3) && isDefined(self.timer3label))
+		{
+			self.timer3 Destroy();
+			self.timer3label Destroy();
+		}
+		return;
+	}
+	if(!isDefined(self.timer4))
+	{
+		self.timer4 = newClientHudElem(self);
+		self.timer4.x = 100;
+		self.timer4.y = 245;
+		self.timer4.alignX = "center";
+		self.timer4.alignY = "middle";
+		self.timer4.alpha = 1;
+		self.timer4.fontscale = 1.4;
+		
+		self.timer4label = newClientHudElem(self);
+		self.timer4label.x = -100;
+		self.timer4label.y = 245;
+		self.timer4label.alignX = "left";
+		self.timer4label.alignY = "middle";
+		self.timer4label.alpha = 1;
+		self.timer4label.fontscale = 1.4;
+
+		self.timer4label setText(name);
+		self.timer4 SetTimer( time );
+
+		self thread watchTimer(self.timer4,self.timer4label);
+		wait time;
+
+		if(isDefined(self.timer4) && isDefined(self.timer4label))
+		{
+			self.timer4 Destroy();
+			self.timer4label Destroy();
+		}
+		return;
+	}
+	if(!isDefined(self.timer5))
+	{
+		self.timer5 = newClientHudElem(self);
+		self.timer5.x = 100;
+		self.timer5.y = 260;
+		self.timer5.alignX = "center";
+		self.timer5.alignY = "middle";
+		self.timer5.alpha = 1;
+		self.timer5.fontscale = 1.4;
+		
+		self.timer5label = newClientHudElem(self);
+		self.timer5label.x = -100;
+		self.timer5label.y = 260;
+		self.timer5label.alignX = "left";
+		self.timer5label.alignY = "middle";
+		self.timer5label.alpha = 1;
+		self.timer5label.fontscale = 1.4;
+
+		self.timer5label setText(name);
+		self.timer5 SetTimer( time );
+
+		self thread watchTimer(self.timer5,self.timer5label);
+		wait time;
+
+		if(isDefined(self.timer5) && isDefined(self.timer5label))
+		{
+			self.timer5 Destroy();
+			self.timer5label Destroy();
+		}
+		return;
+	}
+}
+
+watchTimer(timer,label)
+{
+	self waittill("killed_player");
+	if(isDefined(timer))
+	{
+		timer Destroy();
+		label Destroy();
+	}
+}

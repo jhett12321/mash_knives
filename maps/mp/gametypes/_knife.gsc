@@ -11,33 +11,20 @@ init()
 modinfo()
 {
 	level.modinfo = NewHudElem();
-	level.modinfo.alignX = "right";
+	level.modinfo.alignX = "center";
 	level.modinfo.alignY = "top";
+	level.modinfo.horzAlign = "center_safearea";
 	level.modinfo.archived = true;
 	level.modinfo.fontScale = 1.4; 
 	level.modinfo.alpha = 1;
 	level.modinfo.hidewheninmenu = true;
 
 	if(getDvarInt("scr_scrimmode"))
-	{
-		level.modinfo.x = 400;
-		level.modinfo.y = 10;
-		level.modinfo setText("^1M*A*S*H KNIVES ^21.6-D4 ^3SCRIM MODE");
-	}
-	
+		level.modinfo setText("^2M*A*S*H KNIVES ^11.6-D5 ^3SCRIM MODE");
 	else if( isDefined(level.is1v1) && level.is1v1 )
-		{
-		level.modinfo.x = 400;
-		level.modinfo.y = 10;
-		level.modinfo setText("^1M*A*S*H KNIVES ^21.6-D4 ^31v1 Mode");
-	}
-
+		level.modinfo setText("^2M*A*S*H KNIVES ^11.6-D5 ^31v1 Mode");
 	else
-	{
-		level.modinfo.x = 370;
-		level.modinfo.y = 10;
-		level.modinfo setText("^1M*A*S*H KNIVES ^21.6-D4");
-	}
+		level.modinfo setText("^2M*A*S*H KNIVES ^11.6-D5");
 }
 
 server_messages()

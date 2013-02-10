@@ -1,6 +1,7 @@
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
 #include common_scripts\utility;
+#include maps\mp\_mashutil;
 
 init()
 {
@@ -1418,6 +1419,7 @@ useSpeedItem()
 	players[i] PlayLocalSound( "mash" );
 	}
 	self iprintlnbold( "^2You have ^31^2 minute of ^1Speed Boost." );
+	self thread addTimer("Speed Boost",60);
 	wait ( 30 );
 	self iprintlnbold( "^2You have ^330^2 seconds remaining of ^1Speed Boost." );
 	wait ( 15 );
@@ -1452,7 +1454,7 @@ self endon("assassin_used");
 						 "aim_automelee_range", 255 );
 
 	iprintlnbold( "^2There is an ^3ASSASSIN! ^2Watch out!" );
-	self iprintlnbold( "^2As an ^3ASSASSIN ^2you can ^3SLOW DOWN^2 time. Press ^3[{+activate}] :P" );
+	self iprintlnbold( "^2As an ^3ASSASSIN ^2you can ^3SLOW DOWN^2 time. Press ^3[{+activate}]" );
 
 	while(1)
 	{
@@ -1475,6 +1477,7 @@ assassin_time()
 
 	self.isnotFrozen = false;
 
+	self thread addTimer("Slow Motion",5);
 	for(i = 1; i > 0.45; i-= 0.05)
 	{
 		SetDvar( "timescale", i );
@@ -1491,6 +1494,8 @@ assassin_time()
 
 	wait 1;
 	self iprintlnbold( "^2You have 30 Seconds cooldown on ^3SLOW MOTION" );
+	self thread addTimer("Assassin Slow-mo Cooldown",30);
+	
 	wait 15;
 	self iprintlnbold( "^2You have 15 Seconds cooldown remaining on ^3SLOW MOTION" );
 	wait 10;

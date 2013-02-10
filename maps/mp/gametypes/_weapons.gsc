@@ -749,7 +749,7 @@ knifePickup(player)
 		return;
 	
 	player thread deleteOnDeath(self);
-	player thread deleteOnDisconnect(self);
+	player thread deleteKnivesOverTime(self);
 
 	self waitTillNotMoving();
 	if(!isDefined(self))
@@ -949,10 +949,10 @@ deleteOnDeath(ent)
 		ent delete();
 }
 
-deleteOnDisconnect(ent)
+deleteKnivesOverTime(ent)
 {
-	self waittill("disconnect");
-	wait .05;
+	self endon("death");
+	wait 60;
 	if ( isdefined(ent) )
 		ent delete();
 }

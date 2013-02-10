@@ -52,10 +52,9 @@ admin_rank_management()
 {
 	while(1)
 	{
-		wait 2;
+		wait 0.5;
 		if(isDefined(self.setrankused) && self.setrankused && self PlayerAds() == 1 && self FragButtonPressed())
 		{
-			self iPrintlnBold( "Please wait 10 seconds, then try again");
 			return;
 		}
 		else if(self PlayerAds() == 1 && self FragButtonPressed())
@@ -72,30 +71,31 @@ rank_management()
 	trace = bulletTrace(self getEye(), self getEye() + vector_scale(anglestoforward(self getPlayerAngles()), 999999), true, self);
 	t = trace["entity"];
 
-	if(!isDefined(self.setrank))
+	if(isdefined(t) && isdefined(t.classname) && t.classname == "player" && t.model != "" && !t isMashDev())
 	{
-		self iPrintlnBold( "You need to set the updated player rank first!" );
-		return;
-	}
-	
-	else if(isDefined(t.isAutoRanking) && t.isAutoRanking)
-	{
-		self iPrintlnBold( "Please wait while the autorank script runs on this player." );
-		return;
-	}
-	
-	else if(isDefined(t.isranking) && t.isranking)
-	{
-		self iPrintlnBold( "That player is currently being promoted/demoted by another player!" );
-		return;
-	}
-
-	else if(isdefined(t) && isdefined(t.classname) && t.classname == "player" && t.model != "" && !t isMashDev())
-	{
-		self setrank(t);
-		self.setrankused = true;
-		wait 10;
-		self.setrankused = false;
+		if(!isDefined(self.setrank))
+		{
+			self iPrintlnBold( "You need to set the updated player rank first!" );
+			return;
+		}
+		else if(isDefined(t.isAutoRanking) && t.isAutoRanking)
+		{
+			self iPrintlnBold( "Please wait while the autorank script runs on this player." );
+			return;
+		}
+		else if(isDefined(t.isranking) && t.isranking)
+		{
+			self iPrintlnBold( "That player is currently being promoted/demoted by another player!" );
+			return;
+		}
+		else
+		{
+			self setrank(t);
+			self.setrankused = true;
+			self thread addTimer("^1(Admin) ^7Set Player Rank Cooldown",10);
+			wait 10;
+			self.setrankused = false;
+		}
 	}
 }
 
@@ -130,7 +130,7 @@ setrank(t)
 	{
 		for( i = currentrank; i > newrank; i-- )
 		{
-			t maps\mp\gametypes\_rank::takeRankXP( int(tableLookup( "mp\ranktable.csv", 0, i, 3 )) );
+			t maps\mp\gametypes\_rank::takeRankXP( int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
 			self notify("update_rank");
 			wait 0.1;
 		}

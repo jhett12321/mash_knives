@@ -1,6 +1,6 @@
 **Resume Progress from 10/02/2013**
--Setrank needs to be tested.
--_admin.gsc
+Test if a disconnect trigger's a "killed_player" notify.
+Update knife decay pickup if this is the case.
 
 BUGS: 
 -variable t.name does not seem to be a variable, and is causing console errors. (Unconfirmed)
