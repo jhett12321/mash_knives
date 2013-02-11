@@ -14,7 +14,7 @@ init()
 killcam(
 	attackerNum, // entity number of the attacker
 	killcamentity, // entity number of the attacker's killer entity aka helicopter or airstrike
-	killCamSpawnTime, // time that killcament spawned
+	killCamSpawnTime, // time that killcament spawned //M*A*S*H Knives
 	sWeapon, // killing weapon
 	predelay, // time between player death and beginning of killcam
 	offsetTime, // something to do with how far back in time the killer was seeing the world when he made the kill; latency related, sorta
@@ -22,8 +22,12 @@ killcam(
 	maxtime, // time remaining until map ends; the killcam will never last longer than this. undefined = no limit
 	perks, // the perks the attacker had at the time of the kill
 	attacker // entity object of attacker
-	)
+)
 {
+	// monitors killcam and hides HUD elements during killcam session
+	//if ( !level.splitscreen )
+	//	self thread killcam_HUD_off();
+	
 	self endon("disconnect");
 	self endon("spawned");
 	level endon("game_ended");
@@ -31,6 +35,7 @@ killcam(
 	if(attackerNum < 0)
 		return;
 
+//M*A*S*H Knives Begin
 	if (sWeapon == "throwingknife_mp" || sWeapon == "frag_grenade_mp" || sWeapon == "artillery_mp") //Follow camera for throwing knives, airstrikes and grenades.
 	{
 		camtime = 5.0;
@@ -65,9 +70,8 @@ killcam(
 		self setClientDvar("cg_thirdperson", 0);
 		
 	self setClientDvar("r_dof_enable", 0);
-	
-	if(isDefined(maxtime))
-	{
+//M*A*S*H Knives End
+	if (isdefined(maxtime)) {
 		if (camtime > maxtime)
 			camtime = maxtime;
 		if (camtime < .05)
@@ -82,6 +86,16 @@ killcam(
 		if (postdelay < 0.05)
 			postdelay = 0.05;
 	}
+	
+	/* timeline:
+	
+	|        camtime       |      postdelay      |
+	|                      |   predelay    |
+	
+	^ killcam start        ^ player death        ^ killcam end
+	                                       ^ player starts watching killcam
+	
+	*/
 	
 	killcamlength = camtime + postdelay;
 	

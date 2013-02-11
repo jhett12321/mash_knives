@@ -30,10 +30,12 @@ No Specific Version:
 *Properly fix throwing knives blowing up cars
 *Comment Code to show changes/additions
 	Files Completed:
-	_hardpoints.gsc
-	_rank.gsc
-	_healthoverlay.gsc
-	_menus.gsc
+		_admin.gsc (Non-stock)
+		_class.gsc
+		_dev.gsc
+		_gameobjects.gsc
+		_killcam.gsc
+*Refactor M*A*S*H Non-stock files into sub-dir of gametypes folder.
 
 **Upcoming Changelog (Completed Features)**
 1.6:

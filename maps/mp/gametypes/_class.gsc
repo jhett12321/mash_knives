@@ -1,4 +1,5 @@
 #include common_scripts\utility;
+// check if below includes are removable
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
 
@@ -6,8 +7,9 @@ init()
 {
 	level.classMap["assault_mp"] = "CLASS_ASSAULT";
 	level.classMap["specops_mp"] = "CLASS_SPECOPS";
-	level.classMap["demolitions_mp"] = "CLASS_DEMOLITIONS";		
+
 	level.classMap["heavygunner_mp"] = "CLASS_HEAVYGUNNER";
+	level.classMap["demolitions_mp"] = "CLASS_DEMOLITIONS";		
 	level.classMap["sniper_mp"] = "CLASS_SNIPER";
 	
 	level.classMap["offline_class1_mp"] = "OFFLINE_CLASS1";
@@ -37,6 +39,10 @@ init()
 	level.weapons["flash"] = "flash_grenade_mp";
 	level.weapons["concussion"] = "concussion_grenade_mp";
 	level.weapons["c4"] = "c4_mp";
+//M*A*S*H Knives Begin
+	//level.weapons["claymore"] = "claymore_mp";
+	//level.weapons["rpg"] = "rpg_mp";
+//M*A*S*H Knives End
 	
 	// initializes create a class settings
 	cac_init();	
@@ -135,7 +141,7 @@ load_default_loadout_raw( class_dataTable, team, class, stat_num )
 	if( secondary_attachment != "" && secondary_attachment != "none" )
 		level.classSidearm[team][class] = tablelookup( class_dataTable, 1, stat_num + 3, 4 ) + "_" + secondary_attachment + "_mp";
 	else
-		level.classSidearm[team][class] = tablelookup( class_dataTable, 1, stat_num + 3, 4 ) + "_mp";
+		level.classSidearm[team][class] = tablelookup( class_dataTable, 1, stat_num + 3, 4 ) + "_mp";	
 		
 	// give frag and special grenades
 	level.classGrenades[class]["primary"]["type"] = tablelookup( class_dataTable, 1, stat_num, 4 ) + "_mp";
@@ -260,6 +266,7 @@ cac_init()
 	}
 	
 	// allowed perks in each slot, for validation.
+	//M*A*S*H Knives Begin
 	if(getDvarInt("scr_scrimmode"))
 	{
 		level.allowedPerks[0] = [];
@@ -335,6 +342,7 @@ cac_init()
 		level.allowedPerks[2][ 7] = perkReferenceToIndex[ "specialty_quieter" ];
 		level.allowedPerks[2][ 8] = perkReferenceToIndex[ "specialty_parabolic" ];
 	}
+//M*A*S*H Knives End
 }
 
 getClassChoice( response )
@@ -716,6 +724,7 @@ giveLoadout( team, class )
 		sidearm = self.custom_class[class_num]["secondary"];
 
 		self GiveWeapon( sidearm );
+//M*A*S*H Knives Begin
 		if ( isdefined(level.isgvk) && level.isgvk && self.pers["team"] == "axis" )
 			{
 				if ( self cac_hasSpecialty( "specialty_extraammo" ) )
@@ -723,7 +732,7 @@ giveLoadout( team, class )
 			}
 		else
 			self SetWeaponAmmoOverall( sidearm, 0 );
-
+//M*A*S*H Knives End
 		// give primary weapon
 		primaryWeapon = weapon;
 		
@@ -735,6 +744,7 @@ giveLoadout( team, class )
 		self maps\mp\gametypes\_teams::playerModelForWeapon( self.pers["primaryWeapon"] );
 		
 		self GiveWeapon( weapon, self.custom_class[class_num]["camo_num"] );
+//M*A*S*H Knives Begin
 		if ( isdefined(level.isgvk) && level.isgvk && self.pers["team"] == "axis" )
 		{
 			if ( self cac_hasSpecialty( "specialty_extraammo" ) )
@@ -801,6 +811,7 @@ giveLoadout( team, class )
 			self setOffhandSecondaryClass("flash");
 			self SwitchToOffhand( "throwingknife_mp" );
 			self thread logClassChoice( class, primaryWeapon, "", self.specialty );
+//M*A*S*H Knives End
 		}
 	}
 	else
@@ -832,6 +843,7 @@ giveLoadout( team, class )
 		sidearm = level.classSidearm[team][class];
 		
 		self GiveWeapon( sidearm );
+//M*A*S*H Knives Begin
 		if ( isdefined(level.isgvk) && level.isgvk && self.pers["team"] == "axis" )
 		{
 			if ( self cac_hasSpecialty( "specialty_extraammo" ) )
@@ -839,6 +851,7 @@ giveLoadout( team, class )
 		}
 		else
 			self SetWeaponAmmoOverall( sidearm, 0 );
+//M*A*S*H Knives End
 
 		// give primary weapon
 		primaryWeapon = weapon;
@@ -852,6 +865,7 @@ giveLoadout( team, class )
 		self maps\mp\gametypes\_teams::playerModelForWeapon( self.pers["primaryWeapon"] );		
 
 		self GiveWeapon( weapon );
+//M*A*S*H Knives Begin
 		if ( isdefined(level.isgvk) && level.isgvk && self.pers["team"] == "axis" )
 		{
 			if( self cac_hasSpecialty( "specialty_extraammo" ) )
@@ -859,12 +873,14 @@ giveLoadout( team, class )
 		}
 		else
 			self SetWeaponAmmoOverall( weapon, 0 );
-
+//M*A*S*H Knives End
 		self setSpawnWeapon( weapon );
 		self SetActionSlot( 1, "nightvision" );
 
+//M*A*S*H Knives Begin
 		if ( isdefined(level.isgvk) && level.isgvk && self.pers["team"] == "axis" )
 		{
+//M*A*S*H Knives End
 		secondaryWeapon = level.classItem[team][class]["type"];	
 		if ( secondaryWeapon != "" )
 		{
@@ -905,6 +921,7 @@ giveLoadout( team, class )
 			self SetWeaponAmmoClip( grenadeTypeSecondary, grenadeCount );
 		}
 		self thread logClassChoice( class, primaryWeapon, grenadeTypeSecondary, self.specialty );
+//M*A*S*H Knives Begin
 		}
 		else
 		{
@@ -914,6 +931,7 @@ giveLoadout( team, class )
 			self SwitchToOffhand( "throwingknife_mp" );
 			self thread logClassChoice( class, primaryWeapon, "", self.specialty );
 		}
+//M*A*S*H Knives End
 	}
 
 	switch ( weaponClass( primaryWeapon ) )

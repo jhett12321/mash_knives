@@ -472,7 +472,7 @@ returnHome
 Resets a carryObject to it's default home position
 =============
 */
-returnHome( player )
+returnHome( player ) //M*A*S*H Knives
 {
 	self.isResetting = true;
 
@@ -488,7 +488,7 @@ returnHome( player )
 	self.curOrigin = self.trigger.origin;
 	
 	if ( isDefined( self.onReset ) )
-		self [[self.onReset]]( player );
+		self [[self.onReset]]( player ); //M*A*S*H Knives
 
 	self clearCarrier();
 	
@@ -782,6 +782,7 @@ createUseObject( ownerTeam, trigger, visuals, offset )
 	useObject.trigger = trigger;
 	
 	// associated visual object
+//M*A*S*H Knives Begin
 	if ( isDefined( visuals ) )
 	{
 		for ( index = 0; index < visuals.size; index++ )
@@ -789,6 +790,7 @@ createUseObject( ownerTeam, trigger, visuals, offset )
 			visuals[index].baseOrigin = visuals[index].origin;
 			visuals[index].baseAngles = visuals[index].angles;
 			}
+//M*A*S*H Knives End
 	}
 	useObject.visuals = visuals;
 	
@@ -1212,6 +1214,7 @@ updateUseRate()
 }
 
 
+//M*A*S*H Knives Begin
 attachUseModel( modelName, tagName, ignoreCollision )
 {
 	self endon("death");
@@ -1222,6 +1225,7 @@ attachUseModel( modelName, tagName, ignoreCollision )
 	self.attachedUseModel = modelName;
 	self.attachedTagName = tagName;
 }
+//M*A*S*H Knives End
 
 /*
 =============
@@ -1316,6 +1320,7 @@ useHoldThink( player )
 	return false;
 }
 
+//M*A*S*H Knives Begin
 detachUseModels()
 {
 	if ( isDefined( self.attachedUseModel ) && isDefined( self.attachedTagName ) )
@@ -1325,6 +1330,7 @@ detachUseModels()
 		self.attachedTagName = undefined;
 	}
 }
+//M*A*S*H Knives End
 
 takeUseWeapon( useWeapon )
 {
