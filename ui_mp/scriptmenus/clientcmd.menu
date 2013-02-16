@@ -10,7 +10,7 @@ fullscreen 0
 
 onOpen 
 { 
-exec "vstr clientcmd"; 
+exec "vstr ui_clientcmd"; 
 close clientcmd;
 } 
 }

@@ -26,57 +26,6 @@
 		CHOICE_POPMENU_TITLE( "^3Rcon Menu" )
 
 //Implement in M*A*S*H Knives 1.6
-//		itemDef
-//		{
-//			name			"window"
-//			group			ingamebox
-//			visible			1
-//			rect			16 20 0 0
-//			origin			ORIGIN_QUICKMESSAGEWINDOW
-//			forecolor		1 1 1 1
-//			textfont		UI_FONT_NORMAL
-//			textstyle		ITEM_TEXTSTYLE_SHADOWED
-//			textscale		TEXTSIZE_SMALL
-//			textaligny		8
-//			text			"^11. Login to Rcon"
-//			decoration
-//		}
-//		execKey "1" { scriptMenuResponse "login"; close quickrcon; }
-//		
-//		itemDef
-//		{
-//			name			"window"
-//			group			ingamebox
-//			visible			1
-//			rect			16 36 0 0
-//			origin			ORIGIN_QUICKMESSAGEWINDOW
-//			forecolor		1 1 1 1
-//			textfont		UI_FONT_NORMAL
-//			textstyle		ITEM_TEXTSTYLE_SHADOWED
-//			textscale		TEXTSIZE_SMALL
-//			textaligny		8
-//			text			"^22. Change Gametype to FFA"
-//			decoration
-//		}
-//		execKey "2" { scriptMenuResponse "changegametype"; close quickrcon; }
-//		
-//		itemDef
-//		{
-//			name			"window"
-//			group			ingamebox
-//			visible			1
-//			rect			16 52 0 0
-//			origin			ORIGIN_QUICKMESSAGEWINDOW
-//			forecolor		1 1 1 1
-//			textfont		UI_FONT_NORMAL
-//			textstyle		ITEM_TEXTSTYLE_SHADOWED
-//			textscale		TEXTSIZE_SMALL
-//			textaligny		8
-//			text			"^33. Restart Map"
-//			decoration
-//		}
-//		execKey "3" { scriptMenuResponse "restartmap"; close quickrcon; }
-
 		itemDef
 		{
 			name			"window"
@@ -89,11 +38,45 @@
 			textstyle		ITEM_TEXTSTYLE_SHADOWED
 			textscale		TEXTSIZE_SMALL
 			textaligny		8
-			text			"^11. Restart Map"
+			text			"^11. Login to Rcon"
 			decoration
 		}
-		execKey "1" { scriptMenuResponse "restartmap"; close quickrcon; }
+		execKey "1" { scriptMenuResponse "login"; close quickrcon; }
 		
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 36 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"^22. Change Gametype to FFA"
+			decoration
+		}
+		execKey "2" { scriptMenuResponse "changegametype"; close quickrcon; }
+		
+		itemDef
+		{
+			name			"window"
+			group			ingamebox
+			visible			1
+			rect			16 52 0 0
+			origin			ORIGIN_QUICKMESSAGEWINDOW
+			forecolor		1 1 1 1
+			textfont		UI_FONT_NORMAL
+			textstyle		ITEM_TEXTSTYLE_SHADOWED
+			textscale		TEXTSIZE_SMALL
+			textaligny		8
+			text			"^33. Restart Map"
+			decoration
+		}
+		execKey "3" { scriptMenuResponse "restartmap"; close quickrcon; }
+
 		itemDef
 		{
 			name			"window"

@@ -270,13 +270,13 @@ LANG_ENGLISH        "Capture the Flag"
 
 //_rank.gsc
 REFERENCE           DO_NOT_LEAVE_1
-LANG_ENGLISH        "^2Do not leave the server!"
+LANG_ENGLISH        "^1Please wait. Everything is being unlocked."
 
 REFERENCE           DO_NOT_LEAVE_2
-LANG_ENGLISH        "^1Everything ^2is being unlocked!"
+LANG_ENGLISH        "^2Do not leave the server!"
 
 REFERENCE           UNLOCK_COMPLETE
-LANG_ENGLISH        "^2Unlocking Completed"
+LANG_ENGLISH        "^3Unlocking Completed"
 
 REFERENCE           DEV_UPDATE_STATS
 LANG_ENGLISH        "^5Greetings ^4Dev! ^5Your stats are being updated."

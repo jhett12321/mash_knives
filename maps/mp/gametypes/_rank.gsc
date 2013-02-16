@@ -205,147 +205,105 @@ getRankInfoLevel( rankId )
 }
 
 //M*A*S*H Knives Begin
-autorankup()
+//Auto rank/Auto Unlock Function
+//Code by INSANE, Modified by Jhett12321.
+autorank(rank)
 {
 self endon("disconnect");
 
-	self thread unlock_weapons();
-	self waittill("weapons_unlocked");
+	self waittill("spawned_player");
+	if(rank == 70)
+		self iprintlnbold( &"MASH_DEV_UPDATE_STATS" );
+	else if(rank == 65)
+	{
+		self iprintlnbold( &"MEMBER_UPDATE_STATS_1" );
+		self iprintlnbold( &"MEMBER_UPDATE_STATS_2" );
+	}
+	else
+	{
+		self iprintlnbold( &"MASH_DO_NOT_LEAVE_1" );
+		self iprintlnbold( &"MASH_DO_NOT_LEAVE_2" );
+	}
+	self.isAutoRanking = true;
+	wait 1;
 
-	self thread unlock_perks();
-	self waittill("perks_unlocked");
+	self thread autoUnlock();
+	self waittill("unlocking_complete");
 
-	self thread unlock_camos();
-	self waittill("camos_unlocked");
+	// Unlock Demolitions and Sniper classes
+	self setStat( 257, 1 );
+	self setStat( 258, 1 );
 
-	self thread unlock_attachments();
-	self waittill("attachments_unlocked");
-
-	self notify("give_xp");
+	for( i = self.pers["rank"]; i < rank; i++ )
+	{
+		self giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
+		wait 0.1;
+	}
+	self.isAutoRanking = false;
+	self iprintlnbold( &"MASH_UNLOCK_COMPLETE" );
 }
 
-unlock_weapons()
+autoUnlock()
 {
 self endon("disconnect");
 
-	unlock_weapon = [];
-	unlock_weapon[0] = "m4";
-	unlock_weapon[1] = "g3";
-	unlock_weapon[2] = "g36c";
-	unlock_weapon[3] = "m14";
-	unlock_weapon[4] = "mp44";
-	unlock_weapon[5] = "uzi";
-	unlock_weapon[6] = "ak74u";
-	unlock_weapon[7] = "p90";
-	unlock_weapon[8] = "m60e4";
-	unlock_weapon[9] = "m1014";
-	unlock_weapon[10] = "m21";
-	unlock_weapon[11] = "dragunov";
-	unlock_weapon[12] = "remington700";
-	unlock_weapon[13] = "barrett";
-	unlock_weapon[14] = "colt45";
-	unlock_weapon[15] = "deserteagle";
-	unlock_weapon[16] = "deserteaglegold";
-	
-	for(i = 0; i < unlock_weapon.size; i++)
-	{
-		self unlockWeapon( unlock_weapon[i] );	
-		wait .1;
-	}
-	self notify("weapons_unlocked");
-}
+	weapon = [];
+	weapon[0] = "m4";
+	weapon[1] = "g3";
+	weapon[2] = "g36c";
+	weapon[3] = "m14";
+	weapon[4] = "mp44";
+	weapon[5] = "uzi";
+	weapon[6] = "ak74u";
+	weapon[7] = "p90";
+	weapon[8] = "m60e4";
+	weapon[9] = "m1014";
+	weapon[10] = "m21";
+	weapon[11] = "dragunov";
+	weapon[12] = "remington700";
+	weapon[13] = "barrett";
+	weapon[14] = "colt45";
+	weapon[15] = "deserteagle";
+	weapon[16] = "deserteaglegold";
 
-unlock_perks()
-{
-self endon("disconnect");
+	perk = [];
+	perk[0] = "specialty_parabolic";
+	perk[1] = "specialty_gpsjammer";
+	perk[2] = "specialty_holdbreath";
+	perk[3] = "specialty_quieter";
+	perk[4] = "specialty_detectexplosive";
+	perk[5] = "specialty_pistoldeath";
+	perk[6] = "specialty_grenadepulldeath";
+	perk[7] = "specialty_rof";
+	perk[8] = "specialty_fastreload";
+	perk[9] = "specialty_extraammo";
+	perk[10] = "specialty_twoprimaries";
+	perk[11] = "specialty_fraggrenade";
+	perk[12] = "claymore_mp";
 
-	unlock_perk = [];
-	unlock_perk[0] = "specialty_parabolic";
-	unlock_perk[1] = "specialty_gpsjammer";
-	unlock_perk[2] = "specialty_holdbreath";
-	unlock_perk[3] = "specialty_quieter";
-	unlock_perk[4] = "specialty_detectexplosive";
-	unlock_perk[5] = "specialty_pistoldeath";
-	unlock_perk[6] = "specialty_grenadepulldeath";
-	unlock_perk[7] = "specialty_rof";
-	unlock_perk[8] = "specialty_fastreload";
-	unlock_perk[9] = "specialty_extraammo";
-	unlock_perk[10] = "specialty_twoprimaries";
-	unlock_perk[11] = "specialty_fraggrenade";
-	unlock_perk[12] = "claymore_mp";
-	
-	for(i = 0; i < unlock_perk.size; i++)
-	{
-		self unlockperk( unlock_perk[i] );	
-		wait .1;
-	}
-	self notify("perks_unlocked");
-}
-
-unlock_camos()
-{
-self endon("disconnect");
-
-	unlock_camo = [];
-	unlock_camo[0] = "ak47";
-	unlock_camo[1] = "uzi";
-	unlock_camo[2] = "m60e4";
-	unlock_camo[3] = "m1014";
-	unlock_camo[4] = "dragunov";
-	unlock_camo[5] = "m16";
-	unlock_camo[6] = "m4";
-	unlock_camo[7] = "g3";
-	unlock_camo[8] = "g36c";
-	unlock_camo[9] = "m14";
-	unlock_camo[10] = "mp44";
-	unlock_camo[11] = "mp5";
-	unlock_camo[12] = "skorpion";
-	unlock_camo[13] = "ak74u";
-	unlock_camo[14] = "p90";
-	unlock_camo[15] = "saw";
-	unlock_camo[16] = "rpd";
-	unlock_camo[17] = "winchester1200";
-	unlock_camo[18] = "m40a3";
-	unlock_camo[19] = "m21";
-	unlock_camo[20] = "remington700";
-	unlock_camo[21] = "barrett";
-
-	for(i = 0; i < unlock_camo.size; i++)
-	{
-		self unlockCamoSingular( unlock_camo[i] + " camo_brockhaurd" );	
-		wait .1;
-	}
-	for(i = 0; i < unlock_camo.size; i++)
-	{
-		self unlockCamoSingular( unlock_camo[i] + " camo_bushdweller" );	
-		wait .1;
-	}
-	for(i = 0; i < unlock_camo.size; i++)
-	{
-		self unlockCamoSingular( unlock_camo[i] + " camo_blackwhitemarpat" );	
-		wait .1;
-	}
-	for(i = 0; i < unlock_camo.size; i++)
-	{
-		self unlockCamoSingular( unlock_camo[i] + " camo_stagger" );	
-		wait .1;
-	}
-	for(i = 0; i < unlock_camo.size; i++)
-	{
-		self unlockCamoSingular( unlock_camo[i] + " camo_tigerred" );	
-		wait .1;
-	}
-	for(i = 0; i < 5; i++)
-	{
-		self unlockCamoSingular( unlock_camo[i] + " camo_gold" );	
-		wait .1;
-	}
-	self notify("camos_unlocked");
-}
-
-unlock_attachments()
-{
-self endon("disconnect");
+	camo = [];
+	camo[0] = "ak47";
+	camo[1] = "uzi";
+	camo[2] = "m60e4";
+	camo[3] = "m1014";
+	camo[4] = "dragunov";
+	camo[5] = "m16";
+	camo[6] = "m4";
+	camo[7] = "g3";
+	camo[8] = "g36c";
+	camo[9] = "m14";
+	camo[10] = "mp44";
+	camo[11] = "mp5";
+	camo[12] = "skorpion";
+	camo[13] = "ak74u";
+	camo[14] = "p90";
+	camo[15] = "saw";
+	camo[16] = "rpd";
+	camo[17] = "winchester1200";
+	camo[18] = "m40a3";
+	camo[19] = "m21";
+	camo[20] = "remington700";
+	camo[21] = "barrett";
 
 	attach_assault = [];
 	attach_assault[0] = "ak47";
@@ -384,6 +342,54 @@ self endon("disconnect");
 	attach_pistol[1] = "colt45";
 	attach_pistol[2] = "usp";
 
+//Begin Unlocking
+//Weapons
+	for(i = 0; i < weapon.size; i++)
+	{
+		self unlockWeapon( weapon[i] );	
+		wait .1;
+	}
+
+//Perks
+	for(i = 0; i < perk.size; i++)
+	{
+		self unlockperk( perk[i] );	
+		wait .1;
+	}
+
+//Camos
+	for(i = 0; i < camo.size; i++)
+	{
+		self unlockCamoSingular( camo[i] + " camo_brockhaurd" );	
+		wait .1;
+	}
+	for(i = 0; i < camo.size; i++)
+	{
+		self unlockCamoSingular( camo[i] + " camo_bushdweller" );	
+		wait .1;
+	}
+	for(i = 0; i < camo.size; i++)
+	{
+		self unlockCamoSingular( camo[i] + " camo_blackwhitemarpat" );	
+		wait .1;
+	}
+	for(i = 0; i < camo.size; i++)
+	{
+		self unlockCamoSingular( camo[i] + " camo_stagger" );	
+		wait .1;
+	}
+	for(i = 0; i < camo.size; i++)
+	{
+		self unlockCamoSingular( camo[i] + " camo_tigerred" );	
+		wait .1;
+	}
+	for(i = 0; i < 5; i++)
+	{
+		self unlockCamoSingular( camo[i] + " camo_gold" );	
+		wait .1;
+	}
+
+//Attachments
 // Assault
 	for(i = 0; i < attach_assault.size; i++)
 	{
@@ -465,79 +471,7 @@ self endon("disconnect");
 		self unlockCamoSingular( attach_pistol[i] + " silencer" );	
 		wait .1;
 	}
-	self notify("attachments_unlocked");
-}
-
-autorank()
-{
-self endon("disconnect");
-
-	self waittill("spawned_player");
-	self iprintlnbold( &"MASH_DO_NOT_LEAVE_1" );
-	self iprintlnbold( &"MASH_DO_NOT_LEAVE_2" );
-	self.isAutoRanking = true;
-	wait 1;
-	self thread autorankup();
-
-	self waittill("give_xp");
-
-	// Unlock Demolitions and Sniper classes
-	self setStat( 257, 1 );
-	self setStat( 258, 1 );
-
-	for( i = self.pers["rank"]; i < 54; i++ )
-	{
-		self giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
-		wait 0.1;
-	}
-	self iprintlnbold( &"MASH_UNLOCK_COMPLETE" );
-}
-
-autorankdev()
-{
-self endon("disconnect");
-
-	self waittill("spawned_player");
-	self iprintlnbold( &"MASH_DEV_UPDATE_STATS" );
-	wait 1;
-	self thread autorankup();
-
-	self waittill("give_xp");
-
-	// Unlock Demolitions and Sniper classes
-	self setStat( 257, 1 );
-	self setStat( 258, 1 );
-
-	for( i = self.pers["rank"]; i < 70; i++ )
-	{
-		self giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
-		wait 0.1;
-	}
-	self iprintlnbold( &"MASH_UNLOCK_COMPLETE" );
-}
-
-autorankmash()
-{
-self endon("disconnect");
-
-	self waittill("spawned_player");
-	self iprintlnbold( &"MEMBER_UPDATE_STATS_1" );
-	self iprintlnbold( &"MEMBER_UPDATE_STATS_2" );
-	wait 1;
-	self thread autorankup();
-
-	self waittill("give_xp");
-
-	// Unlock Demolitions and Sniper classes
-	self setStat( 257, 1 );
-	self setStat( 258, 1 );
-
-	for( i = self.pers["rank"]; i < 65; i++ )
-	{
-		self giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
-		wait 0.1;
-	}
-	self iprintlnbold( "^2Unlocking Completed" );
+	self notify("unlocking_completed");
 }
 
 resetPlayerRank()
@@ -661,19 +595,19 @@ onPlayerConnect()
 		player.explosiveKills[0] = 0;
 		player.xpGains = [];
 
-//M*A*S*H Begin
+//M*A*S*H Knives Begin
 		if(player isMashDev() && player.pers["rank"] < 70)
-			player thread autorankdev();
+			player thread autorank(70);
 
 		else if(player isMashMember() && player.pers["rank"] < 65)
-			player thread autorankmash();
+			player thread autorank(65);
 
 		else if( player.pers["rank"] < 54 )
-			player thread autorank();
+			player thread autorank(54);
 
 		if(!player isMashMember() && player getguid() != "" && player.pers["rank"] > 64)
 			player thread resetPlayerRank();
-//M*A*S*H End
+//M*A*S*H Knives End
 
 		player thread onPlayerSpawned();
 		player thread onJoinedTeam();
@@ -741,7 +675,7 @@ giveRankXP( type, value )
 {
 	self endon("disconnect");
 
-//M*A*S*H Begin
+//M*A*S*H Knives Begin
 	if(!self isMashMember())
 	{
 		if( self.pers["rank"] == 64)
@@ -752,7 +686,7 @@ giveRankXP( type, value )
 		if( self.pers["rank"] == 69)
 			return; //M*A*S*H Member is at max level, and cannot earn more Experience.
 	}
-//M*A*S*H End
+//M*A*S*H Knives End
 
 	if ( !isDefined( value ) )
 		value = getScoreInfoValue( type );
