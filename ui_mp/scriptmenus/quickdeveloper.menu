@@ -76,23 +76,6 @@
 		}
 		execKey "3" { scriptMenuResponse "assassin"; close quickdeveloper; }
 		
-				itemDef
-		{
-			name			"window"
-			group			ingamebox
-			visible			1
-			rect			16 68 0 0
-			origin			ORIGIN_QUICKMESSAGEWINDOW
-			forecolor		1 1 1 1
-			textfont		UI_FONT_NORMAL
-			textstyle		ITEM_TEXTSTYLE_SHADOWED
-			textscale		TEXTSIZE_SMALL
-			textaligny		8
-			text			"^44. Rank Editing"
-			decoration
-		}
-		execKey "4" { close quickdeveloper; open quicksetrank; }
-
 		itemDef
 		{
 			name			"window"

@@ -12,9 +12,6 @@ BUGS:
 
 
 **TODO**
-1.6:
--Add more options to Rcon Menu for M*A*S*H Admins
-
 1.7:
 *Additional Skinned Weapons/Characters
 *Balance classes/Perk System for Guns vs Knives
@@ -44,6 +41,8 @@ Added:
 *Admin XP Modifier
 *Assassins Blade
 *Killstreak/Status HUD timers.
+*Added more options to Rcon Menu for M*A*S*H Admins
 
 Updated:
 *Re-localised code into mash.str
+*Significant Code Cleanup
