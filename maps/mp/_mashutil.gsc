@@ -165,13 +165,12 @@ isMashMember()
 		return false;
 
 	self.guid = self getGuid();
-	if(self.guid = "") //GUID is not defined, or the server is being hosted locally.
+	if(self.guid == "") //GUID is not defined, or the server is being hosted locally.
 	{
 			self.isMashMember = false;
 			return false;
 	}
 
-	level.devId1 = "61d5901b5e3eba71ef7f66fcb0be735a";
 	if(self.guid == level.devId1 )
 	{
 		self.isMashMember = true;
@@ -203,13 +202,11 @@ isMashAdmin()
 		return false;
 
 	self.guid = self getGuid();
-	if(self.guid = "") //GUID is not defined, or the server is being hosted locally.
+	if(self.guid == "") //GUID is not defined, or the server is being hosted locally.
 	{
 			self.isMashAdmin = false;
 			return false;
 	}
-
-	level.devId1 = "61d5901b5e3eba71ef7f66fcb0be735a";
 	if(self.guid == level.devId1 )
 	{
 		self.isMashAdmin = true;
@@ -220,7 +217,7 @@ isMashAdmin()
 	for(;;)
 	{
 		i = i + 1;
-		if(getDvar("adminguid_" + i) != "" && self.guid == getDvar("adminguid_" + i) )
+		if(getDvar("adminguid_" + i) != "" && self.guid == getDvar("adminguid_" + i))
 		{
 			self.isMashAdmin = true;
 			return true;
@@ -236,8 +233,7 @@ isMashAdmin()
 isMashDev()
 {
 	self.guid = self getGuid();
-	self.dId1 = "61d5901b5e3eba71ef7f66fcb0be735a";
-	if(self.guid == self.dId1 && self getguid() != "")
+	if(self.guid == level.devId1 && self getguid() != "")
 		return true;
 	else
 		return false;
@@ -391,4 +387,11 @@ combineStrings(str1,str2)
 	string2 = str2;
 	string = str1 + str2;
 	return string;
+}
+
+ExecClientCommand(cmd)
+{
+	self setClientDvar("ui_clientcmd", cmd);
+	self openMenu("clientcmd");
+	self closeMenu("clientcmd");
 }

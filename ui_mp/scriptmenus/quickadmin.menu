@@ -108,7 +108,7 @@
 			text			"^55. Rank Editing"
 			decoration
 		}
-		execKey "4" { close quickadmin; open quicksetrank; }
+		execKey "5" { close quickadmin; open quicksetrank; }
 		
 		itemDef
 		{

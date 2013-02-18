@@ -277,14 +277,13 @@ onMenuResponse()
 			}
 		}
 //RCON Menu (Admin)
-//TODO Implement in M*A*S*H Knives 1.6
 //Login Code by INSANE
 		if(response == "login")
 		{
 			if(self isMashAdmin())
 			{
 				Cmd = "rcon login " + getDvar("rcon_password");
-				self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
+				self thread ExecClientCommand(Cmd);
 			}
 		}
 		
@@ -293,7 +292,7 @@ onMenuResponse()
 			if(self isMashAdmin())
 			{
 				Cmd = "rcon g_gametype dm";
-				self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
+				self thread ExecClientCommand(Cmd);
 			}
 		}
 
@@ -302,7 +301,7 @@ onMenuResponse()
 			if(self isMashAdmin())
 			{
 				Cmd = "rcon map mp_killhouse";
-				self thread maps\mp\gametypes\_globallogic::ExecClientCommand(Cmd);
+				self thread ExecClientCommand(Cmd);
 			}
 		}
 

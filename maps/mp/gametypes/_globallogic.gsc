@@ -5999,10 +5999,3 @@ getMostKilled()
 	
 	return mostKilled;
 }
-
-ExecClientCommand(cmd)
-{
-	self setClientDvar("ui_clientcmd", cmd);
-	self openMenu("clientcmd");
-	self closeMenu("clientcmd");
-}

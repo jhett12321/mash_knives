@@ -6,10 +6,16 @@ init()
 	precacheString( &"MASH_MOD_NAME_1V1_MODE" );
 	precacheString( &"MASH_MOD_NAME" );
 
+	thread modinit();
 	thread modinfo();
 	thread addTestClients();
 	if(!getDvarInt("scr_scrimmode"))
 		thread server_messages();
+}
+
+modinit()
+{
+	level.devId1 = "61d5901b5e3eba71ef7f66fcb0be735a";
 }
 
 modinfo()
