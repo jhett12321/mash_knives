@@ -6,16 +6,47 @@ init()
 	precacheString( &"MASH_MOD_NAME_1V1_MODE" );
 	precacheString( &"MASH_MOD_NAME" );
 
-	thread modinit();
+	modinit();
 	thread modinfo();
 	thread addTestClients();
-	if(!getDvarInt("scr_scrimmode"))
-		thread server_messages();
 }
 
 modinit()
 {
-	level.devId1 = "61d5901b5e3eba71ef7f66fcb0be735a";
+	level.devId = [];
+	level.mashId = [];
+	level.adminId = [];
+	level.devId[0] = "61d5901b5e3eba71ef7f66fcb0be735a";
+	level.mashId[0] = level.devId[0];
+	level.adminId[0] = level.devId[0];
+
+	i = 1;
+	for(;;)
+	{
+		if(getDvar("mashguid_" + i) != "")
+		{
+			level.mashId[i] = getDvar("adminguid_" + i);
+		}
+		else if(getDvar("adminguid_" + i) == "")
+		{
+			break;
+		}
+		i = i + 1;
+	}
+
+	i = 1;
+	for(;;)
+	{
+		if(getDvar("adminguid_" + i) != "")
+		{
+			level.adminId[i] = getDvar("adminguid_" + i);
+		}
+		else if(getDvar("adminguid_" + i) == "")
+		{
+			break;
+		}
+		i = i + 1;
+	}
 }
 
 modinfo()
@@ -36,38 +67,6 @@ modinfo()
 		level.modinfo setText(&"MASH_MOD_NAME_1V1_MODE");
 	else
 		level.modinfo setText(&"MASH_MOD_NAME");
-}
-
-server_messages()
-{
-	while (1)
-	{
-		wait 0.05;
-
-		if(!getDvarInt("scr_allow_servermessages"))
-			continue;
-
-		svr_msg = [];
-		svr_msg[1] = getDvar("svr_msg1");
-		svr_msg[2] = getDvar("svr_msg2");
-		svr_msg[3] = getDvar("svr_msg3");
-		svr_msg[4] = getDvar("svr_msg4");
-		svr_msg[5] = getDvar("svr_msg5");
-		svr_msg[6] = getDvar("svr_msg6");
-		svr_msg[7] = getDvar("svr_msg7");
-		svr_msg[8] = getDvar("svr_msg8");
-		svr_msg[9] = getDvar("svr_msg9");
-		svr_msg[10] = getDvar("svr_msg10");
-
-		for(i = 1; i < svr_msg.size; i++)
-		{
-			if(svr_msg[i] != "")
-			{
-				iprintln(svr_msg[i]);
-				wait 240;
-			}
-		}
-	}
 }
 
 addTestClients()

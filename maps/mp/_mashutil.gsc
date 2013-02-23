@@ -170,28 +170,23 @@ isMashMember()
 			self.isMashMember = false;
 			return false;
 	}
-
-	if(self.guid == level.devId1 )
+//If dev count increases, make this into a for loop.
+	if(self.guid == level.devId[0])
 	{
 		self.isMashMember = true;
 		return true;
 	}
 
-	i = 0;
-	for(;;)
+	for(i = 0; i < level.mashId.size; i++)
 	{
-		i = i + 1;
-		if(getDvar("mashguid_" + i) != "" && self.guid == getDvar("mashguid_" + i) )
+		if(self.guid == level.mashId[i])
 		{
 			self.isMashMember = true;
 			return true;
 		}
-		else if(getDvar("mashguid_" + i) == "")
-		{
-			self.isMashMember = false;
-			return false;
-		}
 	}
+	self.isMashMember = false;
+	return false;
 }
 
 isMashAdmin()
@@ -207,36 +202,43 @@ isMashAdmin()
 			self.isMashAdmin = false;
 			return false;
 	}
-	if(self.guid == level.devId1 )
-	{
-		self.isMashAdmin = true;
-		return true;
-	}
 
-	i = 0;
-	for(;;)
+	for(i = 0; i < level.adminId.size; i++)
 	{
-		i = i + 1;
-		if(getDvar("adminguid_" + i) != "" && self.guid == getDvar("adminguid_" + i))
+		if(self.guid == level.adminId[i])
 		{
 			self.isMashAdmin = true;
 			return true;
 		}
-		else if(getDvar("adminguid_" + i) == "")
-		{
-			self.isMashAdmin = false;
-			return false;
-		}
 	}
+	self.isMashAdmin = false;
+	return false;
 }
 
 isMashDev()
 {
-	self.guid = self getGuid();
-	if(self.guid == level.devId1 && self getguid() != "")
+	if(isDefined(self.isMashDev) && self.isMashDev)
 		return true;
-	else
+	if(isDefined(self.isMashDev) && !self.isMashDev)
 		return false;
+
+	self.guid = self getGuid();
+	if(self.guid == "") //GUID is not defined, or the server is being hosted locally.
+	{
+			self.isMashDev = false;
+			return false;
+	}
+
+	for(i = 0; i < level.devId.size; i++)
+	{
+		if(self.guid == level.devId[i])
+		{
+			self.isMashDev = true;
+			return true;
+		}
+	}
+	self.isMashDev = false;
+	return false;
 }
 
 addTimer(name,time)

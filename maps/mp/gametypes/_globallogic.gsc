@@ -3909,8 +3909,8 @@ Callback_StartGameType()
 	if( getdvar( "r_reflectionProbeGenerate" ) == "1" )
 		level waittill( "eternity" );
 //Begin initalising all custom threads
-	thread maps\mp\gametypes\_admin::init();
 	thread maps\mp\gametypes\_knife::init();
+	thread maps\mp\gametypes\_admin::init();
 	thread maps\mp\gametypes\_persistence::init();
 	thread maps\mp\gametypes\_menus::init();
 	thread maps\mp\gametypes\_hud::init();
