@@ -170,12 +170,6 @@ isMashMember()
 			self.isMashMember = false;
 			return false;
 	}
-//If dev count increases, make this into a for loop.
-	if(self.guid == level.devId[0])
-	{
-		self.isMashMember = true;
-		return true;
-	}
 
 	for(i = 0; i < level.mashId.size; i++)
 	{
