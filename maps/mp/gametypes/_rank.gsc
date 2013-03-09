@@ -27,8 +27,8 @@ init()
 	precacheString( &"MASH_DO_NOT_LEAVE_2" );
 	precacheString( &"MASH_UNLOCK_COMPLETE" );
 	precacheString( &"MASH_DEV_UPDATE_STATS" );
-	precacheString( &"MEMBER_UPDATE_STATS_1" );
-	precacheString( &"MEMBER_UPDATE_STATS_2" );
+	precacheString( &"MASH_MEMBER_UPDATE_STATS_1" );
+	precacheString( &"MASH_MEMBER_UPDATE_STATS_2" );
 	precacheString( &"MASH_STAT_RESET_1" );
 	precacheString( &"MASH_STAT_RESET_2" );
 	precacheString( &"MASH_NEW_RANK" );

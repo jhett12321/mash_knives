@@ -32,6 +32,10 @@ rawfile,maps/mp/gametypes/_scoreboard.gsc
 localize,weapon
 localize,mash
 
+menufile,ui_mp/main.menu
+menufile,ui_mp/hud.menu
+menufile,ui_mp/wm_quickmessage.menu
+
 menufile,ui_mp/scriptmenus/quickdeveloper.menu
 menufile,ui_mp/scriptmenus/quickchat.menu
 menufile,ui_mp/scriptmenus/quickadmin.menu
@@ -43,8 +47,6 @@ menufile,ui_mp/scriptmenus/quickstatements.menu
 menufile,ui_mp/scriptmenus/quickresponses.menu
 menufile,ui_mp/scriptmenus/quicksetrank.menu
 
-menufile,ui_mp/main.menu
-menufile,ui_mp/wm_quickmessage.menu
 menufile,ui_mp/scriptmenus/clientcmd.menu
 menufile,ui_mp/scriptmenus/callvote.menu
 menufile,ui_mp/scriptmenus/class.menu
@@ -146,5 +148,6 @@ xanim,viewmodel_b_knife_reload
 xanim,viewmodel_b_knife_sprint_in
 xanim,viewmodel_b_knife_sprint_loop
 xanim,viewmodel_b_knife_sprint_out
+
 
 

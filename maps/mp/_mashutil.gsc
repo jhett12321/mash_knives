@@ -1,3 +1,5 @@
+#include maps\mp\_utility;
+
 // Function to get dvar values
 // Code by OpenWarfare
 getdvarx( dvarName, dvarType, dvarDefault, minValue, maxValue )
@@ -113,6 +115,7 @@ self endon("delete_killcam");
 	}
 }
 
+//TODO add option for any player to pickup.
 //Create Use Trigger Radius from script function
 //Code by Jhett12321
 trigger_radius_use(classname,origin,flags,radius,height,entity,hint)
@@ -121,33 +124,49 @@ trigger_radius_use(classname,origin,flags,radius,height,entity,hint)
 	entity endon("disconnect");
 
 	classname = Spawn( "trigger_radius",origin,flags,radius,height );
+	if(!isDefined(entity.triggerarray))
+		entity.triggerarray = [];
+	entity.triggerarray[entity.triggerarray.size] = classname;
 	for(;;)
 	{
-		if(entity IsTouching( classname ) && !entity UseButtonPressed() && !isDefined(entity.hintElem) && isDefined(self))
+		if(entity IsTouching( classname ) && !entity UseButtonPressed() && !isDefined(entity.hintElem) && isDefined(self) && isDefined(entity.showtriggerhint) && entity.showtriggerhint)
 		{
+//			entity setLowerMessage(hint);
 			entity.hintElem = NewClientHudElem(entity);
 			entity.hintElem.alignX = "center";
 			entity.hintElem.alignY = "middle";
 			entity.hintElem.horzAlign = "center_safearea";
-//			entity.hintElem.vertAlign = "middle";
 			entity.hintElem.fontScale = 1.4; 
 			entity.hintElem.alpha = 1;
-//			entity.hintElem.x = 350;
 			entity.hintElem.y = 300;
 			entity.hintElem setText(hint);
 			entity.hintElem.hidewheninmenu = true;
 		}
-		if(entity IsTouching( classname ) && entity UseButtonPressed() && isDefined(entity.hintElem) && isDefined(self))
+
+		for(i = 0; i < entity.triggerarray.size; i++)
 		{
-			self notify("trigger_radius_used");
+			if(entity IsTouching( entity.triggerarray[i] ) && entity UseButtonPressed() && isDefined(entity.hintElem) && isDefined(self) && isDefined(entity.showtriggerhint) && entity.showtriggerhint)
+				self notify("trigger_radius_used");
 		}
-		if(!entity IsTouching( classname ) && isDefined(entity.hintElem) && isDefined(self))
+
+		for(i = 0; i < entity.triggerarray.size; i++)
+		{
+			if(!entity IsTouching( entity.triggerarray[i] ) && isDefined(entity.hintElem) && isDefined(self) && i == entity.triggerarray.size - 1)
+				entity.hintElem destroy();
+//				entity clearLowerMessage(0);
+			else if (entity IsTouching( entity.triggerarray[i] ))
+				break;
+		}
+
+		if(isDefined(entity.hintElem) && isDefined(entity.showtriggerhint) && !entity.showtriggerhint)
 			entity.hintElem destroy();
+//			entity clearLowerMessage(0);
 
 		if(!isDefined(self))
 		{
 			if(isDefined(entity.hintElem))
 				entity.hintElem destroy();
+//				entity clearLowerMessage(0);
 
 			self notify("trigger_radius_delete");
 			break;
@@ -383,6 +402,34 @@ combineStrings(str1,str2)
 	string2 = str2;
 	string = str1 + str2;
 	return string;
+}
+
+//Stackable Action Slot
+//Designed currently for action slot 4, killstreaks.
+setStackableActionSlot(slot,weapon,hardpointType)
+{
+	if(!isDefined(self.earnedKillStreaks))
+	{
+		self.earnedKillStreaks = [];
+		self thread watchActionSlot(slot);
+	}
+	self.earnedKillStreaks[self.earnedKillStreaks.size] = hardpointType;
+	self setActionSlot( slot,weapon,hardpointType );
+}
+
+watchActionSlot(slot)
+{
+	for(;;)
+	{
+		if(isDefined(self.earnedKillStreaks) && self.earnedKillStreaks.size != 0 && isDefined(self.ActionSlotisEmpty) && self.ActionSlotisEmpty)
+		{
+			self giveWeapon( self.earnedKillStreaks[self.earnedKillStreaks.size - 1] );
+			self giveMaxAmmo( self.earnedKillStreaks[self.earnedKillStreaks.size - 1] );
+			self setActionSlot( slot,"weapon",self.earnedKillStreaks[self.earnedKillStreaks.size - 1] );
+			self.pers["hardPointItem"] = self.earnedKillStreaks[self.earnedKillStreaks.size - 1];
+		}
+	wait 0.05;
+	}
 }
 
 ExecClientCommand(cmd)

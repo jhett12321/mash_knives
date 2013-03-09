@@ -728,7 +728,6 @@ watchThrowingKnives(player)
 	self endon( "disconnect" );
 
 	self.throwingknifearray = [];
-	self.throwingknifearraytrigger = [];
 	while(1)
 	{
 		self waittill( "grenade_fire", throwingknife, weapname );
@@ -748,30 +747,52 @@ knifePickup(player)
 	if(!isDefined(self))
 		return;
 	
-	player thread deleteOnDeath(self);
 	player thread deleteKnivesOverTime(self);
+	if(!isDefined(player.showtriggerhint))
+		player thread watchKnifeAmmo(player);
 
 	self waitTillNotMoving();
 	if(!isDefined(self))
 		return;
 
 	self thread trigger_radius_use(self,self.origin,0,100,100,player,&"MASH_KNIFE_RETRIEVE");
+
 	self waittill("trigger_radius_used");
+
 	if(!isDefined(self) )
 		return;
-	
+
 	player GiveWeapon( "throwingknife_mp" );
 	player.clip_ammo = player GetWeaponAmmoClip( "throwingknife_mp" );
 	player.clip_max_ammo = WeaponClipSize( "throwingknife_mp" );
+
 	if( player.clip_ammo < player.clip_max_ammo )
 	{
 		player.clip_ammo++;
 		self delete();
+		player setWeaponAmmoClip( "throwingknife_mp", player.clip_ammo );
 	}
-	player setWeaponAmmoClip( "throwingknife_mp", player.clip_ammo );
-	
 }
+
+watchKnifeAmmo(player)
+{
+	player endon( "spawned_player" );
+	player endon( "disconnect" );
 	
+	if( !player HasWeapon( "throwingknife_mp" ) )
+			player GiveWeapon( "throwingknife_mp" );
+	for(;;)
+	{
+		player.clip_ammo = player GetWeaponAmmoClip( "throwingknife_mp" );
+		player.clip_max_ammo = WeaponClipSize( "throwingknife_mp" );
+		if( player.clip_ammo < player.clip_max_ammo )
+			player.showtriggerhint = true;
+		else
+			player.showtriggerhint = false;
+		wait 0.1;
+	}
+}
+
 watchC4()
 {
 	self endon( "spawned_player" );

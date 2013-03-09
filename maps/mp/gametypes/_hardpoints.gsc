@@ -1026,15 +1026,11 @@ giveHardpointItem( hardpointType )
 	if ( (!isDefined( level.heli_paths ) || !level.heli_paths.size) && hardpointType == "helicopter_mp" )
 		return false;
 
-	if ( isDefined( self.pers["hardPointItem"] ) )
-	{
-		if ( level.hardpointItems[hardpointType] < level.hardpointItems[self.pers["hardPointItem"]] )
-			return false;
-	}
    
 	self giveWeapon( hardpointType );
 	self giveMaxAmmo( hardpointType );
-	self setActionSlot( 4, "weapon", hardpointType );
+	self setStackableActionSlot( 4, "weapon", hardpointType );
+	self.ActionSlotisEmpty = false; //M*A*S*H Knives
 	self.pers["hardPointItem"] = hardpointType;   
    
 	return true;
@@ -1056,7 +1052,8 @@ upgradeHardpointItem()
    
 	self giveWeapon( hardpointType );
 	self giveMaxAmmo( hardpointType );
-	self setActionSlot( 4, "weapon", hardpointType );
+	self setStackableActionSlot( 4, "weapon", hardpointType );
+	self.ActionSlotisEmpty = false; //M*A*S*H Knives
 	self.pers["hardPointItem"] = hardpointType;
    
 	self thread maps\mp\gametypes\_hud_message::hintMessage( level.hardpointHints[hardpointType] );
@@ -1118,6 +1115,8 @@ hardpointItemWaiter()
 					self takeWeapon( currentWeapon );
 					self setActionSlot( 4, "" );
 					self.pers["hardPointItem"] = undefined;
+					self.earnedKillStreaks[self.earnedKillStreaks.size - 1] = undefined;
+					self.ActionSlotisEmpty = true; //M*A*S*H Knives
 				}
 			   
 				if ( lastWeapon != "none" )
@@ -1135,6 +1134,7 @@ hardpointItemWaiter()
 
 triggerHardPoint( hardpointType )
 {
+	self notify( "hardpoint_used" );
 	if ( hardpointType == "radar_mp" )
 	{
 		self thread useRadarItem();
@@ -1219,7 +1219,6 @@ triggerHardPoint( hardpointType )
 	   
 		thread maps\mp\_helicopter::heli_think( self, startnode, self.pers["team"] );
 	}
-   
 	return true;
 }
 

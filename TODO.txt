@@ -1,24 +1,18 @@
-**Resume Progress from 10/02/2013**
-Test if a disconnect trigger's a "killed_player" notify.
-Update knife decay pickup if this is the case.
-
-BUGS: 
--variable t.name does not seem to be a variable, and is causing console errors. (Unconfirmed)
-(See other bugs at featherminecraft.com/jira)
-
-
 **Ideas/Feedback**
 *Remove Grenades from Gunners? (Nerf)
 
 
 **TODO**
 1.7:
-*Additional Skinned Weapons/Characters
 *Balance classes/Perk System for Guns vs Knives
 
 1.8:
-*Final Release, Fix Bugs, Final Optimisations (No doubt this will move)
+*Additional Skinned Weapons/Characters
 
+1.9:
+
+2.0:
+*Major addition for 2.0 release. Details to be released closer to the release.
 
 No Specific Version:
 *Throwing knives stick to flesh only (if possible)
@@ -28,17 +22,22 @@ No Specific Version:
 *Comment Code to show changes/additions
 	Files Completed:
 		_admin.gsc (Non-stock)
-		_class.gsc
-		_dev.gsc
-		_gameobjects.gsc
-		_killcam.gsc
 *Refactor M*A*S*H Non-stock files into sub-dir of gametypes folder.
+*Make throwing knives have 'no owner', so any player can pick up any knife.
 
 **Upcoming Changelog (Completed Features)**
+1.7:
+Added:
+*Stackable Killstreaks
+
+Updated:
+*Improved knife pickup. Now supports multiple throwing knives.
+
 1.6:
 Added:
 *New Permissions System
 *Admin XP Modifier
+*Admin RCON menu
 *Assassins Blade
 *Killstreak/Status HUD timers.
 *Added more options to Rcon Menu for M*A*S*H Admins
