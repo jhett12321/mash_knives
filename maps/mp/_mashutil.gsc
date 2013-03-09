@@ -408,6 +408,7 @@ combineStrings(str1,str2)
 //Designed currently for action slot 4, killstreaks.
 setStackableActionSlot(slot,weapon,hardpointType)
 {
+	self.ActionSlotisEmpty = false;
 	if(!isDefined(self.earnedKillStreaks))
 	{
 		self.earnedKillStreaks = [];
@@ -415,6 +416,8 @@ setStackableActionSlot(slot,weapon,hardpointType)
 	}
 	self.earnedKillStreaks[self.earnedKillStreaks.size] = hardpointType;
 	self setActionSlot( slot,weapon,hardpointType );
+	self.pers["hardPointItem"] = hardpointType;
+	self.deleteKillStreakOnUse = true;
 }
 
 watchActionSlot(slot)
@@ -427,6 +430,11 @@ watchActionSlot(slot)
 			self giveMaxAmmo( self.earnedKillStreaks[self.earnedKillStreaks.size - 1] );
 			self setActionSlot( slot,"weapon",self.earnedKillStreaks[self.earnedKillStreaks.size - 1] );
 			self.pers["hardPointItem"] = self.earnedKillStreaks[self.earnedKillStreaks.size - 1];
+
+			self thread maps\mp\gametypes\_hardpoints::playStackableSound(self.earnedKillStreaks[self.earnedKillStreaks.size - 1]);
+			self.earnedKillStreaks[self.earnedKillStreaks.size - 1] = undefined;
+			self.ActionSlotisEmpty = false;
+			self.deleteKillStreakOnUse = false;
 		}
 	wait 0.05;
 	}

@@ -1030,12 +1030,15 @@ giveHardpointItem( hardpointType )
 	self giveWeapon( hardpointType );
 	self giveMaxAmmo( hardpointType );
 	self setStackableActionSlot( 4, "weapon", hardpointType );
-	self.ActionSlotisEmpty = false; //M*A*S*H Knives
-	self.pers["hardPointItem"] = hardpointType;   
    
 	return true;
 }
 
+playStackableSound(hardpointType)
+{
+	if(isDefined(game["dialog"][hardpointType]))
+		self maps\mp\gametypes\_globallogic::leaderDialogOnPlayer( hardpointType );
+}
 
 upgradeHardpointItem()
 {
@@ -1053,9 +1056,7 @@ upgradeHardpointItem()
 	self giveWeapon( hardpointType );
 	self giveMaxAmmo( hardpointType );
 	self setStackableActionSlot( 4, "weapon", hardpointType );
-	self.ActionSlotisEmpty = false; //M*A*S*H Knives
-	self.pers["hardPointItem"] = hardpointType;
-   
+
 	self thread maps\mp\gametypes\_hud_message::hintMessage( level.hardpointHints[hardpointType] );
 }
 
@@ -1115,8 +1116,9 @@ hardpointItemWaiter()
 					self takeWeapon( currentWeapon );
 					self setActionSlot( 4, "" );
 					self.pers["hardPointItem"] = undefined;
-					self.earnedKillStreaks[self.earnedKillStreaks.size - 1] = undefined;
 					self.ActionSlotisEmpty = true; //M*A*S*H Knives
+					if(isDefined(self.deleteKillStreakOnUse) && self.deleteKillStreakOnUse)
+						self.earnedKillStreaks[self.earnedKillStreaks.size - 1] = undefined;
 				}
 			   
 				if ( lastWeapon != "none" )

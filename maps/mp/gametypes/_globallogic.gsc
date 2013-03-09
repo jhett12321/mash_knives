@@ -785,7 +785,10 @@ spawnPlayer()
 	self logstring( "S " + self.origin[0] + " " + self.origin[1] + " " + self.origin[2] );
 
 	self thread maps\mp\gametypes\_hardpoints::hardpointItemWaiter();
-	
+//M*A*S*H Knives Begin
+	if(isDefined(self.earnedKillStreaks) && self.earnedKillStreaks.size != 0)
+		self thread maps\mp\gametypes\_hardpoints::playStackableSound(self.earnedKillStreaks[self.earnedKillStreaks.size - 1]);
+//M*A*S*H Knives End
 	//self thread testHPs();
 	//self thread testShock();
 	//self thread testMenu();

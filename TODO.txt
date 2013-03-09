@@ -5,6 +5,8 @@
 **TODO**
 1.7:
 *Balance classes/Perk System for Guns vs Knives
+*Add third-person xanim's for ballistic knives
+*Add ballistic knife xmodel.
 
 1.8:
 *Additional Skinned Weapons/Characters
