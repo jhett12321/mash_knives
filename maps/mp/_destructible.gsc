@@ -878,18 +878,17 @@ isAttackerValid( partIndex, stateIndex, attacker )
 
 isValidDamageCause( partIndex, stateIndex, damageType )
 {
-	return false;
-//	if ( !isdefined( damageType ) )
-//		return true;
-//	
-//	validType = level.destructible_type[ self.destuctableInfo ].parts[ partIndex ][ stateIndex ].v[ "validDamageCause" ];
-//	if ( !isdefined( validType ) )
-//		return true;
-//	
-//	if ( ( validType == "no_melee" ) && damageType == "melee" || damageType == "impact" )
-//		return false;
-//		
-//	return true;
+	if ( !isdefined( damageType ) )
+		return true;
+	
+	validType = level.destructible_type[ self.destuctableInfo ].parts[ partIndex ][ stateIndex ].v[ "validDamageCause" ];
+	if ( !isdefined( validType ) )
+		return true;
+	
+	if ( ( validType == "no_melee" ) && damageType == "melee" || damageType == "impact" )
+		return false;
+		
+	return true;
 }
 
 getDamageType( type )
@@ -918,7 +917,8 @@ getDamageType( type )
 		case "splash":
 			return "splash";
 		case "mod_impact":
-			return "impact";
+		case "impact":
+			return "impact"; //M*A*S*H Knives
 		case "unknown":
 			return "unknown";
 		default:
