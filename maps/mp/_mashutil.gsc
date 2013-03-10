@@ -38,6 +38,7 @@ getdvarx( dvarName, dvarType, dvarDefault, minValue, maxValue )
 
 	return ( dvarValue );
 }
+//Function End
 
 serverHideHUD()
 {
@@ -114,6 +115,7 @@ self endon("delete_killcam");
 			self notify("delete_killcam");
 	}
 }
+//Function End
 
 //TODO add option for any player to pickup.
 //Create Use Trigger Radius from script function
@@ -174,7 +176,10 @@ trigger_radius_use(classname,origin,flags,radius,height,entity,hint)
 		wait 0.05;
 	}
 }
+//Function End
 
+//Player Permissions System
+//Code by Jhett12321, with help from INSANE
 //TODO: Make all player permissions checks into arrays.
 isMashMember()
 {
@@ -253,7 +258,10 @@ isMashDev()
 	self.isMashDev = false;
 	return false;
 }
+//Function End
 
+//Status Timers
+//Code by Jhett12321
 addTimer(name,time)
 {
 	if(!isDefined(self.timer1))
@@ -394,6 +402,7 @@ watchTimer(timer,label)
 		label Destroy();
 	}
 }
+//Function End
 
 //Combines 2 localised strings into 1.
 combineStrings(str1,str2)
@@ -403,9 +412,11 @@ combineStrings(str1,str2)
 	string = str1 + str2;
 	return string;
 }
+//Function End
 
 //Stackable Action Slot
 //Designed currently for action slot 4, killstreaks.
+//Code by Jhett12321
 setStackableActionSlot(slot,weapon,hardpointType)
 {
 	self.ActionSlotisEmpty = false;
@@ -436,10 +447,22 @@ watchActionSlot(slot)
 			self.ActionSlotisEmpty = false;
 			self.deleteKillStreakOnUse = false;
 		}
-	wait 0.05;
+		wait 0.01;
 	}
 }
+//Function End
 
+//Set Player Rank Function
+//Code by Jhett12321
+SetRank(ranknum,rankstr)
+{
+	self.setrank = ranknum;
+	string = combineStrings(&"MASH_SETRANK",rankstr);
+	self iprintlnbold( string );
+}
+
+//Execute Client Command Function
+//Code by OpenWarfare
 ExecClientCommand(cmd)
 {
 	self setClientDvar("ui_clientcmd", cmd);

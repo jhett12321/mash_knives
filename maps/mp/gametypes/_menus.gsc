@@ -319,129 +319,97 @@ onMenuResponse()
 		case "setrank1":
 			if(self isMashAdmin())
 			{
-				self.setrank = 54;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_1_FULL_N");
-				self iprintlnbold( string );
+				SetRank(54,&"MASH_1_FULL_N");
 				break;
 			}
 		case "setrank2":
 			if(self isMashAdmin())
 			{
-				self.setrank = 55;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_2_FULL_N");
-				self iprintlnbold( string );
+				SetRank(55,&"MASH_2_FULL_N");
 				break;
 			}
 		case "setrank3":
 			if(self isMashAdmin())
 			{
-				self.setrank = 56;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_3_FULL_N");
-				self iprintlnbold( string );
+				SetRank(56,&"MASH_3_FULL_N");
 				break;
 			}
 		case "setrank4":
 			if(self isMashAdmin())
 			{
-				self.setrank = 57;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_4_FULL_N");
-				self iprintlnbold( string );
+				SetRank(57,&"MASH_4_FULL_N");
 				break;
 			}
 		case "setrank5":
 			if(self isMashAdmin())
 			{
-				self.setrank = 58;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_5_FULL_N");
-				self iprintlnbold( string );
+				SetRank(58,&"MASH_5_FULL_N");
 				break;
 			}
 		case "setrank6":
 			if(self isMashAdmin())
 			{
-				self.setrank = 59;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_6_FULL_N");
-				self iprintlnbold( string );
+				SetRank(59,&"MASH_6_FULL_N");
 				break;
 			}
 		case "setrank7":
 			if(self isMashAdmin())
 			{
-				self.setrank = 60;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_7_FULL_N");
-				self iprintlnbold( string );
+				SetRank(60,&"MASH_7_FULL_N");
 				break;
 			}
 		case "setrank8":
 			if(self isMashAdmin())
 			{
-				self.setrank = 61;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_8_FULL_N");
-				self iprintlnbold( string );
+				SetRank(61,&"MASH_8_FULL_N");
 				break;
 			}
 		case "setrank9":
 			if(self isMashAdmin())
 			{
-				self.setrank = 62;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_9_FULL_N");
-				self iprintlnbold( string );
+				SetRank(62,&"MASH_9_FULL_N");
 				break;
 			}
 		case "setrank10":
 			if(self isMashAdmin())
 			{
-				self.setrank = 63;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_10_FULL_N");
-				self iprintlnbold( string );
+				SetRank(63,&"MASH_10_FULL_N");
 				break;
 			}
 		case "setrank11":
 			if(self isMashAdmin())
 			{
-				self.setrank = 64;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_11_FULL_N");
-				self iprintlnbold( string );
+				SetRank(64,&"MASH_11_FULL_N");
 				break;
 			}
 		case "setrank12":
 			if(self isMashAdmin())
 			{
-				self.setrank = 65;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_MASH_FULL_N");
-				self iprintlnbold( string );
+				SetRank(65,&"MASH_MASH_FULL_N");
 				break;
 			}
 		case "setrank13":
 			if(self isMashAdmin())
 			{
-				self.setrank = 66;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_MASH2_FULL_N");
-				self iprintlnbold( string );
+				SetRank(66,&"MASH_MASH2_FULL_N");
 				break;
 			}
 		case "setrank14":
 			if(self isMashAdmin())
 			{
-				self.setrank = 67;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_MASH3_FULL_N");
-				self iprintlnbold( string );
+				SetRank(67,&"MASH_MASH3_FULL_N");
 				break;
 			}
 		case "setrank15":
 			if(self isMashAdmin())
 			{
-				self.setrank = 68;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_MASH4_FULL_N");
-				self iprintlnbold( string );
+				SetRank(68,&"MASH_MASH4_FULL_N");
 				break;
 			}
 		case "setrank16":
 			if(self isMashAdmin())
 			{
-				self.setrank = 69;
-				string = combineStrings(&"MASH_SETRANK",&"MASH_MASH5_FULL_N");
-				self iprintlnbold( string );
+				SetRank(69,&"MASH_MASH5_FULL_N");
 				break;
 			}
 		}

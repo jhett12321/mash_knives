@@ -98,7 +98,7 @@ rank_management()
 		}
 		else
 		{
-			self setrank(t);
+			self setplayerrank(t);
 			self.setrankused = true;
 			self thread addTimer(&"MASH_ADMIN_RANK_COOLDOWN",10);
 			wait 10;
@@ -107,7 +107,7 @@ rank_management()
 	}
 }
 
-setrank(t)
+setplayerrank(t)
 {
 	t.isranking = true;
 	currentrankxp = t maps\mp\gametypes\_rank::getRankXP();

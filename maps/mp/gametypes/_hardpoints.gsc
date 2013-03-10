@@ -1116,7 +1116,8 @@ hardpointItemWaiter()
 					self takeWeapon( currentWeapon );
 					self setActionSlot( 4, "" );
 					self.pers["hardPointItem"] = undefined;
-					self.ActionSlotisEmpty = true; //M*A*S*H Knives
+					if( currentWeapon != "assassin_mp" ) //M*A*S*H Knives
+						self.ActionSlotisEmpty = true; //M*A*S*H Knives
 					if(isDefined(self.deleteKillStreakOnUse) && self.deleteKillStreakOnUse)
 						self.earnedKillStreaks[self.earnedKillStreaks.size - 1] = undefined;
 				}
@@ -1460,10 +1461,20 @@ self endon("disconnect");
 self endon("assassin_used");
 
 	self.isAssassin = true;
+	
+	self TakeAllWeapons(); //Affects Stackable Killstreaks
+	if(isDefined(self.earnedKillStreaks) && self.earnedKillStreaks.size != 0)
+	{
+		self thread playStackableSound(self.earnedKillStreaks[self.earnedKillStreaks.size - 1]);
+		self.earnedKillStreaks[self.earnedKillStreaks.size - 1] = undefined;
+		self.ActionSlotisEmpty = true;
+	}
 
-	self TakeAllWeapons();
 	self giveWeapon("assassinweapon_mp");
 	self SwitchToWeapon( "assassinweapon_mp" );
+
+	self giveWeapon("throwingknife_mp");
+	self GiveStartAmmo("throwingknife_mp");
 
 	self SetMoveSpeedScale( 1.25 );
 
