@@ -1221,9 +1221,18 @@ attachUseModel( modelName, tagName, ignoreCollision )
 	self endon("disconnect");
 	self endon("done_using");
 
-	self attach( modelName, tagName, ignoreCollision );
-	self.attachedUseModel = modelName;
-	self.attachedTagName = tagName;
+	if(isDefined(modelName) && isDefined (tagName) && isDefined(ignoreCollision))
+	{
+		self attach( modelName, tagName, ignoreCollision );
+		self.attachedUseModel = modelName;
+		self.attachedTagName = tagName;
+	}
+	else
+	{
+		wait 1.3;
+		self attach( "prop_suitcase_bomb", "tag_inhand", true );
+		self.attachedUseModel = "prop_suitcase_bomb";
+	}
 }
 //M*A*S*H Knives End
 
