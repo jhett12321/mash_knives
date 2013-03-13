@@ -100,6 +100,8 @@ init()
 	
 	if ( !isDefined( game["tiebreaker"] ) )
 		game["tiebreaker"] = false;
+
+	maps\mp\gametypes\_knife::modinit(); //M*A*S*H Knives Mod Initialization
 }
 
 registerDvars()
@@ -3868,7 +3870,7 @@ Callback_StartGameType()
 		}
 		else
 		{
-			if( getdvarx( "scr_scrimmode", "int", 0, 0, 1 ) == 1 )
+			if( level.scrimModeEnabled )
 			{
 				if ( isDefined( level.roundSwitch ) && level.roundSwitch && game["roundsplayed"] && ( game["roundsplayed"] % level.roundswitch == 0 ) )
 				{
@@ -3895,7 +3897,7 @@ Callback_StartGameType()
 	level.hostForcedEnd = false;
 
 	level.hardcoreMode = getDvarInt( "scr_hardcore" );
-	if ( getDvarInt( "scr_scrimmode" ) )
+	if ( level.scrimModeEnabled )
 			level.hardcoreMode = 1;
 
 	if ( level.hardcoreMode )
@@ -5234,7 +5236,7 @@ Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDi
 	thread delayStartRagdoll( body, sHitLoc, vDir, sWeapon, eInflictor, sMeansOfDeath );
 
 	self.body = body;
-	if ( !isDefined( self.switching_teams ) && !GetDvarInt( "scr_scrimmode" ))
+	if ( !isDefined( self.switching_teams ) && !level.scrimModeEnabled )
 		thread maps\mp\gametypes\_deathicons::addDeathicon( body, self, self.pers["team"], 5.0 );
 	
 	self.switching_teams = undefined;

@@ -7,6 +7,7 @@
 *Balance classes/Perk System for Guns vs Knives
 *Add third-person xanim's for ballistic knives
 *Add ballistic knife xmodel.
+*Fix scrim mode
 
 1.8:
 *Additional Skinned Weapons/Characters

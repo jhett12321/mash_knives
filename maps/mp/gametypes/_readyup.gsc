@@ -6,7 +6,7 @@
 start()
 {
 	 // Get the main module's dvar
-	 level.scr_match_readyup_period = getdvarx( "scr_scrimmode", "int", 0, 0, 1 );
+	 level.scr_match_readyup_period = level.scrimModeEnabled;
 
 	 // If readyup period is disabled then there's nothing else to do here
 	 if ( level.scr_match_readyup_period == 0 ) {
@@ -379,7 +379,7 @@ createHudElements()
 
 waitForReadyUpToFinish()
 {
-	 if ( getdvarx( "scr_scrimmode", "int", 0, 0, 1 ) == 0 ) {
+	 if ( !level.scrimModeEnabled ) {
 			return;
 	 } else {
 			while ( !isDefined( game["readyupperiod"] ) || game["readyupperiod"] )

@@ -142,9 +142,9 @@ onMenuResponse()
 
 		if(response == "quickplayer")
 		{
-			if(!level.inPrematchPeriod && !level.gameEnded && !getDvarInt("scr_scrimmode") )
+			if(!level.inPrematchPeriod && !level.gameEnded && !level.scrimModeEnabled )
 				self openMenu("quickplayer");
-			else if( getDvarInt("scr_scrimmode") )
+			else if( level.scrimModeEnabled )
 				self iprintlnbold( &"MASH_SCRIM_MENU_NOT_AVAILABLE_P" );
 			else
 			{
@@ -157,7 +157,7 @@ onMenuResponse()
 		{
 			if(self isMashMember())
 			{
-				if( getDvarInt("scr_scrimmode") )
+				if( level.scrimModeEnabled )
 					self iprintlnbold( &"MASH_SCRIM_MENU_NOT_AVAILABLE_M" );
 				else if( !level.inPrematchPeriod && !level.gameEnded )
 					self openMenu("quickmash");
@@ -172,7 +172,7 @@ onMenuResponse()
 		{
 			if(self isMashAdmin())
 			{
-				if( getDvarInt("scr_scrimmode") )
+				if( level.scrimModeEnabled )
 					self iprintlnbold( &"MASH_SCRIM_MENU_NOT_AVAILABLE_A" );
 				else if( !level.inPrematchPeriod && !level.gameEnded )
 					self openMenu("quickadmin");

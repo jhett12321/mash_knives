@@ -267,7 +267,7 @@ cac_init()
 	
 	// allowed perks in each slot, for validation.
 	//M*A*S*H Knives Begin
-	if(getDvarInt("scr_scrimmode"))
+	if(level.scrimModeEnabled)
 	{
 		level.allowedPerks[0] = [];
 		level.allowedPerks[1] = [];

@@ -40,7 +40,7 @@ init()
 	level.hardpointItems = [];
 	priority = 0;
 	
-	if( !getDvarInt("scr_scrimmode") )
+	if( !level.scrimModeEnabled )
 	{
 		if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowuav" ) )
 		{
