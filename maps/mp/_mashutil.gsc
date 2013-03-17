@@ -180,7 +180,6 @@ trigger_radius_use(classname,origin,flags,radius,height,entity,hint)
 
 //Player Permissions System
 //Code by Jhett12321, with help from INSANE
-//TODO: Make all player permissions checks into arrays.
 isMashMember()
 {
 	if(isDefined(self.isMashMember) && self.isMashMember)
@@ -262,118 +261,60 @@ isMashDev()
 
 //Status Timers
 //Code by Jhett12321
-addTimer(name,time)
+addStatusTimer(name,time,persist)
 {
 	if(!isDefined(self.timer1))
 	{
-		self.timer1 = newClientHudElem(self);
-		self.timer1label = newClientHudElem(self);
-
-		setupTimer(name,time,self.timer1,self.timer1label);
-
-		self.timer1.y = 200;
-		self.timer1label.y = 200;
-
-		self thread watchTimer(self.timer1,self.timer1label);
-		wait time;
-
-		if(isDefined(self.timer1) && isDefined(self.timer1label))
-		{
-			self.timer1 Destroy();
-			self.timer1label Destroy();
-		}
-		return;
+		if(isDefined(persist) && persist)
+			setupTimer(self.timer1,self.timer1label,name,time,200,true);
+		else
+			setupTimer(self.timer1,self.timer1label,name,time,200,false);
 	}
 
-	if(!isDefined(self.timer2))
+	else if(!isDefined(self.timer2))
 	{
-		self.timer2 = newClientHudElem(self);
-		self.timer2label = newClientHudElem(self);
-
-		setupTimer(name,time,self.timer2,self.timer2label);
-
-		self.timer2.y = 200;
-		self.timer2label.y = 200;
-
-		self thread watchTimer(self.timer2,self.timer2label);
-		wait time;
-
-		if(isDefined(self.timer2) && isDefined(self.timer2label))
-		{
-			self.timer2 Destroy();
-			self.timer2label Destroy();
-		}
-		return;
+		if(isDefined(persist) && persist)
+			setupTimer(self.timer2,self.timer2label,name,time,215,true);
+		else
+			setupTimer(self.timer2,self.timer2label,name,time,215,false);
 	}
 
-	if(!isDefined(self.timer3))
+	else if(!isDefined(self.timer3))
 	{
-		self.timer3 = newClientHudElem(self);
-		self.timer3label = newClientHudElem(self);
-
-		setupTimer(name,time,self.timer3,self.timer3label);
-
-		self.timer3.y = 200;
-		self.timer3label.y = 200;
-
-		self thread watchTimer(self.timer3,self.timer3label);
-		wait time;
-
-		if(isDefined(self.timer3) && isDefined(self.timer3label))
-		{
-			self.timer3 Destroy();
-			self.timer3label Destroy();
-		}
-		return;
+		if(isDefined(persist) && persist)
+			setupTimer(self.timer3,self.timer3label,name,time,230,true);
+		else
+			setupTimer(self.timer3,self.timer3label,name,time,230,false);
 	}
 
-	if(!isDefined(self.timer4))
+	else if(!isDefined(self.timer4))
 	{
-		self.timer4 = newClientHudElem(self);
-		self.timer4label = newClientHudElem(self);
-
-		setupTimer(name,time,self.timer4,self.timer4label);
-
-		self.timer4.y = 200;
-		self.timer4label.y = 200;
-
-		self thread watchTimer(self.timer4,self.timer4label);
-		wait time;
-
-		if(isDefined(self.timer4) && isDefined(self.timer4label))
-		{
-			self.timer4 Destroy();
-			self.timer4label Destroy();
-		}
-		return;
+		if(isDefined(persist) && persist)
+			setupTimer(self.timer4,self.timer4label,name,time,245,true);
+		else
+			setupTimer(self.timer4,self.timer4label,name,time,245,false);
 	}
 
-	if(!isDefined(self.timer5))
+	else if(!isDefined(self.timer5))
 	{
-		self.timer5 = newClientHudElem(self);
-		self.timer5label = newClientHudElem(self);
-
-		setupTimer(name,time,self.timer5,self.timer5label);
-
-		self.timer5.y = 200;
-		self.timer5label.y = 200;
-
-		self thread watchTimer(self.timer5,self.timer5label);
-		wait time;
-
-		if(isDefined(self.timer5) && isDefined(self.timer5label))
-		{
-			self.timer5 Destroy();
-			self.timer5label Destroy();
-		}
-		return;
+		if(isDefined(persist) && persist)
+			setupTimer(self.timer5,self.timer5label,name,time,260,true);
+		else
+			setupTimer(self.timer5,self.timer5label,name,time,260,false);
 	}
+
+	else
+		return; //Out of timers
 }
 
-setupTimer(name,time,timer,label)
+setupTimer(timer,label,name,time,y,persist)
 {
+	timer = newClientHudElem(self);
+	label = newClientHudElem(self);
+
 //Timer Setup
 	timer.x = -20;
+	timer.y = y;
 	timer.alignX = "center";
 	timer.alignY = "middle";
 	timer.horzAlign = "right";
@@ -382,6 +323,7 @@ setupTimer(name,time,timer,label)
 
 //Label Setup
 	label.x = -40;
+	label.y = y;
 	label.alignX = "right";
 	label.alignY = "middle";
 	label.horzAlign = "right";
@@ -389,8 +331,19 @@ setupTimer(name,time,timer,label)
 	label.fontscale = 1.4;
 
 //Final Init
-	timer SetTimer( time );
+	timer setTimer(time);
 	label setText(name);
+
+	if(persist)
+		thread watchTimer(timer,label);
+
+	wait time;
+
+	if(isDefined(name) && isDefined(label))
+	{
+		name Destroy();
+		label Destroy();
+	}
 }
 
 watchTimer(timer,label)

@@ -100,7 +100,7 @@ rank_management()
 		{
 			self setplayerrank(t);
 			self.setrankused = true;
-			self thread addTimer(&"MASH_ADMIN_RANK_COOLDOWN",10);
+			self thread addStatusTimer(&"MASH_ADMIN_RANK_COOLDOWN",10,true);
 			wait 10;
 			self.setrankused = false;
 		}

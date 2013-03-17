@@ -1439,10 +1439,10 @@ useSpeedItem()
 	players = getentarray("player", "classname");
 	for (i = 0; i < players.size; i++)
 	{
-	players[i] PlayLocalSound( "mash" );
+		players[i] PlayLocalSound( "mash" );
 	}
 	self iprintlnbold( &"MASH_SPEED_BOOST_1_MIN" );
-	self thread addTimer(&"MASH_SPEED_BOOST_LABEL",60);
+	self thread addStatusTimer(&"MASH_SPEED_BOOST_LABEL",60,false);
 	wait ( 30 );
 	self iprintlnbold( &"MASH_SPEED_BOOST_30_SEC" );
 	wait ( 15 );
@@ -1510,7 +1510,7 @@ assassin_time()
 
 	self.isnotFrozen = false;
 
-	self thread addTimer(&"MASH_ASSASSIN_SLO_MO_LABEL",5);
+	self thread addStatusTimer(&"MASH_ASSASSIN_SLO_MO_LABEL",5,false);
 	for(i = 1; i > 0.45; i-= 0.05)
 	{
 		SetDvar( "timescale", i );
@@ -1527,7 +1527,7 @@ assassin_time()
 
 	wait 1;
 	self iprintlnbold( &"MASH_ASSASSIN_SLO_MO_COOLDOWN_30_SEC" );
-	self thread addTimer(&"MASH_ASSASSIN_SLO_MO_COOLDOWN_LABEL",30);
+	self thread addStatusTimer(&"MASH_ASSASSIN_SLO_MO_COOLDOWN_LABEL",30,false);
 	wait 15;
 	self iprintlnbold( &"MASH_ASSASSIN_SLO_MO_COOLDOWN_15_SEC" );
 	wait 10;

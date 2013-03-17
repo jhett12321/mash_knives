@@ -804,7 +804,7 @@ giveLoadout( team, class )
 			}
 			self thread logClassChoice( class, primaryWeapon, grenadeTypeSecondary, self.specialty );
 		}
-		else
+		else if(!isDefined(level.scrimModeEnabled) || !level.scrimModeEnabled)
 		{
 			self GiveWeapon( "throwingknife_mp" );
 			self SetWeaponAmmoClip( "throwingknife_mp", 1 );
@@ -923,7 +923,7 @@ giveLoadout( team, class )
 		self thread logClassChoice( class, primaryWeapon, grenadeTypeSecondary, self.specialty );
 //M*A*S*H Knives Begin
 		}
-		else
+		else if(!isDefined(level.scrimModeEnabled) || !level.scrimModeEnabled)
 		{
 			self GiveWeapon( "throwingknife_mp" );
 			self SetWeaponAmmoClip( "throwingknife_mp", 1 );
