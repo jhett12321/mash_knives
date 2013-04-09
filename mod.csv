@@ -30,6 +30,7 @@ rawfile,maps/mp/gametypes/_readyup.gsc
 rawfile,maps/mp/gametypes/_scoreboard.gsc
 
 localize,weapon
+localize,mpui
 localize,mash
 
 menufile,ui_mp/main.menu
