@@ -1,3 +1,13 @@
+**Continue Progress from 9/04/13**
+New perk to replace perk 1-3
+Completed:
+*Localisation of menus.
+
+TODO:
+*Map perks to correct script functions
+
+
+
 **Ideas/Feedback**
 *Remove Grenades from Gunners? (Nerf)
 

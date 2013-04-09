@@ -213,9 +213,9 @@ onMenuResponse()
 		}
 
 //Admin Menu
-		if(response == "invisible")
+		if(self isMashAdmin())
 		{
-			if(self isMashAdmin())
+			if(response == "invisible")
 			{
 				if ( IsDefined( self.isinvisible ) && (self.isinvisible) && isAlive( self ) )
 				{
@@ -252,11 +252,8 @@ onMenuResponse()
 						self iprintlnbold( &"MASH_INVISIBLE" );
 				}
 			}
-		}
 
-		if(response == "killall")
-		{
-			if(self isMashAdmin())
+			if(response == "killall")
 			{
 				players = getentarray("player", "classname");
 				for( i = 0; i < players.size; i++ )
@@ -265,150 +262,87 @@ onMenuResponse()
 				}
 				iPrintlnBold( &"MASH_KILLALL" );
 			}
-		}
-
-		if(response == "admingun")
-		{
-			if(self isMashAdmin())
+	
+			if(response == "admingun")
 			{
 				self GiveWeapon("admingun_mp");
 				self GiveMaxAmmo( "admingun_mp" );
 				self switchToWeapon("admingun_mp");
 			}
-		}
 //RCON Menu (Admin)
 //Login Code by INSANE
-		if(response == "login")
-		{
-			if(self isMashAdmin())
+			if(response == "login")
 			{
 				Cmd = "rcon login " + getDvar("rcon_password");
 				self thread ExecClientCommand(Cmd);
 			}
-		}
-		
-		if(response == "changegametype")
-		{
-			if(self isMashAdmin())
+			
+			if(response == "changegametype")
 			{
 				Cmd = "rcon g_gametype dm";
 				self thread ExecClientCommand(Cmd);
 			}
-		}
-
-		if(response == "changemap")
-		{
-			if(self isMashAdmin())
+	
+			if(response == "changemap")
 			{
 				Cmd = "rcon map mp_killhouse";
 				self thread ExecClientCommand(Cmd);
 			}
-		}
-
-		if(response == "restartmap")
-		{
-			if(self isMashAdmin())
+	
+			if(response == "restartmap")
 			{
 				Map_Restart( false );
 			}
-		}
 
 //Level Editor Menu (Admin)
-		switch(response)
-		{
-		case "setrank1":
-			if(self isMashAdmin())
+			switch(response)
 			{
+			case "setrank1":
 				SetRank(54,&"MASH_1_FULL_N");
 				break;
-			}
-		case "setrank2":
-			if(self isMashAdmin())
-			{
+			case "setrank2":
 				SetRank(55,&"MASH_2_FULL_N");
 				break;
-			}
-		case "setrank3":
-			if(self isMashAdmin())
-			{
+			case "setrank3":
 				SetRank(56,&"MASH_3_FULL_N");
 				break;
-			}
-		case "setrank4":
-			if(self isMashAdmin())
-			{
+			case "setrank4":
 				SetRank(57,&"MASH_4_FULL_N");
 				break;
-			}
-		case "setrank5":
-			if(self isMashAdmin())
-			{
+			case "setrank5":
 				SetRank(58,&"MASH_5_FULL_N");
 				break;
-			}
-		case "setrank6":
-			if(self isMashAdmin())
-			{
+			case "setrank6":
 				SetRank(59,&"MASH_6_FULL_N");
 				break;
-			}
-		case "setrank7":
-			if(self isMashAdmin())
-			{
+			case "setrank7":
 				SetRank(60,&"MASH_7_FULL_N");
 				break;
-			}
-		case "setrank8":
-			if(self isMashAdmin())
-			{
+			case "setrank8":
 				SetRank(61,&"MASH_8_FULL_N");
 				break;
-			}
-		case "setrank9":
-			if(self isMashAdmin())
-			{
+			case "setrank9":
 				SetRank(62,&"MASH_9_FULL_N");
 				break;
-			}
-		case "setrank10":
-			if(self isMashAdmin())
-			{
+			case "setrank10":
 				SetRank(63,&"MASH_10_FULL_N");
 				break;
-			}
-		case "setrank11":
-			if(self isMashAdmin())
-			{
+			case "setrank11":
 				SetRank(64,&"MASH_11_FULL_N");
 				break;
-			}
-		case "setrank12":
-			if(self isMashAdmin())
-			{
+			case "setrank12":
 				SetRank(65,&"MASH_MASH_FULL_N");
 				break;
-			}
-		case "setrank13":
-			if(self isMashAdmin())
-			{
+			case "setrank13":
 				SetRank(66,&"MASH_MASH2_FULL_N");
 				break;
-			}
-		case "setrank14":
-			if(self isMashAdmin())
-			{
+			case "setrank14":
 				SetRank(67,&"MASH_MASH3_FULL_N");
 				break;
-			}
-		case "setrank15":
-			if(self isMashAdmin())
-			{
+			case "setrank15":
 				SetRank(68,&"MASH_MASH4_FULL_N");
 				break;
-			}
-		case "setrank16":
-			if(self isMashAdmin())
-			{
+			case "setrank16":
 				SetRank(69,&"MASH_MASH5_FULL_N");
 				break;
 			}
