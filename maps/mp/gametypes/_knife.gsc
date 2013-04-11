@@ -3,12 +3,6 @@
 //Pre-Load Initialisation
 modinit()
 {
-//Scrim Mode Initialisation
-	if(GetDvarInt("scr_scrimmode"))
-		level.scrimModeEnabled = true;
-	else
-		level.scrimModeEnabled = false;
-
 //Permissions Initialisation
 	level.devId = [];
 	level.mashId = [];
@@ -49,7 +43,6 @@ modinit()
 //Post Load Initialisation
 init()
 {
-	precacheString( &"MASH_MOD_NAME_SCRIM_MODE" );
 	precacheString( &"MASH_MOD_NAME_1V1_MODE" );
 	precacheString( &"MASH_MOD_NAME" );
 
@@ -69,9 +62,7 @@ modinfo()
 	level.modinfo.alpha = 1;
 	level.modinfo.hidewheninmenu = true;
 
-	if(level.scrimModeEnabled)
-		level.modinfo setText(&"MASH_MOD_NAME_SCRIM_MODE");
-	else if( isDefined(level.is1v1) && level.is1v1 )
+	if( isDefined(level.is1v1) && level.is1v1 )
 		level.modinfo setText(&"MASH_MOD_NAME_1V1_MODE");
 	else
 		level.modinfo setText(&"MASH_MOD_NAME");

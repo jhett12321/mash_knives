@@ -14,7 +14,7 @@ init()
 	while(1)
 	{
 		level waittill("connected", player);
-		if( player isMashAdmin() && !level.scrimModeEnabled )
+		if( player isMashAdmin() )
 			player thread admin_advantages();
 	}
 	

@@ -26,7 +26,6 @@ rawfile,maps/mp/gametypes/_menus.gsc
 rawfile,maps/mp/gametypes/_tweakables.gsc
 rawfile,maps/mp/gametypes/_killcam.gsc
 rawfile,maps/mp/gametypes/_healthoverlay.gsc
-rawfile,maps/mp/gametypes/_readyup.gsc
 rawfile,maps/mp/gametypes/_scoreboard.gsc
 
 localize,weapon
@@ -35,6 +34,7 @@ localize,mash
 
 menufile,ui_mp/main.menu
 menufile,ui_mp/hud.menu
+
 menufile,ui_mp/wm_quickmessage.menu
 
 menufile,ui_mp/scriptmenus/quickdeveloper.menu
@@ -149,6 +149,7 @@ xanim,viewmodel_b_knife_reload
 xanim,viewmodel_b_knife_sprint_in
 xanim,viewmodel_b_knife_sprint_loop
 xanim,viewmodel_b_knife_sprint_out
+
 
 
 

@@ -31,7 +31,6 @@ No Specific Version:
 *Throwing knives stick to flesh only (if possible)
 *Make menu responses into a switch statement.
 *Cleanup AnimScript files from Infinity Wards shocking organisation.
-*Properly fix throwing knives blowing up cars
 *Comment Code to show changes/additions
 	Files Completed:
 		_admin.gsc (Non-stock)
@@ -42,6 +41,7 @@ No Specific Version:
 1.7:
 Added:
 *Stackable Killstreaks
+*Hint HUD Elements - Shows what players must press to open the mod menu and throw throwing knives.
 
 Updated:
 *Improved knife pickup. Now supports multiple throwing knives.

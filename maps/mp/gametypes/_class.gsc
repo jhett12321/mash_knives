@@ -266,47 +266,7 @@ cac_init()
 	}
 	
 	// allowed perks in each slot, for validation.
-	//M*A*S*H Knives Begin
-	if(level.scrimModeEnabled)
-	{
-		level.allowedPerks[0] = [];
-		level.allowedPerks[1] = [];
-		level.allowedPerks[2] = [];
-		
-		level.allowedPerks[0][ 0] = 190; // 190 through 193 are attachments and "none"
-		level.allowedPerks[0][ 1] = 191;
-		level.allowedPerks[0][ 2] = 192;
-		level.allowedPerks[0][ 3] = 193;
-		level.allowedPerks[0][ 4] = 0;
-		level.allowedPerks[0][ 5] = 0;
-		level.allowedPerks[0][ 6] = 0;
-		level.allowedPerks[0][ 7] = 0;
-		level.allowedPerks[0][ 8] = 0;
-		level.allowedPerks[0][ 9] = 0;
-		level.allowedPerks[0][10] = 0;
-		
-		level.allowedPerks[1][ 0] = 190;
-		level.allowedPerks[1][ 1] = 0;
-		level.allowedPerks[1][ 2] = 0;
-		level.allowedPerks[1][ 3] = 0;
-		level.allowedPerks[1][ 4] = 0;
-		level.allowedPerks[1][ 5] = 0;
-		level.allowedPerks[1][ 6] = 0;
-		level.allowedPerks[1][ 7] = 0;
-		
-		level.allowedPerks[2][ 0] = 190;
-		level.allowedPerks[2][ 1] = 0;
-		level.allowedPerks[2][ 2] = 0;
-		level.allowedPerks[2][ 3] = 0;
-		level.allowedPerks[2][ 4] = 0;
-		level.allowedPerks[2][ 5] = 0;
-		level.allowedPerks[2][ 6] = 0;
-		level.allowedPerks[2][ 7] = 0;
-		level.allowedPerks[2][ 8] = 0;
-	}
-
-	else
-	{
+//M*A*S*H Knives Begin
 		level.allowedPerks[0] = [];
 		level.allowedPerks[1] = [];
 		level.allowedPerks[2] = [];
@@ -341,7 +301,6 @@ cac_init()
 		level.allowedPerks[2][ 6] = perkReferenceToIndex[ "specialty_holdbreath" ];
 		level.allowedPerks[2][ 7] = perkReferenceToIndex[ "specialty_quieter" ];
 		level.allowedPerks[2][ 8] = perkReferenceToIndex[ "specialty_parabolic" ];
-	}
 //M*A*S*H Knives End
 }
 
@@ -804,7 +763,7 @@ giveLoadout( team, class )
 			}
 			self thread logClassChoice( class, primaryWeapon, grenadeTypeSecondary, self.specialty );
 		}
-		else if(!isDefined(level.scrimModeEnabled) || !level.scrimModeEnabled)
+		else
 		{
 			self GiveWeapon( "throwingknife_mp" );
 			self SetWeaponAmmoClip( "throwingknife_mp", 1 );
@@ -923,7 +882,7 @@ giveLoadout( team, class )
 		self thread logClassChoice( class, primaryWeapon, grenadeTypeSecondary, self.specialty );
 //M*A*S*H Knives Begin
 		}
-		else if(!isDefined(level.scrimModeEnabled) || !level.scrimModeEnabled)
+		else
 		{
 			self GiveWeapon( "throwingknife_mp" );
 			self SetWeaponAmmoClip( "throwingknife_mp", 1 );

@@ -1022,18 +1022,18 @@
 
 //M*A*S*H Knives Begin
 		itemDef // Mod Menu
-        {
-            name			"modmenu"
-            rect			(-DPAD_ICON_SPACING - DPAD_ICON_SPACING - DPAD_BASE_SIZE) DPAD_ICON_Y DPAD_BASE_SIZE DPAD_BASE_SIZE
-			ownerdraw		CG_PLAYER_ACTIONSLOT_3
-			forecolor		1 1 1 HUD_ALPHA
-			visible			1 
-			decoration
-			textstyle		ITEM_TEXTSTYLE_SHADOWED
-			textalign		ITEM_ALIGN_LEFT
-			textscale		TEXTSIZE_SMALL
-			textfont		UI_FONT_DEFAULT
-        }
+		{
+			rect			(-DPAD_ICON_SPACING - DPAD_ICON_SPACING - DPAD_BASE_SIZE) 20 DPAD_BASE_SIZE DPAD_BASE_SIZE
+			exp text	( "^3Mod Menu" );
+			forecolor	1 1 1 0
+			exp forecolor A	( HUD_ALPHA * HudFade( "dpad" ) )
+			textfont	UI_FONT_OBJECTIVE
+			textscale	0.25
+			textalign	ITEM_ALIGN_CENTER
+			textstyle	ITEM_TEXTSTYLE_SHADOWED
+			visible 	1
+			decoration 
+		}
 		itemDef 
 		{
 			rect		(-DPAD_ICON_SPACING - DPAD_ICON_SPACING - DPAD_BASE_SIZE_HALF) DPAD_LABEL_Y 1 1
@@ -1045,7 +1045,7 @@
 			textalign	ITEM_ALIGN_CENTER
 			textstyle	ITEM_TEXTSTYLE_SHADOWED
 			visible 	1
-			decoration 
+			decoration
 		}
 
 		itemDef // Throwing Knife

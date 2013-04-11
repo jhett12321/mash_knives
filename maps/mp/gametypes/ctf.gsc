@@ -540,23 +540,23 @@ createReturnMessageElems()
 
 	 level.ReturnMessageElems["allies"]["axis"] = createServerTimer( "objective", 1.4, "allies" );
 	 level.ReturnMessageElems["allies"]["axis"] setPoint( "TOPRIGHT", "TOPRIGHT", 0, 15 );
-	 level.ReturnMessageElems["allies"]["axis"].label = &"MASH"_ENEMY_FLAG_RETURNING_IN";
+	 level.ReturnMessageElems["allies"]["axis"].label = &"MASH_ENEMY_FLAG_RETURNING_IN";
 	 level.ReturnMessageElems["allies"]["axis"].alpha = 0;
 	 level.ReturnMessageElems["allies"]["axis"].archived = false;
 	 level.ReturnMessageElems["allies"]["allies"] = createServerTimer( "objective", 1.4, "allies" );
 	 level.ReturnMessageElems["allies"]["allies"] setPoint( "TOPRIGHT", "TOPRIGHT", 0, 0 );
-	 level.ReturnMessageElems["allies"]["allies"].label = &"MASH"_YOUR_FLAG_RETURNING_IN";
+	 level.ReturnMessageElems["allies"]["allies"].label = &"MASH_YOUR_FLAG_RETURNING_IN";
 	 level.ReturnMessageElems["allies"]["allies"].alpha = 0;
 	 level.ReturnMessageElems["allies"]["allies"].archived = false;
 
 	 level.ReturnMessageElems["axis"]["allies"] = createServerTimer( "objective", 1.4, "axis" );
 	 level.ReturnMessageElems["axis"]["allies"] setPoint( "TOPRIGHT", "TOPRIGHT", 0, 15 );
-	 level.ReturnMessageElems["axis"]["allies"].label = &"MASH"_ENEMY_FLAG_RETURNING_IN";
+	 level.ReturnMessageElems["axis"]["allies"].label = &"MASH_ENEMY_FLAG_RETURNING_IN";
 	 level.ReturnMessageElems["axis"]["allies"].alpha = 0;
 	 level.ReturnMessageElems["axis"]["allies"].archived = false;
 	 level.ReturnMessageElems["axis"]["axis"] = createServerTimer( "objective", 1.4, "axis" );
 	 level.ReturnMessageElems["axis"]["axis"] setPoint( "TOPRIGHT", "TOPRIGHT", 0, 0 );
-	 level.ReturnMessageElems["axis"]["axis"].label = &"MASH"_YOUR_FLAG_RETURNING_IN";
+	 level.ReturnMessageElems["axis"]["axis"].label = &"MASH_YOUR_FLAG_RETURNING_IN";
 	 level.ReturnMessageElems["axis"]["axis"].alpha = 0;
 	 level.ReturnMessageElems["axis"]["axis"].archived = false;
 }
@@ -677,11 +677,11 @@ onPickup( player )
 
 	 // Play the corresponding sounds for players
 	 if ( playerTeam != self.ownerTeam ) {
-			thread printAndSoundOnEveryone( playerTeam, getOtherTeam( playerTeam ), &"MASH"_ENEMY_FLAG_TAKEN_BY", &"MASH"_FLAG_TAKEN_BY", "mp_enemy_obj_taken", "mp_obj_taken", player );
+			thread printAndSoundOnEveryone( playerTeam, getOtherTeam( playerTeam ), &"MASH_ENEMY_FLAG_TAKEN_BY", &"MASH_FLAG_TAKEN_BY", "mp_enemy_obj_taken", "mp_obj_taken", player );
 			statusDialog( "enemyflag", playerTeam );
 			statusDialog( "ourflag", getOtherTeam( playerTeam ) );
 	 } else {
-			thread printAndSoundOnEveryone( playerTeam, getOtherTeam( playerTeam ), &"MASH"_FLAG_RECOVERED_BY", &"MASH"_ENEMY_FLAG_RECOVERED_BY", "mp_obj_taken", "mp_enemy_obj_taken", player );
+			thread printAndSoundOnEveryone( playerTeam, getOtherTeam( playerTeam ), &"MASH_FLAG_RECOVERED_BY", &"MASH_ENEMY_FLAG_RECOVERED_BY", "mp_obj_taken", "mp_enemy_obj_taken", player );
 	 }
 
 	 // Attach the flag model to the player and log the event
@@ -791,11 +791,11 @@ onDrop( player )
 			}
 
 			// Play sound and show the proper message
-			thread printAndSoundOnEveryone( self.ownerTeam, getOtherTeam( self.ownerTeam ), &"MASH"_FLAG_DROPPED_BY", &"MASH"_ENEMY_FLAG_DROPPED_BY", "mp_war_objective_taken", "mp_war_objective_lost", player );
+			thread printAndSoundOnEveryone( self.ownerTeam, getOtherTeam( self.ownerTeam ), &"MASH_FLAG_DROPPED_BY", &"MASH_ENEMY_FLAG_DROPPED_BY", "mp_war_objective_taken", "mp_war_objective_lost", player );
 
 			player logString( self.ownerTeam + " flag dropped" );
 	 } else {
-			thread printAndSoundOnEveryone( self.ownerTeam, getOtherTeam( self.ownerTeam ), &"MASH"_FLAG_DROPPED", &"MASH"_ENEMY_FLAG_DROPPED", "mp_war_objective_taken", "mp_war_objective_lost", "" );
+			thread printAndSoundOnEveryone( self.ownerTeam, getOtherTeam( self.ownerTeam ), &"MASH_FLAG_DROPPED", &"MASH_ENEMY_FLAG_DROPPED", "mp_war_objective_taken", "mp_war_objective_lost", "" );
 			logString( self.ownerTeam + "flag dropped" );
 	 }
 	 statusDialog( "ourflag_drop", self.ownerTeam );
@@ -834,7 +834,7 @@ onReset( player )
 
 	 // Play the corresponding sounds for players
 	 if ( isDefined( player ) ) {
-			thread printAndSoundOnEveryone( self.ownerTeam, getOtherTeam( self.ownerTeam ), &"MASH"_FLAG_RETURNED_BY", &"MASH"_ENEMY_FLAG_RETURNED_BY", "mp_obj_returned", "mp_enemy_obj_returned", player );
+			thread printAndSoundOnEveryone( self.ownerTeam, getOtherTeam( self.ownerTeam ), &"MASH_FLAG_RETURNED_BY", &"MASH_ENEMY_FLAG_RETURNED_BY", "mp_obj_returned", "mp_enemy_obj_returned", player );
 			player logString( self.ownerTeam + " flag returned" );
 
 			lpselfnum = player getEntityNumber();
@@ -842,7 +842,7 @@ onReset( player )
 			logPrint("FR;" + lpGuid + ";" + lpselfnum + ";" + player.name + "\n");
 
 	 } else {
-			thread printAndSoundOnEveryone( self.ownerTeam, getOtherTeam( self.ownerTeam ), &"MASH"_FLAG_RETURNED", &"MASH"_ENEMY_FLAG_RETURNED", "mp_obj_returned", "mp_enemy_obj_returned", "" );
+			thread printAndSoundOnEveryone( self.ownerTeam, getOtherTeam( self.ownerTeam ), &"MASH_FLAG_RETURNED", &"MASH_ENEMY_FLAG_RETURNED", "mp_obj_returned", "mp_enemy_obj_returned", "" );
 			logString( self.ownerTeam + " flag returned" );
 	 }
 	 statusDialog( "ourflag_return", self.ownerTeam );
@@ -879,7 +879,7 @@ onUse( player )
 						[[level._setTeamScore]]( player.pers["team"], [[level._getTeamScore]]( player.pers["team"] ) + 1 );
 
 						// Play the corresponding sounds and show the messages
-						thread printAndSoundOnEveryone( player.pers["team"], getOtherTeam( player.pers["team"] ), &"MASH"_ENEMY_FLAG_CAPTURED_BY", &"MASH"_FLAG_CAPTURED_BY", "mp_enemy_obj_captured", "mp_obj_captured", player );
+						thread printAndSoundOnEveryone( player.pers["team"], getOtherTeam( player.pers["team"] ), &"MASH_ENEMY_FLAG_CAPTURED_BY", &"MASH_FLAG_CAPTURED_BY", "mp_enemy_obj_captured", "mp_obj_captured", player );
 						player logString( self.ownerTeam + " flag captured" );
 
 						lpselfnum = player getEntityNumber();

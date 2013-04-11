@@ -15,13 +15,10 @@ FILENOTES           ""
 
 //_knife.gsc
 REFERENCE           MOD_NAME
-LANG_ENGLISH        "^2M*A*S*H KNIVES ^11.7-D9"
-
-REFERENCE           MOD_NAME_SCRIM_MODE
-LANG_ENGLISH        "^2M*A*S*H KNIVES ^11.7-D9 ^3SCRIM MODE"
+LANG_ENGLISH        "^2M*A*S*H KNIVES ^11.7-D10"
 
 REFERENCE           MOD_NAME_1V1_MODE
-LANG_ENGLISH        "^2M*A*S*H KNIVES ^11.7-D9 ^31v1 Mode"
+LANG_ENGLISH        "^2M*A*S*H KNIVES ^11.7-D10 ^31v1 Mode"
 
 //_admin.gsc
 REFERENCE           ERROR_NO_RANK
@@ -141,15 +138,6 @@ LANG_ENGLISH        "^2You can use ^3SLOW MOTION ^2Again"
 REFERENCE           PLEASE_WAIT
 LANG_ENGLISH        "^2Please wait."
 
-REFERENCE           SCRIM_MENU_NOT_AVAILABLE_P
-LANG_ENGLISH        "^2Player Menu not available in Scrim Mode."
-
-REFERENCE           SCRIM_MENU_NOT_AVAILABLE_M
-LANG_ENGLISH        "^2Member Menu not available in Scrim Mode."
-
-REFERENCE           SCRIM_MENU_NOT_AVAILABLE_A
-LANG_ENGLISH        "^2Admin Menu not available in Scrim Mode."
-
 REFERENCE           ERROR_MENU_NOT_MEMBER
 LANG_ENGLISH        "^2You are not a ^1M*A*S*H Member"
 
@@ -219,36 +207,6 @@ LANG_ENGLISH        "Gain points by stealing the enemy flag and then touching yo
 
 REFERENCE           NULL
 LANG_ENGLISH        "%s"
-
-REFERENCE           READYUP_ALL_PLAYERS_READY
-LANG_ENGLISH        "All players are ready!"
-
-REFERENCE           READYUP_MOD_CHECKSUMS
-LANG_ENGLISH        "^3CheckSums^7: &&1."
-
-REFERENCE           READYUP_NOPASSWORD
-LANG_ENGLISH        "Warning! Server has no password!"
-
-REFERENCE           READYUP_NOT_READY
-LANG_ENGLISH        "Not ready"
-
-REFERENCE           READYUP_PERIOD
-LANG_ENGLISH        "Match Ready Up Period"
-
-REFERENCE           READYUP_PERIOD_ROUND
-LANG_ENGLISH        "Intermission Ready Up Period"
-
-REFERENCE           READYUP_PRESS_TO_TOGGLE
-LANG_ENGLISH        "Press^3 [{+activate}] ^7to toggle readiness status"
-
-REFERENCE           READYUP_READY
-LANG_ENGLISH        "Ready"
-
-REFERENCE           READYUP_RECORD_REMINDER
-LANG_ENGLISH        "^3Don't forget to /RECORD the match!"
-
-REFERENCE           READYUP_WAITING_FOR_MORE_PLAYERS
-LANG_ENGLISH        "Waiting for more players..."
 
 //UI
 REFERENCE           KNIFE

@@ -88,9 +88,6 @@ init()
 	precacheItem( "admingun_mp" );
 
 	precacheString( &"MASH_PLEASE_WAIT" );
-	precacheString( &"MASH_SCRIM_MENU_NOT_AVAILABLE_P" );
-	precacheString( &"MASH_SCRIM_MENU_NOT_AVAILABLE_M" );
-	precacheString( &"MASH_SCRIM_MENU_NOT_AVAILABLE_A" );
 	precacheString( &"MASH_SETRANK" );
 	precacheString( &"MASH_1_FULL_N" );
 	precacheString( &"MASH_2_FULL_N" );
@@ -142,14 +139,10 @@ onMenuResponse()
 
 		if(response == "quickplayer")
 		{
-			if(!level.inPrematchPeriod && !level.gameEnded && !level.scrimModeEnabled )
+			if(!level.inPrematchPeriod && !level.gameEnded)
 				self openMenu("quickplayer");
-			else if( level.scrimModeEnabled )
-				self iprintlnbold( &"MASH_SCRIM_MENU_NOT_AVAILABLE_P" );
 			else
-			{
-			self iprintlnbold( &"MASH_PLEASE_WAIT" );
-			}
+				self iprintlnbold( &"MASH_PLEASE_WAIT" );
 		}
 
 //Main Menu's
@@ -157,9 +150,7 @@ onMenuResponse()
 		{
 			if(self isMashMember())
 			{
-				if( level.scrimModeEnabled )
-					self iprintlnbold( &"MASH_SCRIM_MENU_NOT_AVAILABLE_M" );
-				else if( !level.inPrematchPeriod && !level.gameEnded )
+				if( !level.inPrematchPeriod && !level.gameEnded )
 					self openMenu("quickmash");
 				else
 					self iprintlnbold( &"MASH_PLEASE_WAIT" );
@@ -172,9 +163,7 @@ onMenuResponse()
 		{
 			if(self isMashAdmin())
 			{
-				if( level.scrimModeEnabled )
-					self iprintlnbold( &"MASH_SCRIM_MENU_NOT_AVAILABLE_A" );
-				else if( !level.inPrematchPeriod && !level.gameEnded )
+				if( !level.inPrematchPeriod && !level.gameEnded )
 					self openMenu("quickadmin");
 				else
 					self iprintlnbold( &"MASH_PLEASE_WAIT" );

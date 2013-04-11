@@ -40,43 +40,40 @@ init()
 	level.hardpointItems = [];
 	priority = 0;
 	
-	if( !level.scrimModeEnabled )
+	if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowuav" ) )
 	{
-		if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowuav" ) )
-		{
-			level.hardpointItems["radar_mp"] = priority;
-			priority++;
-		}
+		level.hardpointItems["radar_mp"] = priority;
+		priority++;
+	}
 
-		if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowairstrike" ) )
-		{
-			level.hardpointItems["airstrike_mp"] = priority;
-			priority++;
-		}
+	if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowairstrike" ) )
+	{
+		level.hardpointItems["airstrike_mp"] = priority;
+		priority++;
+	}
 
-		if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowthrowingknives" ) )
-		{
-			level.hardpointItems["throwing_knives_mp"] = priority;
-			priority++;
-		}
+	if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowthrowingknives" ) )
+	{
+		level.hardpointItems["throwing_knives_mp"] = priority;
+		priority++;
+	}
 
-		if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowhelicopter" ) )
-		{
-			level.hardpointItems["helicopter_mp"] = priority;
-			priority++;
-		}
+	if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowhelicopter" ) )
+	{
+		level.hardpointItems["helicopter_mp"] = priority;
+		priority++;
+	}
 
-		if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowspeed" ) )
-		{
-			level.hardpointItems["speed_mp"] = priority;
-			priority++;
-		}
-	
-		if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowassassin" ) )
-		{
-			level.hardpointItems["assassin_mp"] = priority;
-			priority++;
-		}
+	if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowspeed" ) )
+	{
+		level.hardpointItems["speed_mp"] = priority;
+		priority++;
+	}
+
+	if ( maps\mp\gametypes\_tweakables::getTweakableValue( "hardpoint", "allowassassin" ) )
+	{
+		level.hardpointItems["assassin_mp"] = priority;
+		priority++;
 	}
 
 //M*A*S*H Knives Begin
