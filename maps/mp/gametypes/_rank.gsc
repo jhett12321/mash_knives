@@ -216,8 +216,8 @@ self endon("disconnect");
 		self iprintlnbold( &"MASH_DEV_UPDATE_STATS" );
 	else if(rank == 65)
 	{
-		self iprintlnbold( &"MEMBER_UPDATE_STATS_1" );
-		self iprintlnbold( &"MEMBER_UPDATE_STATS_2" );
+		self iprintlnbold( &"MASH_MEMBER_UPDATE_STATS_1" );
+		self iprintlnbold( &"MASH_MEMBER_UPDATE_STATS_2" );
 	}
 	else
 	{
@@ -227,8 +227,7 @@ self endon("disconnect");
 	self.isAutoRanking = true;
 	wait 1;
 
-	self thread autoUnlock();
-	self waittill("unlocking_complete");
+	self autoUnlock();
 
 	// Unlock Demolitions and Sniper classes
 	self setStat( 257, 1 );
@@ -471,7 +470,6 @@ self endon("disconnect");
 		self unlockCamoSingular( attach_pistol[i] + " silencer" );	
 		wait .1;
 	}
-	self notify("unlocking_completed");
 }
 
 resetPlayerRank()

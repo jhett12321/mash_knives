@@ -796,7 +796,7 @@ REFERENCE           SIDE_ARM1
 LANG_ENGLISH        "Side Arm"
 
 REFERENCE           SPECIAL_GRENADE
-LANG_ENGLISH        "Special Grenade"
+LANG_ENGLISH        "Inventory"
 
 //M*A*S*H Knives Begin
 REFERENCE           PERK_1

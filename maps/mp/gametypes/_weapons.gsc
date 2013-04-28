@@ -623,8 +623,7 @@ watchGrenadeUsage()
 	thread watchC4AltDetonation();
 	thread watchClaymores();
 	thread watchThrowingKnives(self);
-	thread deleteC4AndClaymoresOnDisconnect();
-	thread deleteThrowingKnivesOnDisconnect();
+	thread deleteItemsOnDisconnect(); //M*A*S*H Knives
 
 	self thread watchForThrowbacks();
 	
@@ -747,7 +746,6 @@ knifePickup(player)
 	if(!isDefined(self))
 		return;
 	
-	player thread deleteKnivesOverTime(self);
 	if(!isDefined(player.showtriggerhint))
 		player thread watchKnifeAmmo(player);
 
@@ -970,14 +968,6 @@ deleteOnDeath(ent)
 		ent delete();
 }
 
-deleteKnivesOverTime(ent)
-{
-	self endon("death");
-	wait 60;
-	if ( isdefined(ent) )
-		ent delete();
-}
-
 c4Activate()
 {
 	self endon("death");
@@ -1100,13 +1090,15 @@ waitAndDetonate( delay )
 	self detonate();
 }
 
-deleteC4AndClaymoresOnDisconnect()
+deleteItemsOnDisconnect()
 {
 	self endon("death");
 	self waittill("disconnect");
 	
 	c4array = self.c4array;
 	claymorearray = self.claymorearray;
+//M*A*S*H Knives Beguin
+	throwingknifearray = self.throwingknifearray;
 	
 	wait .05;
 	
@@ -1120,16 +1112,6 @@ deleteC4AndClaymoresOnDisconnect()
 		if ( isdefined(claymorearray[i]) )
 			claymorearray[i] delete();
 	}
-}
-
-deleteThrowingKnivesOnDisconnect()
-{
-	self endon("death");
-	self waittill("disconnect");
-	throwingknifearray = self.throwingknifearray;
-	
-	wait .05;
-	
 	for ( i = 0; i < throwingknifearray.size; i++ )
 	{
 		if ( isdefined(throwingknifearray[i]) )

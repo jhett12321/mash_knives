@@ -187,41 +187,41 @@ addStatusTimer(name,time,persist)
 	if(!isDefined(self.timer1))
 	{
 		if(isDefined(persist) && persist)
-			setupTimer(self.timer1,self.timer1label,name,time,200,true);
+			self setupTimer(self.timer1,self.timer1label,name,time,200,true);
 		else
-			setupTimer(self.timer1,self.timer1label,name,time,200,false);
+			self setupTimer(self.timer1,self.timer1label,name,time,200,false);
 	}
 
 	else if(!isDefined(self.timer2))
 	{
 		if(isDefined(persist) && persist)
-			setupTimer(self.timer2,self.timer2label,name,time,215,true);
+			self setupTimer(self.timer2,self.timer2label,name,time,215,true);
 		else
-			setupTimer(self.timer2,self.timer2label,name,time,215,false);
+			self setupTimer(self.timer2,self.timer2label,name,time,215,false);
 	}
 
 	else if(!isDefined(self.timer3))
 	{
 		if(isDefined(persist) && persist)
-			setupTimer(self.timer3,self.timer3label,name,time,230,true);
+			self setupTimer(self.timer3,self.timer3label,name,time,230,true);
 		else
-			setupTimer(self.timer3,self.timer3label,name,time,230,false);
+			self setupTimer(self.timer3,self.timer3label,name,time,230,false);
 	}
 
 	else if(!isDefined(self.timer4))
 	{
 		if(isDefined(persist) && persist)
-			setupTimer(self.timer4,self.timer4label,name,time,245,true);
+			self setupTimer(self.timer4,self.timer4label,name,time,245,true);
 		else
-			setupTimer(self.timer4,self.timer4label,name,time,245,false);
+			self setupTimer(self.timer4,self.timer4label,name,time,245,false);
 	}
 
 	else if(!isDefined(self.timer5))
 	{
 		if(isDefined(persist) && persist)
-			setupTimer(self.timer5,self.timer5label,name,time,260,true);
+			self setupTimer(self.timer5,self.timer5label,name,time,260,true);
 		else
-			setupTimer(self.timer5,self.timer5label,name,time,260,false);
+			self setupTimer(self.timer5,self.timer5label,name,time,260,false);
 	}
 
 	else
@@ -256,74 +256,72 @@ setupTimer(timer,label,name,time,y,persist)
 	label setText(name);
 
 	if(persist)
-		thread watchTimer(timer,label);
+		self thread watchTimer(timer,label);
 
 	wait time;
 
-	if(isDefined(name) && isDefined(label))
+	if(isDefined(timer) && isDefined(label))
 	{
-		name Destroy();
+		self notify("timer_destroy");
+		timer Destroy();
 		label Destroy();
 	}
 }
 
 watchTimer(timer,label)
 {
-	self waittill("killed_player");
+	self thread watchPlayerDeath();
+	self waittill("timer_destroy");
 	if(isDefined(timer))
 	{
 		timer Destroy();
 		label Destroy();
 	}
 }
-//Function End
 
-//Combines 2 localised strings into 1.
-combineStrings(str1,str2)
+watchPlayerDeath()
 {
-	string1 = str1;
-	string2 = str2;
-	string = str1 + str2;
-	return string;
+	self endon("death");
+
+	self waittill("disconnect");
+	self notify("timer_destroy");
 }
+
 //Function End
 
 //Stackable Action Slot
 //Designed currently for action slot 4, killstreaks.
 //Code by Jhett12321
-setStackableActionSlot(slot,weapon,hardpointType)
+setStackableActionSlot(slot,hardpointType)
 {
 	self.ActionSlotisEmpty = false;
+
 	if(!isDefined(self.earnedKillStreaks))
 	{
 		self.earnedKillStreaks = [];
-		self thread watchActionSlot(slot);
 	}
 	self.earnedKillStreaks[self.earnedKillStreaks.size] = hardpointType;
-	self setActionSlot( slot,weapon,hardpointType );
-	self.pers["hardPointItem"] = hardpointType;
-	self.deleteKillStreakOnUse = true;
+	
+	self giveWeapon( hardpointType );
+	self giveMaxAmmo( hardpointType );
+	self setActionSlot( slot,"weapon",hardpointType );
 }
 
-watchActionSlot(slot)
+giveNextKillstreak()
 {
-	for(;;)
+	if(isDefined(self.earnedKillStreaks) && self.earnedKillStreaks.size != 0)
 	{
-		if(isDefined(self.earnedKillStreaks) && self.earnedKillStreaks.size != 0 && isDefined(self.ActionSlotisEmpty) && self.ActionSlotisEmpty)
-		{
-			self giveWeapon( self.earnedKillStreaks[self.earnedKillStreaks.size - 1] );
-			self giveMaxAmmo( self.earnedKillStreaks[self.earnedKillStreaks.size - 1] );
-			self setActionSlot( slot,"weapon",self.earnedKillStreaks[self.earnedKillStreaks.size - 1] );
-			self.pers["hardPointItem"] = self.earnedKillStreaks[self.earnedKillStreaks.size - 1];
+		nextKillstreak = self.earnedKillStreaks[self.earnedKillStreaks.size - 1];
+		self giveWeapon( nextKillstreak );
+		self giveMaxAmmo( nextKillstreak );
+		self setActionSlot( 4,"weapon",nextKillstreak );
 
-			self thread maps\mp\gametypes\_hardpoints::playStackableSound(self.earnedKillStreaks[self.earnedKillStreaks.size - 1]);
-			self.earnedKillStreaks[self.earnedKillStreaks.size - 1] = undefined;
-			self.ActionSlotisEmpty = false;
-			self.deleteKillStreakOnUse = false;
-		}
-		wait 0.01;
+		self thread maps\mp\gametypes\_hardpoints::playStackableSound(nextKillstreak);
+		return true;
 	}
+	return false;
 }
+
 //Function End
 
 //Set Player Rank Function
@@ -331,8 +329,8 @@ watchActionSlot(slot)
 SetRank(ranknum,rankstr)
 {
 	self.setrank = ranknum;
-	string = combineStrings(&"MASH_SETRANK",rankstr);
-	self iprintlnbold( string );
+	self iprintlnbold( &"MASH_SETRANK" );
+	self iprintlnbold( rankstr );
 }
 
 //Execute Client Command Function

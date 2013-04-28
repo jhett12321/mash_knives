@@ -1024,9 +1024,7 @@ giveHardpointItem( hardpointType )
 		return false;
 
    
-	self giveWeapon( hardpointType );
-	self giveMaxAmmo( hardpointType );
-	self setStackableActionSlot( 4, "weapon", hardpointType );
+	self setStackableActionSlot( 4, hardpointType );
    
 	return true;
 }
@@ -1050,9 +1048,7 @@ upgradeHardpointItem()
 	if ( isDefined( self.pers["hardPointItem"] ) && level.hardpointItems[hardpointType] < level.hardpointItems[self.pers["hardPointItem"]] )
 		return;
    
-	self giveWeapon( hardpointType );
-	self giveMaxAmmo( hardpointType );
-	self setStackableActionSlot( 4, "weapon", hardpointType );
+	self setStackableActionSlot( 4, hardpointType );
 
 	self thread maps\mp\gametypes\_hud_message::hintMessage( level.hardpointHints[hardpointType] );
 }
@@ -1079,7 +1075,9 @@ getNextHardpointItem( hardpointType )
 
 giveOwnedHardpointItem()
 {
-	if ( isDefined( self.pers["hardPointItem"] ) )
+	if(isDefined(self.earnedKillStreaks) && self.earnedKillStreaks.size != 0)
+		self giveNextKillstreak();
+	else if ( isDefined( self.pers["hardPointItem"] ) )
 		self giveHardpointItem( self.pers["hardPointItem"] );
 }
 
@@ -1113,10 +1111,8 @@ hardpointItemWaiter()
 					self takeWeapon( currentWeapon );
 					self setActionSlot( 4, "" );
 					self.pers["hardPointItem"] = undefined;
-					if( currentWeapon != "assassin_mp" ) //M*A*S*H Knives
-						self.ActionSlotisEmpty = true; //M*A*S*H Knives
-					if(isDefined(self.deleteKillStreakOnUse) && self.deleteKillStreakOnUse)
-						self.earnedKillStreaks[self.earnedKillStreaks.size - 1] = undefined;
+					self.earnedKillStreaks[self.earnedKillStreaks.size - 1] = undefined;
+					self thread giveNextKillstreak();
 				}
 			   
 				if ( lastWeapon != "none" )
@@ -1459,13 +1455,7 @@ self endon("assassin_used");
 
 	self.isAssassin = true;
 	
-	self TakeAllWeapons(); //Affects Stackable Killstreaks
-	if(isDefined(self.earnedKillStreaks) && self.earnedKillStreaks.size != 0)
-	{
-		self thread playStackableSound(self.earnedKillStreaks[self.earnedKillStreaks.size - 1]);
-		self.earnedKillStreaks[self.earnedKillStreaks.size - 1] = undefined;
-		self.ActionSlotisEmpty = true;
-	}
+	self TakeAllWeapons();
 
 	self giveWeapon("assassinweapon_mp");
 	self SwitchToWeapon( "assassinweapon_mp" );
@@ -1536,7 +1526,7 @@ assassin_time()
 
 RemoveSpeed()
 {
-if( isdefined(self.isSpeed) && self.isSpeed )
+	if( isdefined(self.isSpeed) && self.isSpeed )
 	{
 		players = getentarray("player", "classname");
 		for (i = 0; i < players.size; i++)
@@ -1550,7 +1540,7 @@ if( isdefined(self.isSpeed) && self.isSpeed )
 
 RemoveAssassin()
 {
-if( isdefined(self.isAssassin) && self.isAssassin )
+	if( isdefined(self.isAssassin) && self.isAssassin )
 	{
 		SetDvar( "timescale", "1" );
 		self setClientDvars( "aim_automelee_range", 128,
