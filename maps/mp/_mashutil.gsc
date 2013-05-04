@@ -255,7 +255,7 @@ setupTimer(timer,label,name,time,y,persist)
 	timer setTimer(time);
 	label setText(name);
 
-	if(persist)
+	if(!persist)
 		self thread watchTimer(timer,label);
 
 	wait time;
@@ -281,9 +281,7 @@ watchTimer(timer,label)
 
 watchPlayerDeath()
 {
-	self endon("death");
-
-	self waittill("disconnect");
+	self waittill("death");
 	self notify("timer_destroy");
 }
 

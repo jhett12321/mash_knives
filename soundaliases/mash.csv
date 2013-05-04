@@ -2,7 +2,7 @@ name,sequence,file,vol_min,vol_max,vol_mod,pitch_min,pitch_max,dist_min,dist_max
 
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #Benny Hill Speed Music,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-mash,1,mods\mash\mash.wav,1,,max,,,,,local,streamed,,,master,all_mp,,,,,,radio,nowetlevel,,0.1,,,,
+mash,1,mods\mash\mash.wav,1,1,,,,360,600,announcer,streamed,,,master,all_mp,,,,,,radio,nowetlevel,,0.1,,,,
 ,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 #Killstreaks,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 AB_1mc_assassin,1,mods/mash/AB_1mc_assassin_01.wav,0.7,0.7,,,,360,600,announcer,streamed,,,master,all_mp,,,,,,radio,nowetlevel,,0.1,,,,

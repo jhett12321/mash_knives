@@ -1111,8 +1111,11 @@ hardpointItemWaiter()
 					self takeWeapon( currentWeapon );
 					self setActionSlot( 4, "" );
 					self.pers["hardPointItem"] = undefined;
-					self.earnedKillStreaks[self.earnedKillStreaks.size - 1] = undefined;
-					self thread giveNextKillstreak();
+					if(isDefined(self.earnedKillstreaks))
+					{
+						self.earnedKillStreaks[self.earnedKillStreaks.size - 1] = undefined;
+						self thread giveNextKillstreak();
+					}
 				}
 			   
 				if ( lastWeapon != "none" )
@@ -1425,15 +1428,25 @@ self iprintlnbold( "^2Press ^3[{+smoke}]^2 to throw knife." );
 useSpeedItem()
 {
 	self endon("disconnect");
-	self endon("speed_used");
+	self endon("hardpoint_used");
 
 	self.isSpeed = true;
+	
+	self thread watchHardpointDeath();
+	self thread RemoveSpeed();
+	
 	self SetMoveSpeedScale( 1.5 );
-	players = getentarray("player", "classname");
-	for (i = 0; i < players.size; i++)
+	
+	if(!isDefined(level.speedMusicPlaying) || !level.speedMusicPlaying)
 	{
-		players[i] PlayLocalSound( "mash" );
+		players = getentarray("player", "classname");
+		for (i = 0; i < players.size; i++)
+		{
+			players[i] PlayLocalSound( "mash" );
+		}
+		level.speedMusicPlaying = true;
 	}
+	
 	self iprintlnbold( &"MASH_SPEED_BOOST_1_MIN" );
 	self thread addStatusTimer(&"MASH_SPEED_BOOST_LABEL",60,false);
 	wait ( 30 );
@@ -1445,15 +1458,18 @@ useSpeedItem()
 	wait ( 5 );
 	self SetMoveSpeedScale( 1 );
 	self iprintlnbold( "^2You no-longer have ^1Speed Boost." );
-	thread RemoveSpeed();
+	self notify("hardpoint_used");
 }
 
 useAssassinItem()
 {
 self endon("disconnect");
-self endon("assassin_used");
+self endon("hardpoint_used");
 
 	self.isAssassin = true;
+	
+	self thread watchHardpointDeath();
+	self thread RemoveAssassin();
 	
 	self TakeAllWeapons();
 
@@ -1493,7 +1509,7 @@ self endon("assassin_used");
 assassin_time()
 {
 	self endon("disconnect");
-	self endon("assassin_used");
+	self endon("hardpoint_used");
 
 	self.isnotFrozen = false;
 
@@ -1524,22 +1540,30 @@ assassin_time()
 	self iprintlnbold( "^2You can use ^3SLOW MOTION ^2Again" );
 }
 
+watchHardpointDeath()
+{
+	self waittill ("death");
+	self notify ("hardpoint_used");
+}
+
 RemoveSpeed()
 {
+	self waittill("hardpoint_used");
 	if( isdefined(self.isSpeed) && self.isSpeed )
 	{
 		players = getentarray("player", "classname");
 		for (i = 0; i < players.size; i++)
 		{
-		players[i] StopLocalSound( "mash" );
+			players[i] StopLocalSound( "mash" );
 		}
 		self.isSpeed = false;
-		self notify("speed_used");
+		level.speedMusicPlaying = false;
 	}
 }
 
 RemoveAssassin()
 {
+	self waittill("hardpoint_used");
 	if( isdefined(self.isAssassin) && self.isAssassin )
 	{
 		SetDvar( "timescale", "1" );

@@ -1201,8 +1201,11 @@ endGame( winner, endReasonText )
 	level.gameEndTime = getTime();
 	level.gameEnded = true;
 	level.inGracePeriod = false;
-	thread maps\mp\gametypes\_hardpoints::RemoveSpeed();
-	thread maps\mp\gametypes\_hardpoints::RemoveAssassin();
+	players = getentarray("player", "classname");
+	for (i = 0; i < players.size; i++)
+	{
+		players[i] notify("hardpoint_used");
+	}
 	level notify ( "game_ended" );
 	
 	setGameEndTime( 0 ); // stop/hide the timers
@@ -2304,6 +2307,8 @@ menuAxis()
 menuSpectator()
 {
 	self closeMenus();
+	self notify("hardpoint_used");
+	wait 0.01;
 	
 	if(self.pers["team"] != "spectator")
 	{
@@ -2329,8 +2334,6 @@ menuSpectator()
 
 		self setclientdvar("g_scriptMainMenu", game["menu_team"]);
 
-		thread maps\mp\gametypes\_hardpoints::RemoveSpeed();
-		thread maps\mp\gametypes\_hardpoints::RemoveAssassin();
 		self notify("joined_spectators");
 	}
 }
@@ -4805,8 +4808,6 @@ damageShellshockAndRumble( eInflictor, sWeapon, sMeansOfDeath, iDamage )
 Callback_PlayerKilled(eInflictor, attacker, iDamage, sMeansOfDeath, sWeapon, vDir, sHitLoc, psOffsetTime, deathAnimDuration)
 {
 	self endon( "spawned" );
-	thread maps\mp\gametypes\_hardpoints::RemoveSpeed();
-	thread maps\mp\gametypes\_hardpoints::RemoveAssassin();
 
 	self notify( "killed_player" );
 	
