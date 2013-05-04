@@ -1428,7 +1428,7 @@ self iprintlnbold( "^2Press ^3[{+smoke}]^2 to throw knife." );
 useSpeedItem()
 {
 	self endon("disconnect");
-	self endon("hardpoint_used");
+	self endon("killstreak_used");
 
 	self.isSpeed = true;
 	
@@ -1458,13 +1458,13 @@ useSpeedItem()
 	wait ( 5 );
 	self SetMoveSpeedScale( 1 );
 	self iprintlnbold( "^2You no-longer have ^1Speed Boost." );
-	self notify("hardpoint_used");
+	self notify("killstreak_used");
 }
 
 useAssassinItem()
 {
 self endon("disconnect");
-self endon("hardpoint_used");
+self endon("killstreak_used");
 
 	self.isAssassin = true;
 	
@@ -1509,7 +1509,7 @@ self endon("hardpoint_used");
 assassin_time()
 {
 	self endon("disconnect");
-	self endon("hardpoint_used");
+	self endon("killstreak_used");
 
 	self.isnotFrozen = false;
 
@@ -1543,12 +1543,12 @@ assassin_time()
 watchHardpointDeath()
 {
 	self waittill ("death");
-	self notify ("hardpoint_used");
+	self notify ("killstreak_used");
 }
 
 RemoveSpeed()
 {
-	self waittill("hardpoint_used");
+	self waittill("killstreak_used");
 	if( isdefined(self.isSpeed) && self.isSpeed )
 	{
 		players = getentarray("player", "classname");
@@ -1563,7 +1563,7 @@ RemoveSpeed()
 
 RemoveAssassin()
 {
-	self waittill("hardpoint_used");
+	self waittill("killstreak_used");
 	if( isdefined(self.isAssassin) && self.isAssassin )
 	{
 		SetDvar( "timescale", "1" );

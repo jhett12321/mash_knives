@@ -733,10 +733,6 @@ spawnPlayer()
 	self logstring( "S " + self.origin[0] + " " + self.origin[1] + " " + self.origin[2] );
 
 	self thread maps\mp\gametypes\_hardpoints::hardpointItemWaiter();
-//M*A*S*H Knives Begin
-	if(isDefined(self.earnedKillStreaks) && self.earnedKillStreaks.size != 0)
-		self thread maps\mp\gametypes\_hardpoints::playStackableSound(self.earnedKillStreaks[self.earnedKillStreaks.size - 1]);
-//M*A*S*H Knives End
 	//self thread testHPs();
 	//self thread testShock();
 	//self thread testMenu();
@@ -1204,7 +1200,7 @@ endGame( winner, endReasonText )
 	players = getentarray("player", "classname");
 	for (i = 0; i < players.size; i++)
 	{
-		players[i] notify("hardpoint_used");
+		players[i] notify("killstreak_used");
 	}
 	level notify ( "game_ended" );
 	
@@ -2307,7 +2303,7 @@ menuAxis()
 menuSpectator()
 {
 	self closeMenus();
-	self notify("hardpoint_used");
+	self notify("killstreak_used");
 	wait 0.01;
 	
 	if(self.pers["team"] != "spectator")
