@@ -60,21 +60,18 @@ main()
 			game["switchedsides"] = false;
 
 	 // Additional variables that we'll be using
-	 level.scr_ctf_ctfmode = getdvarx( "scr_ctf_ctfmode", "int", 0, 0, 2  );
-	 level.scr_ctf_endround_on_capture = getdvarx( "scr_ctf_endround_on_capture", "int", 0, 0, 1  );
-	 level.scr_ctf_flag_carrier_can_return = getdvarx( "scr_ctf_flag_carrier_can_return", "int", 1, 0, 1  );
-	 level.scr_ctf_show_flag_carrier = getdvarx( "scr_ctf_show_flag_carrier", "int", 0, 0, 2  );
-	 level.scr_ctf_scoreboard_flag_carrier = getdvarx( "scr_ctf_scoreboard_flag_carrier", "int", 1, 0, 1 );
-	 level.scr_ctf_show_flag_carrier_time = getdvarx( "scr_ctf_show_flag_carrier_time", "int", 5, 5, 600 );
-	 level.scr_ctf_show_flag_carrier_distance = getdvarx( "scr_ctf_show_flag_carrier_distance", "int", 0, 0, 1000 );
+	 level.scr_ctf_ctfmode = 0;
+	 level.scr_ctf_endround_on_capture = 0;
+	 level.scr_ctf_flag_carrier_can_return = 1;
+	 level.scr_ctf_show_flag_carrier = 1;
+	 level.scr_ctf_scoreboard_flag_carrier = 1;
+	 level.scr_ctf_show_flag_carrier_time = 5;
+	 level.scr_ctf_show_flag_carrier_distance = 0;
 
-	 level.scr_ctf_suddendeath_show_enemies = getdvarx( "scr_ctf_suddendeath_show_enemies", "int", 1, 0, 1 );
-	 level.scr_ctf_suddendeath_timelimit = getdvarx( "scr_ctf_suddendeath_timelimit", "int", 90, 0, 600 );
+	 level.scr_ctf_suddendeath_show_enemies = 1;
+	 level.scr_ctf_suddendeath_timelimit = 90;
 
-	 level.scr_ctf_idleflagreturntime = getdvarx( "scr_ctf_idleflagreturntime", "float", 60, 0, 120 );
-	 if ( level.scr_ctf_idleflagreturntime == 0 && level.scr_ctf_ctfmode == 1 ) {
-			level.scr_ctf_ctfmode = 0;
-	 }
+	 level.scr_ctf_idleflagreturntime = 0;
 
 	 maps\mp\gametypes\_globallogic::init();
 	 maps\mp\gametypes\_callbacksetup::SetupCallbacks();

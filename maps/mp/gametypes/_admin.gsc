@@ -24,8 +24,7 @@ init()
 admin_advantages()
 {
 	self thread admin_smite();
-	if( self isMashDev() )
-		self thread admin_rank_management();
+	self thread admin_rank_management();
 }
 
 admin_smite()
@@ -58,6 +57,8 @@ smite()
 
 admin_rank_management()
 {
+self endon("disconnect");
+
 	while(1)
 	{
 		wait 0.5;
@@ -89,10 +90,12 @@ rank_management()
 		else if(isDefined(t.isAutoRanking) && t.isAutoRanking)
 		{
 			self iPrintlnBold( &"MASH_ERROR_AUTORANKING" );
+			self iPrintlnBold (t.name);
 			return;
 		}
 		else if(isDefined(t.isranking) && t.isranking)
 		{
+			self iPrintlnBold (t.name);
 			self iPrintlnBold( &"MASH_ERROR_OTHER_PLAYER" );
 			return;
 		}
@@ -117,7 +120,8 @@ setplayerrank(t)
 
 	if(currentrank == newrank)
 	{
-		self iPrintlnBold( t.name + &"MASH_ERROR_IS_ALREADY_RANK" );
+		self iPrintlnBold (t.name);
+		self iPrintlnBold( &"MASH_ERROR_IS_ALREADY_RANK" );
 		t.isranking = false;
 		return;
 	}
@@ -129,7 +133,8 @@ setplayerrank(t)
 			t maps\mp\gametypes\_rank::giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
 			wait 0.1;
 		}
-		self iPrintlnBold( t.name + &"MASH_ADMIN_RANK_SUCCESSFUL_PR" );
+		self iPrintlnBold (t.name);
+		self iPrintlnBold( &"MASH_ADMIN_RANK_SUCCESSFUL_PR" );
 		t.isranking = false;
 		return;
 	}
@@ -149,7 +154,8 @@ setplayerrank(t)
 			t maps\mp\gametypes\_rank::giverankxp( "challenge", int(tableLookup( "mp/ranktable.csv", 0, i, 3 )) );
 			wait 0.1;
 		}
-		self iPrintlnBold( t.name + &"MASH_ADMIN_RANK_SUCCESSFUL_DE" );
+		self iPrintlnBold (t.name);
+		self iPrintlnBold( &"MASH_ADMIN_RANK_SUCCESSFUL_DE" );
 		t.isranking = false;
 		return;
 	}

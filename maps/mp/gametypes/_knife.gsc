@@ -11,32 +11,28 @@ modinit()
 	level.mashId[0] = level.devId[0];
 	level.adminId[0] = level.devId[0];
 
-	i = 1;
 	for(;;)
 	{
-		if(getDvar("mashguid_" + i) != "")
+		if(getDvar("mashguid_" + level.mashId.size) != "")
 		{
-			level.mashId[i] = getDvar("adminguid_" + i);
+			level.mashId[level.mashId.size] = getDvar("mashguid_" + level.mashId.size);
 		}
-		else if(getDvar("adminguid_" + i) == "")
+		else if(getDvar("mashguid_" + level.mashId.size) == "")
 		{
 			break;
 		}
-		i = i + 1;
 	}
 
-	i = 1;
 	for(;;)
 	{
-		if(getDvar("adminguid_" + i) != "")
+		if(getDvar("adminguid_" + level.adminId.size) != "")
 		{
-			level.adminId[i] = getDvar("adminguid_" + i);
+			level.adminId[level.adminId.size] = getDvar("adminguid_" + level.adminId.size);
 		}
-		else if(getDvar("adminguid_" + i) == "")
+		else if(getDvar("adminguid_" + level.adminId.size) == "")
 		{
 			break;
 		}
-		i = i + 1;
 	}
 }
 

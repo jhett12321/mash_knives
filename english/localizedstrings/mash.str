@@ -15,33 +15,33 @@ FILENOTES           ""
 
 //_knife.gsc
 REFERENCE           MOD_NAME
-LANG_ENGLISH        "^2M*A*S*H KNIVES ^11.7"
+LANG_ENGLISH        "^2M*A*S*H KNIVES ^11.7.1-D1"
 
 REFERENCE           MOD_NAME_1V1_MODE
-LANG_ENGLISH        "^2M*A*S*H KNIVES ^11.7 ^31v1 Mode"
+LANG_ENGLISH        "^2M*A*S*H KNIVES ^11.7.1-D1 ^31v1 Mode"
 
 //_admin.gsc
 REFERENCE           ERROR_NO_RANK
 LANG_ENGLISH        "You need to set the updated player rank first!"
 
 REFERENCE           ERROR_AUTORANKING
-LANG_ENGLISH        "Please wait while the autorank script runs on this player."
+LANG_ENGLISH        "Please wait while the autorank script runs on"
 
 REFERENCE           ERROR_OTHER_PLAYER
-LANG_ENGLISH        "That player is currently being promoted/demoted by another player!"
+LANG_ENGLISH        "is currently being promoted/demoted by another player!"
 
 //Timers
 REFERENCE           ADMIN_RANK_COOLDOWN
 LANG_ENGLISH        "^1(Admin) ^7Set Player Rank Cooldown"
 
 REFERENCE           ERROR_IS_ALREADY_RANK
-LANG_ENGLISH        " is already that rank!"
+LANG_ENGLISH        "is already that rank!"
 
 REFERENCE           ADMIN_RANK_SUCCESSFUL_PR
-LANG_ENGLISH        " has been successfully promoted."
+LANG_ENGLISH        "has been successfully promoted."
 
 REFERENCE           ADMIN_RANK_SUCCESSFUL_DE
-LANG_ENGLISH        " has been successfully demoted."
+LANG_ENGLISH        "has been successfully demoted."
 
 //_hardpoints.gsc
 REFERENCE           EARNED_AIRSTRIKE
@@ -169,6 +169,7 @@ LANG_ENGLISH        "Knifers"
 REFERENCE           GUN_NAME
 LANG_ENGLISH        "Gunners"
 
+//Capture the Flag
 REFERENCE           ENEMY_FLAG_DROPPED
 LANG_ENGLISH        "Enemy flag was dropped!"
 
@@ -193,8 +194,20 @@ LANG_ENGLISH        "Your flag returning in: &&1"
 REFERENCE           ENEMY_FLAG_RETURNING_IN
 LANG_ENGLISH        "Enemy flag returning in: &&1"
 
-REFERENCE           SPECTATOR_1V1
-LANG_ENGLISH        "You are currently spectating a 1v1 Match"
+REFERENCE           ENEMY_FLAG_CAPTURED
+LANG_ENGLISH        "Enemy flag captured!"
+
+REFERENCE           YOUR_FLAG_WAS_CAPTURED
+LANG_ENGLISH        "Your flag was captured"
+
+REFERENCE           YOUR_FLAG_WAS_RETURNED
+LANG_ENGLISH        "Your flag was returned"
+
+REFERENCE           YOUR_FLAG_WAS_TAKEN
+LANG_ENGLISH        "Your flag was taken!"
+
+REFERENCE           ENEMY_FLAG_TAKEN
+LANG_ENGLISH        "Enemy flag taken!"
 
 REFERENCE           CANT_CAPTURE_FLAG
 LANG_ENGLISH        "You can only capture the flags marked on your compass."
@@ -204,6 +217,49 @@ LANG_ENGLISH        "Gain points by stealing the enemy flag and then touching yo
 
 REFERENCE           CTF_OBJ_TEXT_NOSCORE
 LANG_ENGLISH        "Gain points by stealing the enemy flag and then touching your flag at your base."
+
+REFERENCE           CAPTURE_THE_ENEMY_FLAG
+LANG_ENGLISH        "Capture the enemy flag."
+
+REFERENCE           FRIENDLY_FLAG_CAPTURED_BY
+LANG_ENGLISH        "&&1 captured your flag!"
+
+REFERENCE           NEUTRAL_FLAG_CAPTURED_BY
+LANG_ENGLISH        "&&1 captured a flag!"
+
+REFERENCE           FLAG_TAKEN_BY
+LANG_ENGLISH        "Your flag was taken by &&1!"
+
+REFERENCE           ENEMY_FLAG_TAKEN_BY
+LANG_ENGLISH        "Enemy flag was taken by &&1!"
+
+REFERENCE           FLAG_CAPTURED_BY
+LANG_ENGLISH        "Your flag was captured by &&1!"
+
+REFERENCE           ENEMY_FLAG_CAPTURED_BY
+LANG_ENGLISH        "Enemy flag was captured by &&1!"
+
+REFERENCE           FLAG_RETURNED_BY
+LANG_ENGLISH        "Your flag was returned by &&1!"
+
+REFERENCE           FLAG_RETURNED
+LANG_ENGLISH        "Your flag was returned!"
+
+REFERENCE           ENEMY_FLAG_RETURNED
+LANG_ENGLISH        "Enemy flag was returned!"
+
+REFERENCE           YOUR_FLAG_RETURNING_IN
+LANG_ENGLISH        "Your flag returning in "
+
+REFERENCE           ENEMY_FLAG_RETURNING_IN
+LANG_ENGLISH        "Enemy flag returning in "
+
+REFERENCE           ENEMY_FLAG_DROPPED_BY
+LANG_ENGLISH        "&&1 dropped the enemy flag!"
+
+//1v1
+REFERENCE           SPECTATOR_1V1
+LANG_ENGLISH        "You are currently spectating a 1v1 Match"
 
 REFERENCE           NULL
 LANG_ENGLISH        "%s"

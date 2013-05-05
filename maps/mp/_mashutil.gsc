@@ -111,7 +111,6 @@ isMashMember()
 	self.guid = self getGuid();
 	if(self.guid == "") //GUID is not defined, or the server is being hosted locally.
 	{
-			self.isMashMember = false;
 			return false;
 	}
 

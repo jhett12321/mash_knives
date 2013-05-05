@@ -1338,6 +1338,12 @@ detachUseModels()
 		self.attachedUseModel = undefined;
 		self.attachedTagName = undefined;
 	}
+
+	else if ( isDefined( self.attachedUseModel ) )
+	{
+		self detach( self.attachedUseModel, "tag_inhand" );
+		self.attachedUseModel = undefined;
+	}
 }
 //M*A*S*H Knives End
 
